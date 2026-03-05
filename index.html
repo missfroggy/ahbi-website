@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AHBI — Athena Horizon Business Intelligence</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #B8952A;
+      --gold-light: #D4AF5A;
+      --navy: #0B1120;
+      --navy-mid: #141E35;
+      --navy-soft: #1C2A45;
+      --white: #F9F7F2;
+      --grey: #8A95A8;
+      --border: rgba(184,149,42,0.2);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--navy); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.4; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid transparent; transition: all 0.4s ease; }
+    nav.scrolled { background: rgba(11,17,32,0.92); backdrop-filter: blur(12px); border-bottom-color: var(--border); }
+    .logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+    .logo span { color: var(--gold); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 13px; letter-spacing: 0.05em; color: var(--grey); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--white); }
+    .lang-switch { display: flex; gap: 8px; align-items: center; }
+    .lang-btn { background: none; border: 1px solid var(--border); color: var(--grey); font-size: 12px; letter-spacing: 0.08em; padding: 6px 12px; cursor: pointer; transition: all 0.3s; font-family: 'DM Sans', sans-serif; }
+    .lang-btn.active { border-color: var(--gold); color: var(--gold); }
+    .cta-nav { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; border: 1px solid var(--border); padding: 10px 24px; transition: all 0.3s ease; }
+    .cta-nav:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 48px 80px; position: relative; }
+    .hero::after { content: ''; position: absolute; top: 20%; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(184,149,42,0.08) 0%, transparent 70%); pointer-events: none; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 7vw, 88px); font-weight: 300; line-height: 1.1; max-width: 900px; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
+    .hero h1 em { font-style: italic; color: var(--gold-light); }
+    .hero-sub { font-size: 17px; color: var(--grey); max-width: 520px; margin-bottom: 56px; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; }
+    .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; }
+    .btn-primary { background: var(--gold); color: var(--navy); padding: 16px 40px; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; display: inline-block; font-family: 'DM Sans', sans-serif; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-ghost { color: var(--grey); font-size: 13px; letter-spacing: 0.05em; text-decoration: none; transition: color 0.3s ease; }
+    .btn-ghost:hover { color: var(--white); }
+    .scroll-hint { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeUp 0.8s ease 1.2s forwards; }
+    .scroll-hint span { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); }
+    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease infinite; }
+
+    /* STATS */
+    .stats { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 40px 48px; display: grid; grid-template-columns: repeat(3, 1fr); }
+    .stat { text-align: center; padding: 0 32px; position: relative; }
+    .stat:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 20%; bottom: 20%; width: 1px; background: var(--border); }
+    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: var(--gold-light); line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
+
+    /* SECTIONS */
+    .section { padding: 120px 48px; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+    .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 300; line-height: 1.2; margin-bottom: 24px; }
+    .section h2 em { font-style: italic; color: var(--gold-light); }
+    .section p { color: var(--grey); font-size: 16px; max-width: 600px; margin-bottom: 16px; }
+    .gold-divider { width: 48px; height: 1px; background: var(--gold); margin: 32px 0; }
+
+    /* PAIN GRID */
+    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 64px; }
+    .pain-item { background: var(--navy); padding: 40px 36px; transition: background 0.3s ease; }
+    .pain-item:hover { background: var(--navy-soft); }
+    .pain-icon { font-size: 28px; margin-bottom: 16px; }
+    .pain-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px; }
+    .pain-item p { font-size: 14px; color: var(--grey); line-height: 1.6; margin: 0; max-width: 100%; }
+
+    /* SOLUTION */
+    .solution-wrap { background: var(--navy-mid); border: 1px solid var(--border); padding: 80px; margin-top: 64px; position: relative; overflow: hidden; }
+    .solution-wrap::before { content: 'Α'; position: absolute; right: -20px; top: -40px; font-family: 'Cormorant Garamond', serif; font-size: 280px; color: rgba(184,149,42,0.04); line-height: 1; pointer-events: none; }
+
+    /* EMAIL PREVIEW */
+    .email-preview { background: var(--navy-soft); border: 1px solid var(--border); margin-top: 48px; }
+    .email-header { background: var(--navy-mid); padding: 20px 28px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; }
+    .email-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); opacity: 0.6; }
+    .email-subject { font-size: 13px; color: var(--grey); letter-spacing: 0.05em; }
+    .email-subject span { color: var(--white); }
+    .email-body { padding: 32px 28px; }
+    .email-section { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(184,149,42,0.1); }
+    .email-section:last-child { border-bottom: none; margin-bottom: 0; }
+    .email-tag { display: inline-block; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .email-section h4 { font-size: 14px; font-weight: 400; margin-bottom: 6px; color: var(--white); }
+    .email-section p { font-size: 13px; color: var(--grey); line-height: 1.6; margin: 0; max-width: 100%; }
+
+    /* SERVICES */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 64px; }
+    .service-card { background: var(--navy); padding: 48px 40px; transition: background 0.3s; position: relative; }
+    .service-card:hover { background: var(--navy-soft); }
+    .service-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
+    .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; margin-bottom: 16px; }
+    .service-card p { font-size: 14px; color: var(--grey); line-height: 1.6; margin-bottom: 24px; }
+    .service-price { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--gold-light); }
+    .service-price span { font-size: 14px; color: var(--grey); font-family: 'DM Sans', sans-serif; }
+    .service-coming { display: inline-block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); border: 1px solid var(--border); padding: 4px 12px; margin-top: 8px; }
+
+    /* STEPS */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 48px; margin-top: 64px; }
+    .step-number { font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; color: rgba(184,149,42,0.15); line-height: 1; margin-bottom: 16px; }
+    .step h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px; }
+    .step p { font-size: 14px; color: var(--grey); line-height: 1.6; margin: 0; max-width: 100%; }
+
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 64px; }
+    .pricing-card { background: var(--navy); padding: 48px 40px; position: relative; }
+    .pricing-card.featured { background: var(--navy-soft); }
+    .pricing-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; background: var(--gold); color: var(--navy); text-align: center; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px; font-weight: 500; }
+    .pricing-card.featured { padding-top: 64px; }
+    .pricing-tier { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .pricing-price { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; line-height: 1; margin-bottom: 4px; }
+    .pricing-price sup { font-size: 24px; vertical-align: super; }
+    .pricing-period { font-size: 13px; color: var(--grey); margin-bottom: 32px; }
+    .pricing-features { list-style: none; margin-bottom: 40px; }
+    .pricing-features li { font-size: 14px; color: var(--grey); padding: 8px 0; border-bottom: 1px solid rgba(184,149,42,0.08); display: flex; gap: 10px; }
+    .pricing-features li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+
+    /* FORM */
+    .form-section { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 120px 48px; text-align: center; }
+    .form-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 300; margin-bottom: 16px; }
+    .form-section p { color: var(--grey); font-size: 16px; margin-bottom: 48px; }
+    .form-wrap { max-width: 560px; margin: 0 auto; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-field { margin-bottom: 16px; }
+    input, select, textarea { width: 100%; background: var(--navy); border: 1px solid var(--border); color: var(--white); padding: 16px 20px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; outline: none; transition: border-color 0.3s ease; appearance: none; }
+    input::placeholder, textarea::placeholder { color: var(--grey); }
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+    select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A95A8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 20px center; padding-right: 44px; }
+    .form-submit { width: 100%; background: var(--gold); color: var(--navy); border: none; padding: 18px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; cursor: pointer; transition: all 0.3s ease; font-family: 'DM Sans', sans-serif; margin-top: 8px; }
+    .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .form-note { font-size: 12px; color: var(--grey); margin-top: 16px; }
+    .success-msg { display: none; background: rgba(184,149,42,0.1); border: 1px solid var(--border); padding: 32px; text-align: center; }
+    .success-msg.show { display: block; }
+    .success-msg h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--gold-light); margin-bottom: 8px; }
+
+    /* FOOTER */
+    footer { padding: 48px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--grey); }
+    .footer-logo span { color: var(--gold); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes scrollPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* HIDDEN LANG */
+    [data-lang] { display: none; }
+    body.lang-en [data-lang="en"] { display: block; }
+    body.lang-zh [data-lang="zh"] { display: block; }
+    body.lang-en .inline-en { display: inline; }
+    body.lang-zh .inline-zh { display: inline; }
+    .inline-en, .inline-zh { display: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 24px 60px; }
+      .stats { grid-template-columns: 1fr; padding: 24px; }
+      .stat:not(:last-child)::after { display: none; }
+      .section { padding: 80px 24px; }
+      .solution-wrap { padding: 48px 32px; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { padding: 32px 24px; flex-direction: column; }
+    }
+  </style>
+</head>
+<body class="lang-en">
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">AHBI <span>|</span> Athena Horizon</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#services" class="inline-en">Services</a><a href="#services" class="inline-zh">服務</a></li>
+      <li><a href="#how" class="inline-en">How It Works</a><a href="#how" class="inline-zh">運作方式</a></li>
+      <li><a href="#pricing" class="inline-en">Pricing</a><a href="#pricing" class="inline-zh">定價</a></li>
+    </ul>
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('zh')">繁中</button>
+    </div>
+    <a href="#enquire" class="cta-nav"><span class="inline-en">Request Access</span><span class="inline-zh">申請使用</span></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow"><span class="inline-en">AI-Powered Intelligence for Family Offices</span><span class="inline-zh">家族辦公室AI情報服務</span></p>
+  
+  <h1 data-lang="en">Every morning,<br><em>clarity</em> before the market opens.</h1>
+  <h1 data-lang="zh">每個早晨，<br>在市場開盤前<em>掌握先機</em>。</h1>
+
+  <p class="hero-sub" data-lang="en">Athena Horizon Business Intelligence delivers a personalized daily briefing — market dynamics, regulatory shifts, and risk signals — curated by AI for your family office.</p>
+  <p class="hero-sub" data-lang="zh">AHBI為家族辦公室提供每日個人化情報簡報——市場動態、監管變化、風險預警——由AI全自動生成，每天早上直接送達您的收件箱。</p>
+
+  <div class="hero-actions">
+    <a href="#enquire" class="btn-primary"><span class="inline-en">Request Early Access</span><span class="inline-zh">申請早鳥使用</span></a>
+    <a href="#how" class="btn-ghost"><span class="inline-en">See how it works →</span><span class="inline-zh">了解運作方式 →</span></a>
+  </div>
+  <div class="scroll-hint">
+    <span class="inline-en">Scroll</span><span class="inline-zh">向下滾動</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats reveal">
+  <div class="stat">
+    <div class="stat-number">3,380+</div>
+    <div class="stat-label"><span class="inline-en">Family Offices in Hong Kong</span><span class="inline-zh">香港家族辦公室數量</span></div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">7:30</div>
+    <div class="stat-label"><span class="inline-en">Daily Briefing Delivered AM HKT</span><span class="inline-zh">每日港時早上7:30發送</span></div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">5</div>
+    <div class="stat-label"><span class="inline-en">Intelligence Modules Per Brief</span><span class="inline-zh">每份簡報包含5大情報模組</span></div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<div class="section reveal">
+  <p class="section-label"><span class="inline-en">The Problem</span><span class="inline-zh">問題所在</span></p>
+  <h2 data-lang="en">Information overload is<br><em>costing you clarity.</em></h2>
+  <h2 data-lang="zh">資訊過載，<br><em>令您錯失關鍵訊號。</em></h2>
+  <p data-lang="en">Family office principals spend hours each morning scanning news, regulatory updates, and market data — across multiple sources, in multiple languages. Critical signals get missed. Decisions get delayed.</p>
+  <p data-lang="zh">家族辦公室負責人每天早上需要花費數小時瀏覽新聞、監管更新和市場數據——跨多個來源、多種語言。關鍵訊號被遺漏，決策被延誤。</p>
+  <div class="gold-divider"></div>
+  <p data-lang="en">There is a better way.</p>
+  <p data-lang="zh">現在有更好的方式。</p>
+
+  <div class="pain-grid">
+    <div class="pain-item">
+      <div class="pain-icon">📰</div>
+      <h3><span class="inline-en">Fragmented Sources</span><span class="inline-zh">資訊來源分散</span></h3>
+      <p data-lang="en">Market news, HKEX announcements, regulatory circulars, geopolitical risk — scattered across dozens of platforms every day.</p>
+      <p data-lang="zh">市場新聞、港交所公告、監管通函、地緣政治風險——每天分散在數十個平台上。</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">⏱</div>
+      <h3><span class="inline-en">Time Consumed</span><span class="inline-zh">耗費大量時間</span></h3>
+      <p data-lang="en">Senior staff spending 1-2 hours each morning on manual monitoring — time better spent on investment decisions.</p>
+      <p data-lang="zh">資深員工每天早上花1-2小時手動監控資訊——這些時間本可用於更重要的投資決策。</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">⚠️</div>
+      <h3><span class="inline-en">Missed Signals</span><span class="inline-zh">遺漏關鍵訊號</span></h3>
+      <p data-lang="en">Regulatory changes, sanction list updates, and profit warnings that slip through the cracks — until it's too late.</p>
+      <p data-lang="zh">監管變化、制裁名單更新、盈利預警在不知不覺中被遺漏——直到為時已晚。</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">🌐</div>
+      <h3><span class="inline-en">Language Barriers</span><span class="inline-zh">語言障礙</span></h3>
+      <p data-lang="en">Critical information published in Chinese, English, and Arabic — requiring constant translation and interpretation.</p>
+      <p data-lang="zh">關鍵資訊以中文、英文和阿拉伯文發布——需要持續翻譯和理解。</p>
+    </div>
+  </div>
+</div>
+
+<!-- SOLUTION -->
+<div class="section reveal" style="padding-top:0">
+  <div class="solution-wrap">
+    <p class="section-label"><span class="inline-en">The Solution</span><span class="inline-zh">解決方案</span></p>
+    <h2 data-lang="en">One email. Every morning.<br><em>Everything you need to know.</em></h2>
+    <h2 data-lang="zh">一封郵件。每個早晨。<br><em>您需要知道的一切。</em></h2>
+    <p data-lang="en" style="color:var(--grey);font-size:16px;max-width:560px;margin-bottom:0">AHBI monitors hundreds of sources overnight, synthesizes the signal from the noise, and delivers a clean, personalized briefing — before markets open.</p>
+    <p data-lang="zh" style="color:var(--grey);font-size:16px;max-width:560px;margin-bottom:0">AHBI在您睡眠期間監控數百個資訊來源，從雜訊中提煉出關鍵訊號，在市場開盤前送達一份簡潔、個人化的情報簡報。</p>
+
+    <div class="email-preview">
+      <div class="email-header">
+        <div class="email-dot"></div>
+        <div class="email-subject">
+          <span>AHBI Daily Brief</span> — <span class="inline-en">Thursday, 7:30 AM HKT</span><span class="inline-zh">週四 早上7:30 香港時間</span>
+        </div>
+      </div>
+      <div class="email-body">
+        <div class="email-section">
+          <span class="email-tag">🌏 <span class="inline-en">Market Pulse</span><span class="inline-zh">市場脈搏</span></span>
+          <h4><span class="inline-en">Hang Seng opens cautiously amid Fed uncertainty</span><span class="inline-zh">美聯儲不確定性下，恒指謹慎開市</span></h4>
+          <p data-lang="en">HSI futures pointing -0.4%. Tech sector under pressure. Regional currencies stable. Key watch: PBOC liquidity injection expected mid-session.</p>
+          <p data-lang="zh">恒指期貨指向-0.4%。科技板塊承壓。區域貨幣穩定。重點關注：人民銀行預計在午盤注入流動性。</p>
+        </div>
+        <div class="email-section">
+          <span class="email-tag">⚖️ <span class="inline-en">Regulatory Radar</span><span class="inline-zh">監管雷達</span></span>
+          <h4><span class="inline-en">SFC issues guidance on virtual asset fund structures</span><span class="inline-zh">證監會就虛擬資產基金架構發出指引</span></h4>
+          <p data-lang="en">New circular clarifies requirements for family offices holding tokenized assets. Action required for Type 9 licensed entities by Q2 2026.</p>
+          <p data-lang="zh">新通函釐清持有代幣化資產的家族辦公室的要求。第9類持牌機構須於2026年第二季前採取行動。</p>
+        </div>
+        <div class="email-section">
+          <span class="email-tag">🚨 <span class="inline-en">Risk Alert</span><span class="inline-zh">風險預警</span></span>
+          <h4><span class="inline-en">OFAC sanctions list updated — 3 new entities</span><span class="inline-zh">OFAC制裁名單更新——新增3個實體</span></h4>
+          <p data-lang="en">Two PRC-linked trading companies and one UAE-based intermediary added. Cross-reference with counterparty exposure recommended.</p>
+          <p data-lang="zh">新增兩家中資貿易公司及一家阿聯酋中介機構。建議與交易對手風險敞口進行交叉核對。</p>
+        </div>
+        <div class="email-section">
+          <span class="email-tag">📊 <span class="inline-en">HKEX Watch</span><span class="inline-zh">港交所監控</span></span>
+          <h4><span class="inline-en">4 companies on your watchlist filed material announcements</span><span class="inline-zh">您關注名單中4家公司發布重大公告</span></h4>
+          <p data-lang="en">2 profit warnings, 1 major acquisition disclosure, 1 board restructuring. Details in full brief.</p>
+          <p data-lang="zh">2份盈利預警、1項重大收購披露、1次董事會重組。詳情見完整簡報。</p>
+        </div>
+        <div class="email-section">
+          <span class="email-tag">🔮 <span class="inline-en">30-Day Horizon</span><span class="inline-zh">未來30天展望</span></span>
+          <h4><span class="inline-en">Upcoming deadlines & events to prepare for</span><span class="inline-zh">即將到來的截止日期及需準備的事項</span></h4>
+          <p data-lang="en">HKMA quarterly return due in 12 days · Fed rate decision Mar 19 · HK Budget implementation begins Apr 1</p>
+          <p data-lang="zh">金管局季度申報表於12天後到期 · 美聯儲利率決議3月19日 · 香港預算案實施4月1日起</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section reveal" id="services">
+  <p class="section-label"><span class="inline-en">Our Services</span><span class="inline-zh">我們的服務</span></p>
+  <h2 data-lang="en">Built for today.<br><em>Designed to scale with you.</em></h2>
+  <h2 data-lang="zh">為當下而建，<br><em>與您一同成長。</em></h2>
+  <p data-lang="en">We start with daily intelligence and expand as your needs evolve. Each service is fully automated — no manual intervention, no data sharing required.</p>
+  <p data-lang="zh">我們從每日情報開始，隨著您的需求不斷擴展。每項服務均完全自動化——無需人工干預，無需共享數據。</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-tag"><span class="inline-en">Core Service — Available Now</span><span class="inline-zh">核心服務——現已開放</span></span>
+      <h3><span class="inline-en">AHBI Daily Intelligence</span><span class="inline-zh">AHBI每日情報</span></h3>
+      <p data-lang="en">Personalized daily briefing covering market dynamics, HKEX announcements, regulatory updates, sanctions alerts, and 30-day horizon — delivered at 7:30 AM HKT.</p>
+      <p data-lang="zh">個人化每日簡報，涵蓋市場動態、港交所公告、監管更新、制裁預警及30天展望——每天港時早上7:30送達。</p>
+      <div class="service-price">$500–$1,500 <span>USD/month</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-tag"><span class="inline-en">Premium Service — Coming Soon</span><span class="inline-zh">高端服務——即將推出</span></span>
+      <h3><span class="inline-en">Deep Intelligence Advisory</span><span class="inline-zh">深度情報顧問</span></h3>
+      <p data-lang="en">Custom AI intelligence system built specifically for your family office. Proprietary monitoring, bespoke analysis, and dedicated intelligence reports tailored to your portfolio and strategy.</p>
+      <p data-lang="zh">專為您的家族辦公室定制的AI情報系統。專有監控、定制分析及專屬情報報告，完全根據您的投資組合和策略量身打造。</p>
+      <div class="service-price" style="font-size:24px">
+        <span class="inline-en">From $100,000 USD / engagement</span>
+        <span class="inline-zh">起價 $100,000 USD / 項目</span>
+      </div>
+      <div><span class="service-coming"><span class="inline-en">Enquire for priority access</span><span class="inline-zh">查詢優先使用資格</span></span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-tag"><span class="inline-en">Enterprise — Coming Soon</span><span class="inline-zh">企業方案——即將推出</span></span>
+      <h3><span class="inline-en">Institutional Intelligence Platform</span><span class="inline-zh">機構情報平台</span></h3>
+      <p data-lang="en">Full-scale AI intelligence infrastructure for asset managers, multi-family offices, and financial institutions. Multi-user, API access, custom modules, and SLA guarantee.</p>
+      <p data-lang="zh">為資產管理公司、聯合家族辦公室及金融機構提供的全規模AI情報基礎設施。多用戶、API訪問、定制模組及SLA保障。</p>
+      <div class="service-price" style="font-size:24px">
+        <span class="inline-en">Custom Pricing</span>
+        <span class="inline-zh">定制定價</span>
+      </div>
+      <div><span class="service-coming"><span class="inline-en">Contact us</span><span class="inline-zh">聯繫我們</span></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section reveal" id="how" style="padding-top:0">
+  <p class="section-label"><span class="inline-en">How It Works</span><span class="inline-zh">運作方式</span></p>
+  <h2 data-lang="en">Intelligent. Automated.<br><em>Effortless.</em></h2>
+  <h2 data-lang="zh">智能。自動化。<br><em>毫不費力。</em></h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-number">01</div>
+      <h3><span class="inline-en">Define Your Profile</span><span class="inline-zh">設定您的偏好</span></h3>
+      <p data-lang="en">Tell us your investment focus, markets, and watchlist. Takes 5 minutes. No technical setup required.</p>
+      <p data-lang="zh">告訴我們您的投資重點、市場及關注名單。只需5分鐘，無需任何技術設置。</p>
+    </div>
+    <div class="step">
+      <div class="step-number">02</div>
+      <h3><span class="inline-en">AI Monitors Overnight</span><span class="inline-zh">AI全夜監控</span></h3>
+      <p data-lang="en">Our system scans hundreds of sources while you sleep — regulatory bodies, exchanges, news wires, sanctions databases.</p>
+      <p data-lang="zh">我們的系統在您睡眠時掃描數百個來源——監管機構、交易所、新聞電訊、制裁數據庫。</p>
+    </div>
+    <div class="step">
+      <div class="step-number">03</div>
+      <h3><span class="inline-en">Receive Your Brief</span><span class="inline-zh">接收您的簡報</span></h3>
+      <p data-lang="en">Every morning at 7:30 AM HKT, a clean, concise briefing arrives in your inbox. Personalized. Prioritized. Actionable.</p>
+      <p data-lang="zh">每天早上港時7:30，一份簡潔的個人化簡報送達您的收件箱。個人化、按優先級排列、可立即採取行動。</p>
+    </div>
+    <div class="step">
+      <div class="step-number">04</div>
+      <h3><span class="inline-en">Stay Ahead</span><span class="inline-zh">保持領先</span></h3>
+      <p data-lang="en">Make better decisions faster. Never miss a critical update. Reclaim hours of manual monitoring every week.</p>
+      <p data-lang="zh">更快做出更好的決策。永不錯過關鍵更新。每週節省數小時的手動監控時間。</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="section reveal" id="pricing" style="padding-top:0">
+  <p class="section-label"><span class="inline-en">Pricing</span><span class="inline-zh">定價</span></p>
+  <h2 data-lang="en">Straightforward.<br><em>No surprises.</em></h2>
+  <h2 data-lang="zh">清晰透明，<br><em>沒有隱藏費用。</em></h2>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier"><span class="inline-en">Essentials</span><span class="inline-zh">基礎版</span></div>
+      <div class="pricing-price"><sup>$</sup>500</div>
+      <div class="pricing-period">USD / <span class="inline-en">month</span><span class="inline-zh">月</span></div>
+      <ul class="pricing-features">
+        <li><span class="inline-en">Daily market briefing</span><span class="inline-zh">每日市場簡報</span></li>
+        <li><span class="inline-en">SFC & HKMA regulatory alerts</span><span class="inline-zh">證監會及金管局監管提醒</span></li>
+        <li><span class="inline-en">Sanctions list monitoring</span><span class="inline-zh">制裁名單監控</span></li>
+        <li><span class="inline-en">Up to 20 HKEX watchlist stocks</span><span class="inline-zh">最多20隻港交所關注股票</span></li>
+        <li><span class="inline-en">English language</span><span class="inline-zh">英文版本</span></li>
+      </ul>
+      <a href="#enquire" class="btn-primary" style="display:block;text-align:center"><span class="inline-en">Get Started</span><span class="inline-zh">立即開始</span></a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-tier"><span class="inline-en">Professional</span><span class="inline-zh">專業版</span></div>
+      <div class="pricing-price"><sup>$</sup>1,500</div>
+      <div class="pricing-period">USD / <span class="inline-en">month</span><span class="inline-zh">月</span></div>
+      <ul class="pricing-features">
+        <li><span class="inline-en">Everything in Essentials</span><span class="inline-zh">包含基礎版所有功能</span></li>
+        <li><span class="inline-en">DFSA (Dubai) coverage</span><span class="inline-zh">迪拜DFSA監管覆蓋</span></li>
+        <li><span class="inline-en">Unlimited watchlist stocks</span><span class="inline-zh">無限關注股票</span></li>
+        <li><span class="inline-en">English & Traditional Chinese</span><span class="inline-zh">英文及繁體中文</span></li>
+        <li><span class="inline-en">Custom alert thresholds</span><span class="inline-zh">自定義預警閾值</span></li>
+        <li><span class="inline-en">Monthly intelligence summary</span><span class="inline-zh">每月情報總結</span></li>
+      </ul>
+      <a href="#enquire" class="btn-primary" style="display:block;text-align:center"><span class="inline-en">Get Started</span><span class="inline-zh">立即開始</span></a>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Enterprise</div>
+      <div class="pricing-price" style="font-size:40px;padding-top:8px"><span class="inline-en">Custom</span><span class="inline-zh">定制</span></div>
+      <div class="pricing-period"><span class="inline-en">USD · tailored pricing</span><span class="inline-zh">USD · 定制定價</span></div>
+      <ul class="pricing-features">
+        <li><span class="inline-en">Everything in Professional</span><span class="inline-zh">包含專業版所有功能</span></li>
+        <li><span class="inline-en">Multi-user access</span><span class="inline-zh">多用戶訪問</span></li>
+        <li><span class="inline-en">Custom intelligence modules</span><span class="inline-zh">定制情報模組</span></li>
+        <li><span class="inline-en">Dedicated briefing analyst</span><span class="inline-zh">專屬簡報分析師</span></li>
+        <li><span class="inline-en">API access</span><span class="inline-zh">API訪問</span></li>
+        <li><span class="inline-en">SLA guarantee</span><span class="inline-zh">SLA保障</span></li>
+      </ul>
+      <a href="#enquire" class="btn-primary" style="display:block;text-align:center"><span class="inline-en">Contact Us</span><span class="inline-zh">聯繫我們</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- FORM -->
+<section class="form-section reveal" id="enquire">
+  <h2><span class="inline-en">Request <em style="font-style:italic;color:var(--gold-light)">Early Access</em></span><span class="inline-zh">申請<em style="font-style:italic;color:var(--gold-light)">早鳥使用資格</em></span></h2>
+  <p data-lang="en">We are onboarding a select group of family offices for our launch cohort. Secure your place today.</p>
+  <p data-lang="zh">我們正在為首批家族辦公室開放使用資格。立即確保您的位置。</p>
+
+  <div class="form-wrap">
+    <div id="enquiry-form">
+      <div class="form-row">
+        <input type="text" id="fname" placeholder="First Name / 名字" required />
+        <input type="text" id="lname" placeholder="Last Name / 姓氏" required />
+      </div>
+      <div class="form-field">
+        <input type="email" id="email" placeholder="Email Address / 電郵地址" required />
+      </div>
+      <div class="form-field">
+        <input type="text" id="firm" placeholder="Firm / Family Office Name / 公司或家族辦公室名稱" />
+      </div>
+      <div class="form-field">
+        <select id="tier">
+          <option value="" disabled selected>Interested Plan / 感興趣的方案</option>
+          <option>Essentials — $500 USD/month</option>
+          <option>Professional — $1,500 USD/month</option>
+          <option>Enterprise — Custom / 定制</option>
+          <option>Deep Intelligence Advisory — $100,000+ USD</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <select id="market">
+          <option value="" disabled selected>Primary Market Focus / 主要市場重點</option>
+          <option>Hong Kong / 香港</option>
+          <option>Hong Kong + Mainland China / 香港 + 中國內地</option>
+          <option>Hong Kong + Dubai / 香港 + 迪拜</option>
+          <option>Multi-Market / 多市場</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <textarea id="message" rows="3" placeholder="Any specific intelligence needs? / 有任何特定情報需求？（選填）"></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm()"><span class="inline-en">Request Access →</span><span class="inline-zh">申請使用 →</span></button>
+      <p class="form-note"><span class="inline-en">Your information is kept strictly confidential. We will respond within 24 hours.</span><span class="inline-zh">您的資料將受到嚴格保密。我們將在24小時內回覆。</span></p>
+    </div>
+    <div class="success-msg" id="success">
+      <h3><span class="inline-en">Request Received</span><span class="inline-zh">申請已收到</span></h3>
+      <p style="color:var(--grey);font-size:14px;margin:0"><span class="inline-en">Thank you. Our team will be in touch within 24 hours to discuss your intelligence requirements.</span><span class="inline-zh">感謝您。我們的團隊將在24小時內與您聯繫，討論您的情報需求。</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">AHBI <span>|</span> Athena Horizon</div>
+  <p style="font-size:12px;color:var(--grey);max-width:400px"><span class="inline-en">Athena Horizon Business Intelligence provides AI-powered information aggregation services. Content is for informational purposes only and does not constitute financial, legal, or compliance advice.</span><span class="inline-zh">Athena Horizon Business Intelligence提供AI驅動的資訊整合服務。內容僅供參考，不構成財務、法律或合規建議。</span></p>
+  <p style="font-size:12px;color:var(--grey)">© 2026 Athena Horizon Limited.</p>
+</footer>
+
+<script>
+  // NAV SCROLL
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+
+  // REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // LANGUAGE SWITCH
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // FORM
+  function submitForm() {
+    const email = document.getElementById('email').value;
+    const fname = document.getElementById('fname').value;
+    if (!email || !fname) { alert('Please fill in your name and email.'); return; }
+    document.getElementById('enquiry-form').style.display = 'none';
+    document.getElementById('success').classList.add('show');
+  }
+
+  // FEATURED CARD LABEL
+  document.querySelector('.pricing-card.featured').style.position = 'relative';
+  const label = document.createElement('div');
+  label.style.cssText = 'position:absolute;top:0;left:0;right:0;background:var(--gold);color:var(--navy);text-align:center;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;padding:6px;font-weight:500;font-family:DM Sans,sans-serif';
+  label.innerHTML = '<span class="inline-en">Most Popular</span><span class="inline-zh">最受歡迎</span>';
+  document.querySelector('.pricing-card.featured').prepend(label);
+  // re-apply lang to new element
+  setTimeout(() => setLang(document.body.className.replace('lang-','')), 100);
+</script>
+</body>
+</html>
