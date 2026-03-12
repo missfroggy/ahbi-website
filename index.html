@@ -65,10 +65,10 @@
     .data-sources-wrap { max-width: 1000px; margin: 0 auto; }
     .data-sources-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--white); margin-bottom: 16px; }
     .data-sources-section p { color: var(--grey); font-size: 14px; margin-bottom: 48px; }
-    .data-sources-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 48px; }
+    .data-sources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; justify-items: center; }
     .data-source-item { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    .data-source-logo { width: 64px; height: 64px; background: var(--navy-soft); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
-    .data-source-logo svg { width: 28px; height: 28px; stroke: var(--gold); }
+    .data-source-logo { width: 80px; height: 80px; background: var(--navy-soft); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+    .data-source-logo svg { width: 36px; height: 36px; stroke: var(--gold); }
     .data-source-name { font-size: 12px; color: var(--grey); letter-spacing: 0.05em; }
     .data-source-abbr { font-size: 11px; color: var(--gold); letter-spacing: 0.1em; font-weight: 500; }
 
