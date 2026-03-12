@@ -424,7 +424,7 @@
       <div class="email-header">
         <div class="email-dot"></div>
         <div class="email-subject">
-          <span>AHBI Daily Brief</span> — <span class="inline-en">Thursday, 7:30 AM HKT</span><span class="inline-zh">週四 早上7:30 香港時間</span>
+          <span>AHBI Daily Brief</span> — <span id="email-date-en"></span><span id="email-date-zh"></span>
         </div>
       </div>
       <div class="email-body">
@@ -670,8 +670,16 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">AHBI <span>|</span> Athena Horizon</div>
-  <p style="font-size:12px;color:var(--grey);max-width:400px"><span class="inline-en">Athena Horizon Business Intelligence provides AI-powered information aggregation services. Content is for informational purposes only and does not constitute financial, legal, or compliance advice.</span><span class="inline-zh">Athena Horizon Business Intelligence提供AI驅動的資訊整合服務。內容僅供參考，不構成財務、法律或合規建議。</span></p>
-  <p style="font-size:12px;color:var(--grey)">© 2026 Athena Horizon Limited.</p>
+  <div class="footer-contact">
+    <p style="font-size:13px;color:var(--gold);margin-bottom:8px;">info@ahbi.ai</p>
+    <p style="font-size:12px;color:var(--grey);margin-bottom:8px;">
+      <a href="#" style="color:var(--grey);text-decoration:none;" onclick="openModal('terms-modal');return false;"><span class="inline-en">Terms</span><span class="inline-zh">條款</span></a> · 
+      <a href="#" style="color:var(--grey);text-decoration:none;" onclick="openModal('privacy-modal');return false;"><span class="inline-en">Privacy</span><span class="inline-zh">隱私</span></a> · 
+      <a href="#" style="color:var(--grey);text-decoration:none;" onclick="openModal('disclaimer-modal');return false;"><span class="inline-en">Disclaimer</span><span class="inline-zh">免責</span></a> · 
+      <a href="#" style="color:var(--grey);text-decoration:none;"><span class="inline-en">LinkedIn</span><span class="inline-zh">LinkedIn</span></a>
+    </p>
+    <p style="font-size:12px;color:var(--grey)">© 2026 Athena Horizon Limited.</p>
+  </div>
 </footer>
 
 <script>
@@ -877,7 +885,19 @@
   </div>
 </div>
 
-<script>lucide.createIcons();</script>
+<script>
+// Initialize Lucide icons
+lucide.createIcons();
+
+// Dynamic email date
+const daysEn = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const daysZh = ['週日', '週一', '週二', '週三', '週四', '週五', '週六'];
+const now = new Date();
+const dayEn = daysEn[now.getDay()];
+const dayZh = daysZh[now.getDay()];
+document.getElementById('email-date-en').textContent = dayEn + ', 7:30 AM HKT';
+document.getElementById('email-date-zh').textContent = dayZh + ' 早上7:30 香港時間';
+</script>
 </body>
 </html>
 
