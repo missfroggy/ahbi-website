@@ -155,7 +155,7 @@
     input::placeholder, textarea::placeholder { color: var(--grey); }
     input:focus, select:focus, textarea:focus { border-color: var(--gold); }
     select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A95A8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 20px center; padding-right: 44px; }
-    .form-submit { width: 100%; background: var(--gold); color: var(--navy); border: none; padding: 18px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; cursor: pointer; transition: all 0.3s ease; font-family: 'DM Sans', sans-serif; margin-top: 8px; }
+    .form-submit { width: 100%; background: var(--gold); color: var(--navy); border: none; padding: 18px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; cursor: pointer; transition: all 0.3s ease; font-family: 'DM Sans', sans-serif; margin-top: 8px; -webkit-appearance: none; appearance: none; }
     .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
     .form-note { font-size: 12px; color: var(--grey); margin-top: 16px; }
     .success-msg { display: none; background: rgba(184,149,42,0.1); border: 1px solid var(--border); padding: 32px; text-align: center; }
@@ -281,30 +281,6 @@
         <div class="data-source-logo">UN</div>
         <div class="data-source-name"><span class="inline-en">UN Sanctions List</span><span class="inline-zh">聯合國制裁名單</span></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- DISCLAIMER SECTION - NEW -->
-<section class="disclaimer-section reveal">
-  <div class="disclaimer-wrap">
-    <h3><span class="inline-en">Information Aggregation, Not Investment Advice</span><span class="inline-zh">資訊整合，而非投資建議</span></h3>
-    
-    <div class="disclaimer-box">
-      <p data-lang="en"><strong>AHBI is a technology-driven information services company.</strong> We do not hold any financial regulatory licenses and do not provide investment advice, asset management services, or securities brokerage services.</p>
-      <p data-lang="zh"><strong>AHBI是一家技術驅動的資訊服務公司。</strong>我們不持有任何金融監管牌照，不提供投資建議、資產管理服務或證券經紀服務。</p>
-      
-      <p data-lang="en">All content delivered by AHBI is sourced from publicly available information and is provided for <strong>informational purposes only</strong>. Nothing in our service constitutes financial, investment, legal, or compliance advice.</p>
-      <p data-lang="zh">AHBI提供的所有內容均來自公開可獲取的資訊，僅供<strong>參考</strong>。我們的服務不構成財務、投資、法律或合規建議。</p>
-      
-      <p data-lang="en">Clients should independently verify all critical information and consult licensed professional advisors before making investment or compliance decisions. AHBI is not licensed by the SFC, HKMA, DFSA, or any other regulatory authority to provide investment advice.</p>
-      <p data-lang="zh">客戶應獨立核實所有關鍵資訊，並在做出投資或合規決策前諮詢持牌專業顧問。AHBI未獲證監會、金管局、迪拜金融服務局或任何其他監管機構發牌提供投資建議。</p>
-    </div>
-    
-    <div class="disclaimer-links">
-      <a href="#"><span class="inline-en">Terms of Use</span><span class="inline-zh">使用條款</span></a>
-      <a href="#"><span class="inline-en">Privacy Policy</span><span class="inline-zh">隱私政策</span></a>
-      <a href="#"><span class="inline-en">Full Disclaimer</span><span class="inline-zh">完整免責聲明</span></a>
     </div>
   </div>
 </section>
@@ -543,20 +519,20 @@
   <p data-lang="en">We are onboarding a select group of family offices for our launch cohort. Secure your place today.</p>
   <p data-lang="zh">我們正在為首批家族辦公室開放使用資格。立即確保您的位置。</p>
 
-  <div class="form-wrap">
-    <div id="enquiry-form">
+  <div id="enquiry-form">
+    <form id="enquiry-form-el" onsubmit="submitForm(event)">
       <div class="form-row">
-        <input type="text" id="fname" placeholder="First Name / 名字" required />
-        <input type="text" id="lname" placeholder="Last Name / 姓氏" required />
+        <input type="text" name="first_name" placeholder="First Name / 名字" required />
+        <input type="text" name="last_name" placeholder="Last Name / 姓氏" required />
       </div>
       <div class="form-field">
-        <input type="email" id="email" placeholder="Email Address / 電郵地址" required />
+        <input type="email" name="email" placeholder="Email Address / 電郵地址" required />
       </div>
       <div class="form-field">
-        <input type="text" id="firm" placeholder="Firm / Family Office Name / 公司或家族辦公室名稱" />
+        <input type="text" name="firm" placeholder="Firm / Family Office Name / 公司或家族辦公室名稱" required />
       </div>
       <div class="form-field">
-        <select id="tier">
+        <select name="tier" required>
           <option value="" disabled selected>Interested Plan / 感興趣的方案</option>
           <option>Essentials — $688 USD/month</option>
           <option>Professional — $1,888 USD/month</option>
@@ -565,7 +541,7 @@
         </select>
       </div>
       <div class="form-field">
-        <select id="market">
+        <select name="market" required>
           <option value="" disabled selected>Primary Market Focus / 主要市場重點</option>
           <option>Hong Kong / 香港</option>
           <option>Hong Kong + Mainland China / 香港 + 中國內地</option>
@@ -574,14 +550,44 @@
         </select>
       </div>
       <div class="form-field">
-        <textarea id="message" rows="3" placeholder="Any specific intelligence needs? / 有任何特定情報需求？（選填）"></textarea>
+        <textarea name="message" rows="3" placeholder="Any specific intelligence needs? / 有任何特定情報需求？（選填）"></textarea>
       </div>
-      <button class="form-submit" onclick="submitForm()"><span class="inline-en">Request Access →</span><span class="inline-zh">申請使用 →</span></button>
-      <p class="form-note"><span class="inline-en">Your information is kept strictly confidential. We will respond within 24 hours.</span><span class="inline-zh">您的資料將受到嚴格保密。我們將在24小時內回覆。</span></p>
+      <button type="submit" class="form-submit">
+        <span class="inline-en">Request Access →</span>
+        <span class="inline-zh">申請使用 →</span>
+      </button>
+      <p class="form-note">
+        <span class="inline-en">Your information is kept strictly confidential. We will respond within 24 hours.</span>
+        <span class="inline-zh">您的資料將受到嚴格保密。我們將在24小時內回覆。</span>
+      </p>
+    </form>
+  </div>
+  <div class="success-msg" id="success">
+    <h3><span class="inline-en">Request Received</span><span class="inline-zh">申請已收到</span></h3>
+    <p style="color:var(--grey);font-size:14px;margin:0"><span class="inline-en">Thank you. Our team will be in touch within 24 hours to discuss your intelligence requirements.</span><span class="inline-zh">感謝您。我們的團隊將在24小時內與您聯繫，討論您的情報需求。</span></p>
+  </div>
+</section>
+
+<!-- DISCLAIMER SECTION - MOVED TO FOOTER -->
+<section class="disclaimer-section reveal">
+  <div class="disclaimer-wrap">
+    <h3><span class="inline-en">Information Aggregation, Not Investment Advice</span><span class="inline-zh">資訊整合，而非投資建議</span></h3>
+    
+    <div class="disclaimer-box">
+      <p data-lang="en"><strong>AHBI is a technology-driven information services company.</strong> We do not hold any financial regulatory licenses and do not provide investment advice, asset management services, or securities brokerage services.</p>
+      <p data-lang="zh"><strong>AHBI是一家技術驅動的資訊服務公司。</strong>我們不持有任何金融監管牌照，不提供投資建議、資產管理服務或證券經紀服務。</p>
+      
+      <p data-lang="en">All content delivered by AHBI is sourced from publicly available information and is provided for <strong>informational purposes only</strong>. Nothing in our service constitutes financial, investment, legal, or compliance advice.</p>
+      <p data-lang="zh">AHBI提供的所有內容均來自公開可獲取的資訊，僅供<strong>參考</strong>。我們的服務不構成財務、投資、法律或合規建議。</p>
+      
+      <p data-lang="en">Clients should independently verify all critical information and consult licensed professional advisors before making investment or compliance decisions. AHBI is not licensed by the SFC, HKMA, DFSA, or any other regulatory authority to provide investment advice.</p>
+      <p data-lang="zh">客戶應獨立核實所有關鍵資訊，並在做出投資或合規決策前諮詢持牌專業顧問。AHBI未獲證監會、金管局、迪拜金融服務局或任何其他監管機構發牌提供投資建議。</p>
     </div>
-    <div class="success-msg" id="success">
-      <h3><span class="inline-en">Request Received</span><span class="inline-zh">申請已收到</span></h3>
-      <p style="color:var(--grey);font-size:14px;margin:0"><span class="inline-en">Thank you. Our team will be in touch within 24 hours to discuss your intelligence requirements.</span><span class="inline-zh">感謝您。我們的團隊將在24小時內與您聯繫，討論您的情報需求。</span></p>
+    
+    <div class="disclaimer-links">
+      <a href="#"><span class="inline-en">Terms of Use</span><span class="inline-zh">使用條款</span></a>
+      <a href="#"><span class="inline-en">Privacy Policy</span><span class="inline-zh">隱私政策</span></a>
+      <a href="#"><span class="inline-en">Full Disclaimer</span><span class="inline-zh">完整免責聲明</span></a>
     </div>
   </div>
 </section>
@@ -610,13 +616,25 @@
     event.target.classList.add('active');
   }
 
-  // FORM
-  function submitForm() {
-    const email = document.getElementById('email').value;
-    const fname = document.getElementById('fname').value;
-    if (!email || !fname) { alert('Please fill in your name and email.'); return; }
-    document.getElementById('enquiry-form').style.display = 'none';
-    document.getElementById('success').classList.add('show');
+  // Form submission handled by Formspree
+  function submitForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('enquiry-form-el');
+    const data = new FormData(form);
+    fetch('https://formspree.io/f/meergyjw', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        document.getElementById('enquiry-form').style.display = 'none';
+        document.getElementById('success').classList.add('show');
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    }).catch(() => {
+      alert('Something went wrong. Please try again.');
+    });
   }
 
   // Language switcher initialization
