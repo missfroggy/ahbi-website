@@ -66,7 +66,7 @@
     .data-sources-section p { color: var(--grey); font-size: 14px; margin-bottom: 48px; }
     .data-sources-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 48px; }
     .data-source-item { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    .data-source-logo { width: 64px; height: 64px; background: var(--navy-soft); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--grey); letter-spacing: 0.05em; }
+    .data-source-logo { width: 80px; height: 80px; background: var(--navy-soft); border: 1px solid var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: var(--gold); letter-spacing: 0.08em; }
     .data-source-name { font-size: 12px; color: var(--grey); letter-spacing: 0.05em; }
 
     /* DISCLAIMER SECTION - NEW */
@@ -89,7 +89,7 @@
     .gold-divider { width: 48px; height: 1px; background: var(--gold); margin: 32px 0; }
 
     /* PAIN GRID */
-    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 64px; }
+    .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 64px; }
     .pain-item { background: var(--navy); padding: 40px 36px; transition: background 0.3s ease; }
     .pain-item:hover { background: var(--navy-soft); }
     .pain-icon { font-size: 28px; margin-bottom: 16px; }
@@ -344,6 +344,18 @@
       <h3><span class="inline-en">Language Barriers</span><span class="inline-zh">語言障礙</span></h3>
       <p data-lang="en">Critical information published in Chinese, English, and Arabic — requiring constant translation and interpretation.</p>
       <p data-lang="zh">關鍵資訊以中文、英文和阿拉伯文發布——需要持續翻譯和理解。</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">⚖️</div>
+      <h3><span class="inline-en">Compliance Risk</span><span class="inline-zh">合規風險</span></h3>
+      <p data-lang="en">Missing regulatory deadlines or sanctions updates can result in penalties — yet monitoring is manual and inconsistent.</p>
+      <p data-lang="zh">錯過監管截止日期或制裁更新可能導致罰款——但監控工作仍依賴人工且缺乏一致性。</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">💡</div>
+      <h3><span class="inline-en">Opportunity Cost</span><span class="inline-zh">機會成本</span></h3>
+      <p data-lang="en">Hours spent on information gathering means less time for strategic decisions, relationship building, and value creation.</p>
+      <p data-lang="zh">花在資訊收集上的時間，意味著用於戰略決策、關係建立和價值創造的時間更少。</p>
     </div>
   </div>
 </div>
