@@ -163,6 +163,58 @@
     .success-msg h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--gold-light); margin-bottom: 8px; }
 
     /* FOOTER */
+    /* MODAL STYLES */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(11, 17, 32, 0.95);
+      overflow: auto;
+    }
+    .modal-content {
+      background-color: var(--navy-mid);
+      margin: 5% auto;
+      padding: 40px;
+      border: 1px solid var(--border);
+      max-width: 800px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      color: var(--grey);
+      font-size: 28px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .close-btn:hover { color: var(--gold); }
+    .modal h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--gold-light);
+      margin-bottom: 24px;
+      padding-right: 40px;
+    }
+    .modal h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--white);
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+    .modal p { font-size: 14px; color: var(--grey); line-height: 1.8; margin-bottom: 12px; }
+    .modal-body { padding-right: 20px; }
+
     footer { padding: 48px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 16px; }
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--grey); }
     .footer-logo span { color: var(--gold); }
@@ -191,6 +243,8 @@
       .solution-wrap { padding: 48px 32px; }
       .form-row { grid-template-columns: 1fr; }
       footer { padding: 32px 24px; flex-direction: column; }
+      .modal-content { margin: 10% 20px; padding: 24px; max-height: 85vh; }
+      .modal h2 { font-size: 24px; }
     }
   </style>
 </head>
@@ -585,9 +639,9 @@
     </div>
     
     <div class="disclaimer-links">
-      <a href="#"><span class="inline-en">Terms of Use</span><span class="inline-zh">使用條款</span></a>
-      <a href="#"><span class="inline-en">Privacy Policy</span><span class="inline-zh">隱私政策</span></a>
-      <a href="#"><span class="inline-en">Full Disclaimer</span><span class="inline-zh">完整免責聲明</span></a>
+      <a href="#" onclick="openModal('terms-modal'); return false;"><span class="inline-en">Terms of Use</span><span class="inline-zh">使用條款</span></a>
+      <a href="#" onclick="openModal('privacy-modal'); return false;"><span class="inline-en">Privacy Policy</span><span class="inline-zh">隱私政策</span></a>
+      <a href="#" onclick="openModal('disclaimer-modal'); return false;"><span class="inline-en">Full Disclaimer</span><span class="inline-zh">完整免責聲明</span></a>
     </div>
   </div>
 </section>
@@ -638,7 +692,128 @@
   }
 
   // Language switcher initialization
+
+  // Modal functions
+  function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+  function closeModalOnBackground(event, modalId) {
+    if (event.target.id === modalId) {
+      closeModal(modalId);
+    }
+  }
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(function(modal) {
+        if (modal.style.display === 'block') {
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+    }
+  });
 </script>
+
+<!-- TERMS OF USE MODAL -->
+<div id="terms-modal" class="modal" onclick="closeModalOnBackground(event, 'terms-modal')">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('terms-modal')">&times;</span>
+    <h2><span class="inline-en">Terms of Use</span><span class="inline-zh">使用條款</span></h2>
+    <div class="modal-body">
+      <p><strong>Last updated: March 2026</strong></p>
+      
+      <h3>1. Service Description</h3>
+      <p>AHBI (Athena Horizon Business Intelligence) provides AI-powered information aggregation services. All content is sourced from publicly available information and delivered as informational summaries only.</p>
+      
+      <h3>2. No Investment Advice</h3>
+      <p>Nothing in our service constitutes financial, investment, legal, or compliance advice. AHBI is not licensed by the SFC, HKMA, DFSA, or any regulatory authority to provide investment advice.</p>
+      
+      <h3>3. Accuracy of Information</h3>
+      <p>While we strive for accuracy, AHBI does not guarantee the completeness or timeliness of information delivered. Users should independently verify all critical information before making decisions.</p>
+      
+      <h3>4. Subscription & Payment</h3>
+      <p>Subscriptions are billed monthly in USD. Cancellation requires 30 days written notice. No refunds for partial months.</p>
+      
+      <h3>5. Confidentiality</h3>
+      <p>AHBI treats all client information with strict confidentiality and will not share personal data with third parties without consent.</p>
+      
+      <h3>6. Governing Law</h3>
+      <p>These terms are governed by the laws of Hong Kong SAR.</p>
+      
+      <p style="margin-top: 24px;"><strong>Contact:</strong> info@ahbi.ai<br>Athena Horizon Limited, Hong Kong</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVACY POLICY MODAL -->
+<div id="privacy-modal" class="modal" onclick="closeModalOnBackground(event, 'privacy-modal')">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('privacy-modal')">&times;</span>
+    <h2><span class="inline-en">Privacy Policy</span><span class="inline-zh">隱私政策</span></h2>
+    <div class="modal-body">
+      <p><strong>Last updated: March 2026</strong></p>
+      
+      <h3>1. Information We Collect</h3>
+      <p>We collect information you provide when submitting enquiry forms, including name, email, company name, and market preferences.</p>
+      
+      <h3>2. How We Use Your Information</h3>
+      <p>Your information is used solely to respond to your enquiry and deliver our services. We do not sell or share your data with third parties.</p>
+      
+      <h3>3. Data Storage</h3>
+      <p>Your data is stored securely. Form submissions are processed via Formspree and stored in accordance with their privacy policy.</p>
+      
+      <h3>4. Cookies</h3>
+      <p>Our website uses minimal cookies for basic functionality only. No tracking or advertising cookies are used.</p>
+      
+      <h3>5. Your Rights</h3>
+      <p>You may request access to, correction of, or deletion of your personal data at any time by contacting us at info@ahbi.ai.</p>
+      
+      <h3>6. Governing Law</h3>
+      <p>This policy is governed by the laws of Hong Kong SAR and complies with the Personal Data (Privacy) Ordinance (Cap. 486).</p>
+      
+      <p style="margin-top: 24px;"><strong>Contact:</strong> info@ahbi.ai<br>Athena Horizon Limited, Hong Kong</p>
+    </div>
+  </div>
+</div>
+
+<!-- FULL DISCLAIMER MODAL -->
+<div id="disclaimer-modal" class="modal" onclick="closeModalOnBackground(event, 'disclaimer-modal')">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('disclaimer-modal')">&times;</span>
+    <h2><span class="inline-en">Full Disclaimer</span><span class="inline-zh">完整免責聲明</span></h2>
+    <div class="modal-body">
+      <p><strong>Last updated: March 2026</strong></p>
+      
+      <h3>1. Information Only</h3>
+      <p>All content provided by AHBI is for informational purposes only. It does not constitute and should not be construed as financial, investment, legal, compliance, or professional advice of any kind.</p>
+      
+      <h3>2. No Regulatory License</h3>
+      <p>Athena Horizon Limited and AHBI are not licensed by the Securities and Futures Commission (SFC), Hong Kong Monetary Authority (HKMA), Dubai Financial Services Authority (DFSA), or any other regulatory authority to provide investment advice or regulated financial services.</p>
+      
+      <h3>3. Public Sources Only</h3>
+      <p>All information delivered by AHBI is aggregated from publicly available sources including but not limited to official regulatory websites, stock exchange announcements, and government publications. AHBI does not access, store, or process any private or confidential data.</p>
+      
+      <h3>4. No Liability</h3>
+      <p>AHBI, Athena Horizon Limited, and their representatives shall not be liable for any loss or damage arising from reliance on information provided through our service. Users assume full responsibility for their own investment and compliance decisions.</p>
+      
+      <h3>5. Forward-Looking Information</h3>
+      <p>Any references to future events, deadlines, or market conditions are based on publicly available information at the time of publication and may not reflect subsequent developments.</p>
+      
+      <h3>6. Independent Verification</h3>
+      <p>Users are strongly advised to independently verify all information and consult licensed professional advisors before making any investment, legal, or compliance decisions.</p>
+      
+      <p style="margin-top: 24px;"><strong>Contact:</strong> info@ahbi.ai<br>Athena Horizon Limited, Hong Kong</p>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
 
