@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AHBI — Athena Horizon Business Intelligence</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -66,8 +67,10 @@
     .data-sources-section p { color: var(--grey); font-size: 14px; margin-bottom: 48px; }
     .data-sources-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 48px; }
     .data-source-item { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    .data-source-logo { width: 80px; height: 80px; background: var(--navy-soft); border: 1px solid var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: var(--gold); letter-spacing: 0.08em; }
+    .data-source-logo { width: 64px; height: 64px; background: var(--navy-soft); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+    .data-source-logo svg { width: 28px; height: 28px; stroke: var(--gold); }
     .data-source-name { font-size: 12px; color: var(--grey); letter-spacing: 0.05em; }
+    .data-source-abbr { font-size: 11px; color: var(--gold); letter-spacing: 0.1em; font-weight: 500; }
 
     /* DISCLAIMER SECTION - NEW */
     .disclaimer-section { background: var(--navy); padding: 64px 48px; border-bottom: 1px solid var(--border); }
@@ -312,28 +315,46 @@
     
     <div class="data-sources-grid">
       <div class="data-source-item">
-        <div class="data-source-logo">HKEX</div>
+        <div class="data-source-logo">
+          <i data-lucide="trending-up"></i>
+        </div>
         <div class="data-source-name"><span class="inline-en">Hong Kong Exchanges</span><span class="inline-zh">香港交易所</span></div>
+        <div class="data-source-abbr">HKEX</div>
       </div>
       <div class="data-source-item">
-        <div class="data-source-logo">SFC</div>
+        <div class="data-source-logo">
+          <i data-lucide="scale"></i>
+        </div>
         <div class="data-source-name"><span class="inline-en">Securities & Futures Commission</span><span class="inline-zh">證券及期貨事務監察委員會</span></div>
+        <div class="data-source-abbr">SFC</div>
       </div>
       <div class="data-source-item">
-        <div class="data-source-logo">HKMA</div>
+        <div class="data-source-logo">
+          <i data-lucide="landmark"></i>
+        </div>
         <div class="data-source-name"><span class="inline-en">Hong Kong Monetary Authority</span><span class="inline-zh">香港金融管理局</span></div>
+        <div class="data-source-abbr">HKMA</div>
       </div>
       <div class="data-source-item">
-        <div class="data-source-logo">DFSA</div>
+        <div class="data-source-logo">
+          <i data-lucide="shield-check"></i>
+        </div>
         <div class="data-source-name"><span class="inline-en">Dubai Financial Services Authority</span><span class="inline-zh">迪拜金融服務管理局</span></div>
+        <div class="data-source-abbr">DFSA</div>
       </div>
       <div class="data-source-item">
-        <div class="data-source-logo">OFAC</div>
+        <div class="data-source-logo">
+          <i data-lucide="alert-triangle"></i>
+        </div>
         <div class="data-source-name"><span class="inline-en">US Treasury Sanctions</span><span class="inline-zh">美國財政部制裁</span></div>
+        <div class="data-source-abbr">OFAC</div>
       </div>
       <div class="data-source-item">
-        <div class="data-source-logo">UN</div>
+        <div class="data-source-logo">
+          <i data-lucide="globe"></i>
+        </div>
         <div class="data-source-name"><span class="inline-en">UN Sanctions List</span><span class="inline-zh">聯合國制裁名單</span></div>
+        <div class="data-source-abbr">UN</div>
       </div>
     </div>
   </div>
@@ -856,6 +877,7 @@
   </div>
 </div>
 
+<script>lucide.createIcons();</script>
 </body>
 </html>
 
