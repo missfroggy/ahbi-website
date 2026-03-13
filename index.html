@@ -69,15 +69,15 @@
     .data-source-item { display: flex; flex-direction: column; align-items: center; gap: 12px; }
     .data-source-logo { width: 80px; height: 80px; background: var(--navy-soft); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
     .data-source-logo svg { width: 36px; height: 36px; stroke: var(--gold); }
-    .data-source-name { font-size: 12px; color: var(--grey); letter-spacing: 0.05em; }
-    .data-source-abbr { font-size: 11px; color: var(--gold); letter-spacing: 0.1em; font-weight: 500; }
+    .data-source-name { font-size: 15.6px; color: var(--grey); letter-spacing: 0.05em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    .data-source-abbr { font-size: 14.3px; color: var(--gold); letter-spacing: 0.1em; font-weight: 500; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
     /* DISCLAIMER SECTION - NEW */
     .disclaimer-section { background: var(--navy); padding: 64px 48px; border-bottom: 1px solid var(--border); }
     .disclaimer-wrap { max-width: 900px; margin: 0 auto; text-align: center; }
     .disclaimer-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; color: var(--gold-light); margin-bottom: 24px; }
     .disclaimer-box { background: var(--navy-soft); border: 1px solid var(--border); padding: 32px; margin-bottom: 24px; }
-    .disclaimer-section p { color: var(--grey); font-size: 13px; line-height: 1.8; margin-bottom: 16px; }
+    .disclaimer-section p { color: var(--white); font-size: 13px; line-height: 1.8; margin-bottom: 16px; -webkit-font-smoothing: antialiased; }
     .disclaimer-section p:last-child { margin-bottom: 0; }
     .disclaimer-links { display: flex; justify-content: center; gap: 32px; margin-top: 24px; }
     .disclaimer-links a { color: var(--gold); font-size: 12px; letter-spacing: 0.05em; text-decoration: none; transition: color 0.3s; }
@@ -464,7 +464,7 @@
 </div>
 
 <!-- SERVICES -->
-<div class="section reveal" id="services">
+<div class="section reveal" id="services" style="padding-top:80px">
   <p class="section-label"><span class="inline-en">Our Services</span><span class="inline-zh">我們的服務</span></p>
   <h2 data-lang="en">Built for today.<br><em>Designed to scale with you.</em></h2>
   <h2 data-lang="zh">為當下而建，<br><em>與您一同成長。</em></h2>
@@ -475,8 +475,8 @@
     <div class="service-card">
       <span class="service-tag"><span class="inline-en">Core Service — Available Now</span><span class="inline-zh">核心服務——現已開放</span></span>
       <h3><span class="inline-en">AHBI Daily Intelligence</span><span class="inline-zh">AHBI每日情報</span></h3>
-      <p data-lang="en">Personalized daily briefing covering market dynamics, HKEX announcements, regulatory updates, sanctions alerts, and 30-day horizon — delivered at 7:30 AM HKT.</p>
-      <p data-lang="zh">個人化每日簡報，涵蓋市場動態、港交所公告、監管更新、制裁預警及30天展望——每天港時早上7:30送達。</p>
+      <p data-lang="en">Personalized daily briefing delivered at 7:30 AM HKT — covering market dynamics, HKEX announcements, regulatory updates, sanctions alerts, and your 30-day forward horizon.</p>
+      <p data-lang="zh">每天港時早上7:30準時送達個人化情報簡報——涵蓋市場動態、港交所公告、監管更新、制裁預警及30天展望。</p>
       <div class="service-price">$688–$1,888 <span>USD/month</span></div>
     </div>
     <div class="service-card">
@@ -671,12 +671,12 @@
 <footer>
   <div class="footer-logo">AHBI <span>|</span> Athena Horizon</div>
   <div class="footer-contact">
-    <p style="font-size:13px;color:var(--gold);margin-bottom:8px;">info@ahbi.ai</p>
+    <p style="font-size:13px;color:var(--gold);margin-bottom:8px;"><span class="inline-en">Contact: <a href="mailto:enquiry@ahbi.ai" style="color:var(--gold);text-decoration:none;">enquiry@ahbi.ai</a></span><span class="inline-zh">聯繫：<a href="mailto:enquiry@ahbi.ai" style="color:var(--gold);text-decoration:none;">enquiry@ahbi.ai</a></span></p>
     <p style="font-size:12px;color:var(--grey);margin-bottom:8px;">
       <a href="#" style="color:var(--grey);text-decoration:none;" onclick="openModal('terms-modal');return false;"><span class="inline-en">Terms</span><span class="inline-zh">條款</span></a> · 
       <a href="#" style="color:var(--grey);text-decoration:none;" onclick="openModal('privacy-modal');return false;"><span class="inline-en">Privacy</span><span class="inline-zh">隱私</span></a> · 
       <a href="#" style="color:var(--grey);text-decoration:none;" onclick="openModal('disclaimer-modal');return false;"><span class="inline-en">Disclaimer</span><span class="inline-zh">免責</span></a> · 
-      <a href="#" style="color:var(--grey);text-decoration:none;"><span class="inline-en">LinkedIn</span><span class="inline-zh">LinkedIn</span></a>
+      <a href="YOUR_LINKEDIN_URL" target="_blank" rel="noopener" style="color:var(--grey);text-decoration:none;"><span class="inline-en">LinkedIn</span><span class="inline-zh">LinkedIn</span></a>
     </p>
     <p style="font-size:12px;color:var(--grey)">© 2026 Athena Horizon Limited.</p>
   </div>
