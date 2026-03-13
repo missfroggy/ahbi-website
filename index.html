@@ -155,6 +155,16 @@
     .pricing-features li { font-size: 14px; color: var(--grey); padding: 8px 0; border-bottom: 1px solid rgba(184,149,42,0.08); display: flex; gap: 10px; }
     .pricing-features li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
 
+    /* PRICING CARD: button always at bottom, top always aligned */
+    .pricing-grid { align-items: stretch; }
+    .pricing-card { display: flex; flex-direction: column; }
+    .pricing-features { flex: 1; }
+
+    /* Placeholder for cards without featured-label, keeps top aligned */
+    .pricing-card-spacer { height: 28px; display: block; }
+    body.lang-en .pricing-card-spacer,
+    body.lang-zh .pricing-card-spacer { display: block; }
+
     /* FORM */
     .form-section { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 140px 48px; text-align: center; -webkit-font-smoothing: antialiased; }
     .form-section form { max-width: 560px; margin: 0 auto; }
@@ -557,6 +567,7 @@
 
     <!-- Card 1: Essentials -->
     <div class="pricing-card">
+      <div class="pricing-card-spacer"></div>
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:16px">
         <span class="inline-en">Essentials</span><span class="inline-zh">基礎版</span>
       </h3>
