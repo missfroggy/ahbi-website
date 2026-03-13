@@ -125,6 +125,10 @@
     .service-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
     .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; margin-bottom: 16px; }
     .service-card p { font-size: 14px; color: var(--grey); line-height: 1.6; margin-bottom: 24px; }
+    .service-features { list-style: none; margin: 20px 0 28px; padding: 0; }
+    .service-features li { font-size: 14px; color: var(--grey); padding: 7px 0; border-bottom: 1px solid rgba(184,149,42,0.08); display: flex; gap: 10px; line-height: 1.5; }
+    .service-features li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+    .service-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
     .service-price { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--gold-light); }
     .service-price span { font-size: 14px; color: var(--grey); font-family: 'DM Sans', sans-serif; }
     .service-coming { display: inline-block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); border: 1px solid var(--border); padding: 4px 12px; margin-top: 8px; }
@@ -480,88 +484,92 @@
   <p data-lang="zh">我們從每日情報開始，隨著您的需求不斷擴展。每項服務均AI驅動，全自動化——無需人工干預，無需共享數據。</p>
 
   <div class="services-grid">
+
     <!-- Card 1: Essentials -->
     <div class="service-card" style="padding:48px 36px">
       <div class="service-label"><span class="inline-en">Core Service — Available Now</span><span class="inline-zh">核心服務——現已開放</span></div>
       <h3><span class="inline-en">AHBI Daily Intelligence</span><span class="inline-zh">AHBI每日情報</span></h3>
-      <p data-lang="en">Comprehensive daily intelligence across private and public markets in Hong Kong and the United States — delivered every trading morning at 7:30 AM HKT.</p>
-      <p data-lang="zh">涵蓋香港及美國一級與二級市場的每日全面情報——於每個交易日早上7:30港時準時送達。</p>
-      <ul style="margin-top:20px;line-height:1.9">
-        <li style="margin-bottom:12px" data-lang="en">Daily private market monitoring: new fund registrations, major M&amp;A announcements, Pre-IPO funding activity</li>
-        <li style="margin-bottom:12px" data-lang="zh">每日一級市場監控：新基金備案、重大並購公告、Pre-IPO融資動態</li>
-        <li style="margin-bottom:12px" data-lang="en">Weekly private market digest (every Friday)</li>
-        <li style="margin-bottom:12px" data-lang="zh">每週五一級市場週報</li>
-        <li style="margin-bottom:12px" data-lang="en">Instant alerts for major private market developments</li>
-        <li style="margin-bottom:12px" data-lang="zh">重大一級市場突發即時推送</li>
-        <li style="margin-bottom:12px" data-lang="en">Daily public market briefing: market dynamics &amp; HKEX announcements</li>
-        <li style="margin-bottom:12px" data-lang="zh">每日二級市場簡報：市場動態及港交所公告</li>
-        <li style="margin-bottom:12px" data-lang="en">Regulatory updates: SFC, HKMA &amp; SEC</li>
-        <li style="margin-bottom:12px" data-lang="zh">監管更新：證監會、金管局及美國證監會</li>
-        <li style="margin-bottom:12px" data-lang="en">Sanctions monitoring: OFAC &amp; UN</li>
-        <li style="margin-bottom:12px" data-lang="zh">制裁名單監控：OFAC及聯合國</li>
-        <li style="margin-bottom:12px" data-lang="en">Up to 20 HKEX watchlist stocks</li>
-        <li style="margin-bottom:12px" data-lang="zh">最多20隻港交所關注股票</li>
-        <li style="margin-bottom:12px" data-lang="en">English language</li>
-        <li style="margin-bottom:12px" data-lang="zh">英文版本</li>
+      <ul class="service-features" data-lang="en">
+        <li>Daily private market monitoring: new fund registrations, major M&amp;A, Pre-IPO activity</li>
+        <li>Weekly private market digest (every Friday)</li>
+        <li>Instant alerts for major private market developments</li>
+        <li>Daily public market briefing &amp; HKEX announcements</li>
+        <li>Regulatory updates: SFC, HKMA &amp; SEC</li>
+        <li>Sanctions monitoring: OFAC &amp; UN</li>
+        <li>Up to 20 HKEX watchlist stocks</li>
+        <li>English language</li>
       </ul>
-      <div class="service-price">$688 <span class="inline-en">USD / month</span><span class="inline-zh">月費</span></div>
+      <ul class="service-features" data-lang="zh">
+        <li>每日一級市場監控：新基金備案、重大並購公告、Pre-IPO融資動態</li>
+        <li>每週五一級市場週報</li>
+        <li>重大一級市場突發即時推送</li>
+        <li>每日二級市場簡報及港交所公告</li>
+        <li>監管更新：證監會、金管局及美國證監會</li>
+        <li>制裁名單監控：OFAC及聯合國</li>
+        <li>最多20隻港交所關注股票</li>
+        <li>英文版本</li>
+      </ul>
+      <div class="service-price">$688 <span><span class="inline-en">USD / month</span><span class="inline-zh">月費</span></span></div>
     </div>
 
     <!-- Card 2: Professional -->
-    <div class="service-card service-card--featured" style="padding:48px 36px">
-      <div class="service-label"><span class="inline-en">MOST POPULAR</span><span class="inline-zh">最受歡迎</span></div>
+    <div class="service-card" style="padding:48px 36px">
+      <div class="service-label"><span class="inline-en">Most Popular</span><span class="inline-zh">最受歡迎</span></div>
       <h3><span class="inline-en">Professional</span><span class="inline-zh">專業版</span></h3>
-      <p data-lang="en">Everything in Essentials, plus deeper private market intelligence and your choice of one additional target market beyond Hong Kong and the United States.</p>
-      <p data-lang="zh">包含基礎版所有功能，另加深度一級市場情報，並可選擇香港及美國以外的一個額外目標市場。</p>
-      <ul style="margin-top:20px;line-height:1.9">
-        <li style="margin-bottom:12px" data-lang="en">Everything in Essentials</li>
-        <li style="margin-bottom:12px" data-lang="zh">包含基礎版所有功能</li>
-        <li style="margin-bottom:12px" data-lang="en">Deep private market analysis: sector tracking, deal flow monitoring, target company public profile research</li>
-        <li style="margin-bottom:12px" data-lang="zh">深度一級市場分析：行業賽道追蹤、交易流監控、目標公司公開資料研究</li>
-        <li style="margin-bottom:12px" data-lang="en">Weekly in-depth private market report</li>
-        <li style="margin-bottom:12px" data-lang="zh">每週深度一級市場報告</li>
-        <li style="margin-bottom:12px" data-lang="en">One additional target market of your choice: Mainland China, Dubai/UAE, Singapore, or Europe</li>
-        <li style="margin-bottom:12px" data-lang="zh">可選一個額外目標市場：中國內地、迪拜/阿聯酋、新加坡或歐洲</li>
-        <li style="margin-bottom:12px" data-lang="en">DFSA regulatory coverage (if Dubai selected)</li>
-        <li style="margin-bottom:12px" data-lang="zh">迪拜DFSA監管覆蓋（選擇迪拜時適用）</li>
-        <li style="margin-bottom:12px" data-lang="en">Unlimited HKEX watchlist stocks</li>
-        <li style="margin-bottom:12px" data-lang="zh">無限港交所關注股票</li>
-        <li style="margin-bottom:12px" data-lang="en">Custom alert thresholds</li>
-        <li style="margin-bottom:12px" data-lang="zh">自定義預警閾值</li>
-        <li style="margin-bottom:12px" data-lang="en">Monthly intelligence summary</li>
-        <li style="margin-bottom:12px" data-lang="zh">每月情報總結</li>
-        <li style="margin-bottom:12px" data-lang="en">English &amp; Traditional Chinese</li>
-        <li style="margin-bottom:12px" data-lang="zh">英文及繁體中文</li>
+      <ul class="service-features" data-lang="en">
+        <li>Everything in Essentials</li>
+        <li>Rising Radar: weekly private market opportunity tracker</li>
+        <li>Deep private market analysis: sector tracking, deal flow monitoring, target company research</li>
+        <li>Weekly in-depth private market report</li>
+        <li>One additional target market: Mainland China, Dubai/UAE, Singapore, or Europe</li>
+        <li>DFSA regulatory coverage (if Dubai selected)</li>
+        <li>Unlimited HKEX watchlist stocks</li>
+        <li>Custom alert thresholds</li>
+        <li>Monthly intelligence summary</li>
+        <li>English &amp; Traditional Chinese</li>
       </ul>
-      <div class="service-price">$1,888 <span class="inline-en">USD / month</span><span class="inline-zh">月費</span></div>
+      <ul class="service-features" data-lang="zh">
+        <li>包含基礎版所有功能</li>
+        <li>潛力雷達：每週一級市場機會追蹤</li>
+        <li>深度一級市場分析：行業賽道追蹤、交易流監控、目標公司公開資料研究</li>
+        <li>每週深度一級市場報告</li>
+        <li>可選一個額外目標市場：中國內地、迪拜/阿聯酋、新加坡或歐洲</li>
+        <li>迪拜DFSA監管覆蓋（選擇迪拜時適用）</li>
+        <li>無限港交所關注股票</li>
+        <li>自定義預警閾值</li>
+        <li>每月情報總結</li>
+        <li>英文及繁體中文</li>
+      </ul>
+      <div class="service-price">$1,888 <span><span class="inline-en">USD / month</span><span class="inline-zh">月費</span></span></div>
     </div>
 
     <!-- Card 3: Enterprise -->
     <div class="service-card" style="padding:48px 36px">
       <div class="service-label"><span class="inline-en">Enterprise — Coming Soon</span><span class="inline-zh">企業方案——即將推出</span></div>
       <h3><span class="inline-en">Institutional Intelligence Platform</span><span class="inline-zh">機構情報平台</span></h3>
-      <p data-lang="en">A fully managed intelligence infrastructure for asset managers, multi-family offices, and financial institutions. Your team receives a customised, white-labelled intelligence service built around your investment mandate.</p>
-      <p data-lang="zh">專為資產管理公司、聯合家族辦公室及金融機構提供的全託管情報基礎設施。根據您的投資策略定制，以您的品牌呈現，直接服務您的團隊。</p>
-      <ul style="margin-top:20px;line-height:1.9">
-        <li style="margin-bottom:12px" data-lang="en">Everything in Professional</li>
-        <li style="margin-bottom:12px" data-lang="zh">包含專業版所有功能</li>
-        <li style="margin-bottom:12px" data-lang="en">Fully customised private &amp; public market monitoring scope</li>
-        <li style="margin-bottom:12px" data-lang="zh">完全定制一級及二級市場監控範圍</li>
-        <li style="margin-bottom:12px" data-lang="en">Multi-user access</li>
-        <li style="margin-bottom:12px" data-lang="zh">多用戶訪問</li>
-        <li style="margin-bottom:12px" data-lang="en">White-label delivery under your brand</li>
-        <li style="margin-bottom:12px" data-lang="zh">以您的品牌白標交付</li>
-        <li style="margin-bottom:12px" data-lang="en">Custom intelligence modules</li>
-        <li style="margin-bottom:12px" data-lang="zh">定制情報模組</li>
-        <li style="margin-bottom:12px" data-lang="en">API access</li>
-        <li style="margin-bottom:12px" data-lang="zh">API訪問</li>
-        <li style="margin-bottom:12px" data-lang="en">Dedicated briefing analyst</li>
-        <li style="margin-bottom:12px" data-lang="zh">專屬簡報分析師</li>
-        <li style="margin-bottom:12px" data-lang="en">SLA guarantee</li>
-        <li style="margin-bottom:12px" data-lang="zh">SLA保障</li>
+      <ul class="service-features" data-lang="en">
+        <li>Everything in Professional</li>
+        <li>Fully customised private &amp; public market monitoring scope</li>
+        <li>Multi-user access</li>
+        <li>White-label delivery under your brand</li>
+        <li>Custom intelligence modules</li>
+        <li>API access</li>
+        <li>Dedicated briefing analyst</li>
+        <li>SLA guarantee</li>
       </ul>
-      <div class="service-price">$5,000 – $15,000 <span class="inline-en">USD / month · tailored pricing</span><span class="inline-zh">月費 · 定制定價</span></div>
+      <ul class="service-features" data-lang="zh">
+        <li>包含專業版所有功能</li>
+        <li>完全定制一級及二級市場監控範圍</li>
+        <li>多用戶訪問</li>
+        <li>以您的品牌白標交付</li>
+        <li>定制情報模組</li>
+        <li>API訪問</li>
+        <li>專屬簡報分析師</li>
+        <li>SLA保障</li>
+      </ul>
+      <div class="service-price">$5,000–$15,000 <span><span class="inline-en">USD / month · tailored pricing</span><span class="inline-zh">月費 · 定制定價</span></span></div>
     </div>
+
   </div>
 </div>
 
@@ -604,104 +612,84 @@
   <h2 data-lang="en">Straightforward.<br><em>No surprises.</em></h2>
   <h2 data-lang="zh">清晰透明，<br><em>沒有隱藏費用。</em></h2>
   <div class="pricing-grid">
-    <!-- Pricing Card 1: Essentials -->
+
+    <!-- Card 1: Essentials -->
     <div class="pricing-card">
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:16px"><span class="inline-en">Essentials</span><span class="inline-zh">基礎版</span></h3>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:16px">
+        <span class="inline-en">Essentials</span><span class="inline-zh">基礎版</span>
+      </h3>
       <div class="pricing-price"><sup>$</sup>688 <span style="font-size:14px;color:var(--grey)"><span class="inline-en">USD / month</span><span class="inline-zh">月費</span></span></div>
       <ul class="pricing-features" style="margin:24px 0">
-        <li data-lang="en">Daily private market monitoring (HK + US)</li>
-        <li data-lang="zh">每日一級市場監控（香港+美國）</li>
-        <li data-lang="en">Weekly private market digest</li>
-        <li data-lang="zh">每週一級市場週報</li>
-        <li data-lang="en">Instant alerts for major developments</li>
-        <li data-lang="zh">重大突發即時推送</li>
-        <li data-lang="en">Daily public market briefing &amp; HKEX</li>
-        <li data-lang="zh">每日二級市場簡報及港交所公告</li>
-        <li data-lang="en">Regulatory updates: SFC, HKMA &amp; SEC</li>
-        <li data-lang="zh">監管更新：證監會、金管局及美國證監會</li>
-        <li data-lang="en">Sanctions monitoring: OFAC &amp; UN</li>
-        <li data-lang="zh">制裁名單監控</li>
-        <li data-lang="en">Up to 20 HKEX watchlist stocks</li>
-        <li data-lang="zh">最多20隻關注股票</li>
-        <li data-lang="en">English language</li>
-        <li data-lang="zh">英文版本</li>
+        <li><span class="inline-en">Daily private market monitoring (HK + US)</span><span class="inline-zh">每日一級市場監控（香港+美國）</span></li>
+        <li><span class="inline-en">Weekly private market digest</span><span class="inline-zh">每週一級市場週報</span></li>
+        <li><span class="inline-en">Instant alerts for major developments</span><span class="inline-zh">重大突發即時推送</span></li>
+        <li><span class="inline-en">Daily public market briefing &amp; HKEX</span><span class="inline-zh">每日二級市場簡報及港交所公告</span></li>
+        <li><span class="inline-en">Regulatory updates: SFC, HKMA &amp; SEC</span><span class="inline-zh">監管更新：證監會、金管局及美國證監會</span></li>
+        <li><span class="inline-en">Sanctions monitoring: OFAC &amp; UN</span><span class="inline-zh">制裁名單監控</span></li>
+        <li><span class="inline-en">Up to 20 HKEX watchlist stocks</span><span class="inline-zh">最多20隻關注股票</span></li>
+        <li><span class="inline-en">English language</span><span class="inline-zh">英文版本</span></li>
       </ul>
       <a href="#enquire" class="btn-primary" style="display:block;text-align:center"><span class="inline-en">Get Started</span><span class="inline-zh">立即開始</span></a>
     </div>
 
-    <!-- Pricing Card 2: Professional -->
+    <!-- Card 2: Professional -->
     <div class="pricing-card featured">
       <div class="featured-label"><span class="inline-en">MOST POPULAR</span><span class="inline-zh">最受歡迎</span></div>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:16px;padding-top:20px"><span class="inline-en">Professional</span><span class="inline-zh">專業版</span></h3>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:16px;padding-top:20px">
+        <span class="inline-en">Professional</span><span class="inline-zh">專業版</span>
+      </h3>
       <div class="pricing-price"><sup>$</sup>1,888 <span style="font-size:14px;color:var(--grey)"><span class="inline-en">USD / month</span><span class="inline-zh">月費</span></span></div>
       <ul class="pricing-features" style="margin:24px 0">
-        <li data-lang="en">Everything in Essentials</li>
-        <li data-lang="zh">包含基礎版所有功能</li>
-        <li data-lang="en">Rising Radar: weekly private market opportunities</li>
-        <li data-lang="zh">潛力雷達：每週一級市場潛力標的</li>
-        <li data-lang="en">Deep private market analysis &amp; deal flow monitoring</li>
-        <li data-lang="zh">深度一級市場分析及交易流監控</li>
-        <li data-lang="en">Weekly in-depth private market report</li>
-        <li data-lang="zh">每週深度一級市場報告</li>
-        <li data-lang="en">One additional target market: China, Dubai, Singapore, or Europe</li>
-        <li data-lang="zh">可選一個額外目標市場：中國內地、迪拜、新加坡或歐洲</li>
-        <li data-lang="en">Unlimited HKEX watchlist stocks</li>
-        <li data-lang="zh">無限關注股票</li>
-        <li data-lang="en">Custom alert thresholds</li>
-        <li data-lang="zh">自定義預警閾值</li>
-        <li data-lang="en">Monthly intelligence summary</li>
-        <li data-lang="zh">每月情報總結</li>
-        <li data-lang="en">English &amp; Traditional Chinese</li>
-        <li data-lang="zh">英文及繁體中文</li>
+        <li><span class="inline-en">Everything in Essentials</span><span class="inline-zh">包含基礎版所有功能</span></li>
+        <li><span class="inline-en">Rising Radar: weekly private market opportunities</span><span class="inline-zh">潛力雷達：每週一級市場潛力標的</span></li>
+        <li><span class="inline-en">Deep private market analysis &amp; deal flow monitoring</span><span class="inline-zh">深度一級市場分析及交易流監控</span></li>
+        <li><span class="inline-en">Weekly in-depth private market report</span><span class="inline-zh">每週深度一級市場報告</span></li>
+        <li><span class="inline-en">One additional target market: China, Dubai, Singapore, or Europe</span><span class="inline-zh">可選一個額外目標市場：中國內地、迪拜、新加坡或歐洲</span></li>
+        <li><span class="inline-en">Unlimited HKEX watchlist stocks</span><span class="inline-zh">無限關注股票</span></li>
+        <li><span class="inline-en">Custom alert thresholds</span><span class="inline-zh">自定義預警閾值</span></li>
+        <li><span class="inline-en">Monthly intelligence summary</span><span class="inline-zh">每月情報總結</span></li>
+        <li><span class="inline-en">English &amp; Traditional Chinese</span><span class="inline-zh">英文及繁體中文</span></li>
       </ul>
       <a href="#enquire" class="btn-primary" style="display:block;text-align:center"><span class="inline-en">Get Started</span><span class="inline-zh">立即開始</span></a>
     </div>
 
-    <!-- Pricing Card 3: Enterprise -->
+    <!-- Card 3: Enterprise -->
     <div class="pricing-card">
       <div style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px"><span class="inline-en">Coming Soon</span><span class="inline-zh">即將推出</span></div>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:16px"><span class="inline-en">Enterprise</span><span class="inline-zh">企業版</span></h3>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:16px">
+        <span class="inline-en">Enterprise</span><span class="inline-zh">企業版</span>
+      </h3>
       <div class="pricing-price" style="font-size:32px">$5,000 – $15,000 <span style="font-size:14px;color:var(--grey)"><span class="inline-en">USD / month</span><span class="inline-zh">月費</span></span></div>
       <ul class="pricing-features" style="margin:24px 0">
-        <li data-lang="en">Everything in Professional</li>
-        <li data-lang="zh">包含專業版所有功能</li>
-        <li data-lang="en">Fully customised monitoring scope</li>
-        <li data-lang="zh">完全定制監控範圍</li>
-        <li data-lang="en">Multi-user access</li>
-        <li data-lang="zh">多用戶訪問</li>
-        <li data-lang="en">White-label delivery under your brand</li>
-        <li data-lang="zh">白標交付</li>
-        <li data-lang="en">API access</li>
-        <li data-lang="zh">API訪問</li>
-        <li data-lang="en">Dedicated briefing analyst</li>
-        <li data-lang="zh">專屬簡報分析師</li>
-        <li data-lang="en">SLA guarantee</li>
-        <li data-lang="zh">SLA保障</li>
+        <li><span class="inline-en">Everything in Professional</span><span class="inline-zh">包含專業版所有功能</span></li>
+        <li><span class="inline-en">Fully customised monitoring scope</span><span class="inline-zh">完全定制監控範圍</span></li>
+        <li><span class="inline-en">Multi-user access</span><span class="inline-zh">多用戶訪問</span></li>
+        <li><span class="inline-en">White-label delivery under your brand</span><span class="inline-zh">白標交付</span></li>
+        <li><span class="inline-en">API access</span><span class="inline-zh">API訪問</span></li>
+        <li><span class="inline-en">Dedicated briefing analyst</span><span class="inline-zh">專屬簡報分析師</span></li>
+        <li><span class="inline-en">SLA guarantee</span><span class="inline-zh">SLA保障</span></li>
       </ul>
       <a href="#enquire" class="btn-primary" style="display:block;text-align:center"><span class="inline-en">Contact Us</span><span class="inline-zh">聯繫我們</span></a>
     </div>
 
-    <!-- Pricing Card 4: Advisory -->
+    <!-- Card 4: Advisory -->
     <div class="pricing-card">
       <div style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px"><span class="inline-en">Premium</span><span class="inline-zh">高端服務</span></div>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:16px"><span class="inline-en">Deep Intelligence Advisory</span><span class="inline-zh">深度情報顧問</span></h3>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:16px">
+        <span class="inline-en">Deep Intelligence Advisory</span><span class="inline-zh">深度情報顧問</span>
+      </h3>
       <div class="pricing-price" style="font-size:32px">From $100,000 <span style="font-size:14px;color:var(--grey)"><span class="inline-en">USD / engagement · project-based</span><span class="inline-zh">起 · 項目制</span></span></div>
       <ul class="pricing-features" style="margin:24px 0">
-        <li data-lang="en">Project-based deep intelligence engagement</li>
-        <li data-lang="zh">項目制深度情報服務</li>
-        <li data-lang="en">Target market entry intelligence</li>
-        <li data-lang="zh">目標市場進入情報</li>
-        <li data-lang="en">Sector &amp; deal flow deep research</li>
-        <li data-lang="zh">行業及交易流深度研究</li>
-        <li data-lang="en">Regulatory landscape mapping</li>
-        <li data-lang="zh">監管環境全景梳理</li>
-        <li data-lang="en">Target company public profile analysis</li>
-        <li data-lang="zh">目標公司公開資料分析</li>
-        <li data-lang="en">Delivered as a structured intelligence report</li>
-        <li data-lang="zh">結構化情報報告交付</li>
+        <li><span class="inline-en">Project-based deep intelligence engagement</span><span class="inline-zh">項目制深度情報服務</span></li>
+        <li><span class="inline-en">Target market entry intelligence</span><span class="inline-zh">目標市場進入情報</span></li>
+        <li><span class="inline-en">Sector &amp; deal flow deep research</span><span class="inline-zh">行業及交易流深度研究</span></li>
+        <li><span class="inline-en">Regulatory landscape mapping</span><span class="inline-zh">監管環境全景梳理</span></li>
+        <li><span class="inline-en">Target company public profile analysis</span><span class="inline-zh">目標公司公開資料分析</span></li>
+        <li><span class="inline-en">Delivered as a structured intelligence report</span><span class="inline-zh">結構化情報報告交付</span></li>
       </ul>
       <a href="#enquire" class="btn-primary" style="display:block;text-align:center"><span class="inline-en">Enquire</span><span class="inline-zh">查詢</span></a>
     </div>
+
   </div>
 </div>
 
