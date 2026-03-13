@@ -30,19 +30,19 @@
     .logo span { color: var(--gold); }
     .nav-right { display: flex; align-items: center; gap: 24px; }
     .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { font-size: 15px; letter-spacing: 0.05em; color: var(--grey); text-decoration: none; transition: color 0.3s; }
+    .nav-links a { font-size: 15px; font-weight: 600; letter-spacing: 0.02em; color: var(--grey); text-decoration: none; transition: color 0.3s; -webkit-font-smoothing: antialiased; }
     .nav-links a:hover { color: var(--white); }
     .lang-switch { display: flex; gap: 8px; align-items: center; }
-    .lang-btn { background: none; border: 1px solid var(--border); color: var(--grey); font-size: 14px; letter-spacing: 0.08em; padding: 8px 14px; cursor: pointer; transition: all 0.3s; font-family: 'DM Sans', sans-serif; }
+    .lang-btn { background: none; border: 1px solid var(--border); color: var(--grey); font-size: 15px; font-weight: 600; letter-spacing: 0.02em; padding: 8px 14px; cursor: pointer; transition: all 0.3s; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
     .lang-btn.active { border-color: var(--gold); color: var(--gold); }
-    .cta-nav { font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; border: 1px solid var(--border); padding: 12px 28px; transition: all 0.3s ease; }
+    .cta-nav { font-size: 15px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; color: var(--gold); text-decoration: none; border: 1px solid var(--border); padding: 12px 28px; transition: all 0.3s ease; -webkit-font-smoothing: antialiased; }
     .cta-nav:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
 
     /* HERO */
     .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 48px 80px; position: relative; }
     .hero::after { content: ''; position: absolute; top: 20%; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(184,149,42,0.08) 0%, transparent 70%); pointer-events: none; }
     .hero-eyebrow { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
-    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 7vw, 88px); font-weight: 300; line-height: 1.1; max-width: 900px; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 6vw, 72px); font-weight: 300; line-height: 1.15; max-width: 900px; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
     .hero h1 em { font-style: italic; color: var(--gold-light); }
     .hero-sub { font-size: 17px; color: var(--grey); max-width: 520px; margin-bottom: 56px; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; }
     .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; }
@@ -280,10 +280,10 @@
   <p class="hero-eyebrow" style="font-size:16px;color:var(--gold);font-weight:400;letter-spacing:0.15em"><span class="inline-en">AI-Powered Intelligence for Family Offices</span><span class="inline-zh">家族辦公室AI情報服務</span></p>
   
   <h1 data-lang="en">Every morning,<br><em>clarity</em> before the market opens.</h1>
-  <h1 data-lang="zh">每個早晨，在市場開盤前<br><em>掌握先機</em>。</h1>
+  <h1 data-lang="zh">每個交易日早晨，在市場開盤前<br><em>掌握先機</em>。</h1>
 
   <p class="hero-sub" data-lang="en">Athena Horizon Business Intelligence delivers a personalized daily briefing — market dynamics, regulatory shifts, and risk signals — curated by AI for your family office.</p>
-  <p class="hero-sub" data-lang="zh">AHBI為家族辦公室提供每日個人化情報簡報——市場動態、監管變化、風險預警——由AI全自動生成，每天早上直接送達您的收件箱。</p>
+  <p class="hero-sub" data-lang="zh">AHBI為家族辦公室提供每日個人化情報簡報——市場動態、監管變化、風險預警——由AI全自動生成，每個交易日早上直接送達您的收件箱。</p>
 
   <div class="hero-actions">
     <a href="#enquire" class="btn-primary"><span class="inline-en">Request Early Access</span><span class="inline-zh">申請早鳥使用</span></a>
@@ -421,7 +421,7 @@
   <div class="solution-wrap">
     <p class="section-label"><span class="inline-en">The Solution</span><span class="inline-zh">解決方案</span></p>
     <h2 data-lang="en">One email. Every morning.<br><em>Everything you need to know.</em></h2>
-    <h2 data-lang="zh">一封郵件。每個早晨。<br><em>您需要知道的一切。</em></h2>
+    <h2 data-lang="zh">一封郵件。每個交易日早晨。<br><em>您需要知道的一切。</em></h2>
     <p data-lang="en" style="color:var(--grey);font-size:16px;max-width:560px;margin-bottom:0">AHBI monitors hundreds of sources overnight, synthesizes the signal from the noise, and delivers a clean, personalized briefing — before markets open.</p>
     <p data-lang="zh" style="color:var(--grey);font-size:16px;max-width:560px;margin-bottom:0">AHBI在您睡眠期間監控數百個資訊來源，從雜訊中提煉出關鍵訊號，在市場開盤前送達一份簡潔、個人化的情報簡報。</p>
 
@@ -473,38 +473,66 @@
   <p class="section-label"><span class="inline-en">Our Services</span><span class="inline-zh">我們的服務</span></p>
   <h2 data-lang="en">Built for today.<br><em>Designed to scale with you.</em></h2>
   <h2 data-lang="zh">為當下而建，<br><em>與您一同成長。</em></h2>
-  <p data-lang="en">We start with daily intelligence and expand as your needs evolve. Each service is fully automated — no manual intervention, no data sharing required.</p>
-  <p data-lang="zh">我們從每日情報開始，隨著您的需求不斷擴展。每項服務均完全自動化——無需人工干預，無需共享數據。</p>
+  <p data-lang="en">We start with daily intelligence and expand as your needs evolve. Each service is AI-powered and fully automated — no manual intervention, no data sharing required.</p>
+  <p data-lang="zh">我們從每日情報開始，隨著您的需求不斷擴展。每項服務均AI驅動，全自動化——無需人工干預，無需共享數據。</p>
 
   <div class="services-grid">
+    <!-- Card 1: Essentials -->
     <div class="service-card">
-      <span class="service-tag"><span class="inline-en">Core Service — Available Now</span><span class="inline-zh">核心服務——現已開放</span></span>
-      <h3><span class="inline-en">AHBI Daily Intelligence</span><span class="inline-zh">AHBI每日情報</span></h3>
-      <p data-lang="en">Personalized daily briefing delivered at 7:30 AM HKT — covering market dynamics, HKEX announcements, regulatory updates, sanctions alerts, and your 30-day forward horizon.</p>
-      <p data-lang="zh">每天港時早上7:30準時送達個人化情報簡報——涵蓋市場動態、港交所公告、監管更新、制裁預警及30天展望。</p>
-      <div class="service-price">$688–$1,888 <span>USD/month</span></div>
+      <div class="service-label">Core Service — Available Now｜核心服務——現已開放</div>
+      <h3>AHBI Daily Intelligence｜AHBI每日情報</h3>
+      <p>Comprehensive daily intelligence across private and public markets in Hong Kong and the United States — delivered every trading morning at 7:30 AM HKT.</p>
+      <p>涵蓋香港及美國一級與二級市場的每日全面情報——於每個交易日早上7:30港時準時送達。</p>
+      <ul>
+        <li>Daily private market monitoring: new fund registrations, major M&A announcements, Pre-IPO funding activity｜每日一級市場監控：新基金備案、重大並購公告、Pre-IPO融資動態</li>
+        <li>Weekly private market digest (every Friday)｜每週五一級市場週報</li>
+        <li>Instant alerts for major private market developments｜重大一級市場突發即時推送</li>
+        <li>Daily public market briefing: market dynamics & HKEX announcements｜每日二級市場簡報：市場動態及港交所公告</li>
+        <li>Regulatory updates: SFC, HKMA & SEC｜監管更新：證監會、金管局及美國證監會</li>
+        <li>Sanctions monitoring: OFAC & UN｜制裁名單監控：OFAC及聯合國</li>
+        <li>Up to 20 HKEX watchlist stocks｜最多20隻港交所關注股票</li>
+        <li>English language｜英文版本</li>
+      </ul>
+      <div class="service-price">$688 <span>USD / month｜月</span></div>
     </div>
-    <div class="service-card">
-      <span class="service-tag"><span class="inline-en">Premium Service — Coming Soon</span><span class="inline-zh">高端服務——即將推出</span></span>
-      <h3><span class="inline-en">Deep Intelligence Advisory</span><span class="inline-zh">深度情報顧問</span></h3>
-      <p data-lang="en">Custom AI intelligence system built specifically for your family office. Proprietary monitoring, bespoke analysis, and dedicated intelligence reports tailored to your portfolio and strategy.</p>
-      <p data-lang="zh">專為您的家族辦公室定制的AI情報系統。專有監控、定制分析及專屬情報報告，完全根據您的投資組合和策略量身打造。</p>
-      <div class="service-price" style="font-size:24px">
-        <span class="inline-en">From $100,000 USD / engagement</span>
-        <span class="inline-zh">起價 $100,000 USD / 項目</span>
-      </div>
-      <div><span class="service-coming"><span class="inline-en">Enquire for priority access</span><span class="inline-zh">查詢優先使用資格</span></span></div>
+
+    <!-- Card 2: Professional -->
+    <div class="service-card service-card--featured">
+      <div class="service-label">MOST POPULAR｜最受歡迎</div>
+      <h3>Professional｜專業版</h3>
+      <p>Everything in Essentials, plus deeper private market intelligence and your choice of one additional target market beyond Hong Kong and the United States.</p>
+      <p>包含基礎版所有功能，另加深度一級市場情報，並可選擇香港及美國以外的一個額外目標市場。</p>
+      <ul>
+        <li>Everything in Essentials｜包含基礎版所有功能</li>
+        <li>Deep private market analysis: sector tracking, deal flow monitoring, target company public profile research｜深度一級市場分析：行業賽道追蹤、交易流監控、目標公司公開資料研究</li>
+        <li>Weekly in-depth private market report｜每週深度一級市場報告</li>
+        <li>One additional target market of your choice: Mainland China, Dubai/UAE, Singapore, or Europe｜可選一個額外目標市場：中國內地、迪拜/阿聯酋、新加坡或歐洲</li>
+        <li>DFSA regulatory coverage (if Dubai selected)｜迪拜DFSA監管覆蓋（選擇迪拜時適用）</li>
+        <li>Unlimited HKEX watchlist stocks｜無限港交所關注股票</li>
+        <li>Custom alert thresholds｜自定義預警閾值</li>
+        <li>Monthly intelligence summary｜每月情報總結</li>
+        <li>English & Traditional Chinese｜英文及繁體中文</li>
+      </ul>
+      <div class="service-price">$1,888 <span>USD / month｜月</span></div>
     </div>
+
+    <!-- Card 3: Enterprise -->
     <div class="service-card">
-      <span class="service-tag"><span class="inline-en">Enterprise — Coming Soon</span><span class="inline-zh">企業方案——即將推出</span></span>
-      <h3><span class="inline-en">Institutional Intelligence Platform</span><span class="inline-zh">機構情報平台</span></h3>
-      <p data-lang="en">Full-scale AI intelligence infrastructure for asset managers, multi-family offices, and financial institutions. Multi-user, API access, custom modules, and SLA guarantee.</p>
-      <p data-lang="zh">為資產管理公司、聯合家族辦公室及金融機構提供的全規模AI情報基礎設施。多用戶、API訪問、定制模組及SLA保障。</p>
-      <div class="service-price" style="font-size:24px">
-        <span class="inline-en">Custom Pricing</span>
-        <span class="inline-zh">定制定價</span>
-      </div>
-      <div><span class="service-coming"><span class="inline-en">Contact us</span><span class="inline-zh">聯繫我們</span></span></div>
+      <div class="service-label">Enterprise — Coming Soon｜企業方案——即將推出</div>
+      <h3>Institutional Intelligence Platform｜機構情報平台</h3>
+      <p>A fully managed intelligence infrastructure for asset managers, multi-family offices, and financial institutions. Your team receives a customised, white-labelled intelligence service built around your investment mandate.</p>
+      <p>專為資產管理公司、聯合家族辦公室及金融機構提供的全託管情報基礎設施。根據您的投資策略定制，以您的品牌呈現，直接服務您的團隊。</p>
+      <ul>
+        <li>Everything in Professional｜包含專業版所有功能</li>
+        <li>Fully customised private & public market monitoring scope｜完全定制一級及二級市場監控範圍</li>
+        <li>Multi-user access｜多用戶訪問</li>
+        <li>White-label delivery under your brand｜以您的品牌白標交付</li>
+        <li>Custom intelligence modules｜定制情報模組</li>
+        <li>API access｜API訪問</li>
+        <li>Dedicated briefing analyst｜專屬簡報分析師</li>
+        <li>SLA guarantee｜SLA保障</li>
+      </ul>
+      <div class="service-price">$5,000 – $15,000 <span>USD / month｜月 · tailored pricing｜定制定價</span></div>
     </div>
   </div>
 </div>
@@ -530,7 +558,7 @@
     <div class="step">
       <div class="step-number">03</div>
       <h3><span class="inline-en">Receive Your Brief</span><span class="inline-zh">接收您的簡報</span></h3>
-      <p data-lang="en">Every morning at 7:30 AM HKT, a clean, concise briefing arrives in your inbox. Personalized. Prioritized. Actionable.</p>
+      <p data-lang="en">Every trading morning at 7:30 AM HKT, a clean, concise briefing arrives in your inbox. Personalized. Prioritized. Actionable.</p>
       <p data-lang="zh">每天早上港時7:30，一份簡潔的個人化簡報送達您的收件箱。個人化、按優先級排列、可立即採取行動。</p>
     </div>
     <div class="step">
