@@ -158,6 +158,14 @@
     /* PRICING CARD: button always at bottom, top always aligned */
     .pricing-grid { align-items: stretch; }
     .pricing-card { display: flex; flex-direction: column; }
+    .pricing-card .pricing-top-label { 
+      font-size: 10px; 
+      letter-spacing: 0.15em; 
+      text-transform: uppercase; 
+      color: var(--gold); 
+      margin-bottom: 12px;
+      min-height: 20px;
+    }
     .pricing-features { flex: 1; }
 
     /* Placeholder for cards without featured-label, keeps top aligned */
@@ -566,8 +574,8 @@
   <div class="pricing-grid">
 
     <!-- Card 1: Essentials -->
-    <div class="pricing-card">
-      <div style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px"><span class="inline-en">Core Service</span><span class="inline-zh">核心服務</span></div>
+    <div class="pricing-card" style="padding-top:52px">
+      <div class="pricing-top-label"><span class="inline-en">Core Service</span><span class="inline-zh">核心服務</span></div>
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:16px">
         <span class="inline-en">Essentials</span><span class="inline-zh">基礎版</span>
       </h3>
@@ -607,8 +615,8 @@
     </div>
 
     <!-- Card 3: Enterprise -->
-    <div class="pricing-card">
-      <div style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px"><span class="inline-en">Coming Soon</span><span class="inline-zh">即將推出</span></div>
+    <div class="pricing-card" style="padding-top:52px">
+      <div class="pricing-top-label"><span class="inline-en">Coming Soon</span><span class="inline-zh">即將推出</span></div>
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:16px">
         <span class="inline-en">Enterprise</span><span class="inline-zh">企業版</span>
       </h3>
@@ -626,8 +634,8 @@
     </div>
 
     <!-- Card 4: Advisory -->
-    <div class="pricing-card">
-      <div style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px"><span class="inline-en">Premium</span><span class="inline-zh">高端服務</span></div>
+    <div class="pricing-card" style="padding-top:52px">
+      <div class="pricing-top-label"><span class="inline-en">Premium</span><span class="inline-zh">高端服務</span></div>
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:16px">
         <span class="inline-en">Deep Intelligence Advisory</span><span class="inline-zh">深度情報顧問</span>
       </h3>
