@@ -30,12 +30,12 @@
     .logo span { color: var(--gold); }
     .nav-right { display: flex; align-items: center; gap: 24px; }
     .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { font-size: 13px; letter-spacing: 0.05em; color: var(--grey); text-decoration: none; transition: color 0.3s; }
+    .nav-links a { font-size: 15px; letter-spacing: 0.05em; color: var(--grey); text-decoration: none; transition: color 0.3s; }
     .nav-links a:hover { color: var(--white); }
     .lang-switch { display: flex; gap: 8px; align-items: center; }
-    .lang-btn { background: none; border: 1px solid var(--border); color: var(--grey); font-size: 12px; letter-spacing: 0.08em; padding: 6px 12px; cursor: pointer; transition: all 0.3s; font-family: 'DM Sans', sans-serif; }
+    .lang-btn { background: none; border: 1px solid var(--border); color: var(--grey); font-size: 14px; letter-spacing: 0.08em; padding: 8px 14px; cursor: pointer; transition: all 0.3s; font-family: 'DM Sans', sans-serif; }
     .lang-btn.active { border-color: var(--gold); color: var(--gold); }
-    .cta-nav { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; border: 1px solid var(--border); padding: 10px 24px; transition: all 0.3s ease; }
+    .cta-nav { font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; border: 1px solid var(--border); padding: 12px 28px; transition: all 0.3s ease; }
     .cta-nav:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
 
     /* HERO */
@@ -46,7 +46,7 @@
     .hero h1 em { font-style: italic; color: var(--gold-light); }
     .hero-sub { font-size: 17px; color: var(--grey); max-width: 520px; margin-bottom: 56px; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; }
     .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; }
-    .btn-primary { background: var(--gold); color: var(--navy); padding: 16px 40px; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; display: inline-block; font-family: 'DM Sans', sans-serif; }
+    .btn-primary { background: var(--gold); color: var(--navy); padding: 18px 48px; font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; display: inline-block; font-family: 'DM Sans', sans-serif; }
     .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
     .btn-ghost { color: var(--grey); font-size: 13px; letter-spacing: 0.05em; text-decoration: none; transition: color 0.3s ease; }
     .btn-ghost:hover { color: var(--white); }
@@ -163,7 +163,7 @@
     input::placeholder, textarea::placeholder { color: var(--grey); }
     input:focus, select:focus, textarea:focus { border-color: var(--gold); }
     select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A95A8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 20px center; padding-right: 44px; }
-    .form-submit { width: 100%; background: var(--gold); color: var(--navy); border: none; padding: 18px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; cursor: pointer; transition: all 0.3s ease; font-family: 'DM Sans', sans-serif; margin-top: 8px; -webkit-appearance: none; appearance: none; }
+    .form-submit { width: 100%; background: var(--gold); color: var(--navy); border: none; padding: 20px; font-size: 16px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; cursor: pointer; transition: all 0.3s ease; font-family: 'DM Sans', sans-serif; margin-top: 8px; -webkit-appearance: none; appearance: none; }
     .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
     .form-note { font-size: 12px; color: var(--grey); margin-top: 16px; }
     .success-msg { display: none; background: rgba(184,149,42,0.1); border: 1px solid var(--border); padding: 32px; text-align: center; }
@@ -277,10 +277,10 @@
 
 <!-- HERO -->
 <section class="hero">
-  <p class="hero-eyebrow"><span class="inline-en">AI-Powered Intelligence for Family Offices</span><span class="inline-zh">家族辦公室AI情報服務</span></p>
+  <p class="hero-eyebrow" style="font-size:16px;color:var(--gold);font-weight:400;letter-spacing:0.15em"><span class="inline-en">AI-Powered Intelligence for Family Offices</span><span class="inline-zh">家族辦公室AI情報服務</span></p>
   
   <h1 data-lang="en">Every morning,<br><em>clarity</em> before the market opens.</h1>
-  <h1 data-lang="zh">每個早晨，<br>在市場開盤前<em>掌握先機</em>。</h1>
+  <h1 data-lang="zh">每個早晨，在市場開盤前<br><em>掌握先機</em>。</h1>
 
   <p class="hero-sub" data-lang="en">Athena Horizon Business Intelligence delivers a personalized daily briefing — market dynamics, regulatory shifts, and risk signals — curated by AI for your family office.</p>
   <p class="hero-sub" data-lang="zh">AHBI為家族辦公室提供每日個人化情報簡報——市場動態、監管變化、風險預警——由AI全自動生成，每天早上直接送達您的收件箱。</p>
