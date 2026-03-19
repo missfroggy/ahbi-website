@@ -848,8 +848,8 @@
         document.getElementById('sample-modal').style.display = 'none';
         // Trigger download
         const pdfPath = _sampleLang === 'en'
-          ? '/reports/AHBI_Report_EN_final.pdf'
-          : '/reports/AHBI_Report_ZH_final.pdf';
+          ? 'AHBI_Report_EN_final.pdf'
+          : 'AHBI_Report_ZH_final.pdf';
         const a = document.createElement('a');
         a.href = pdfPath;
         a.download = _sampleLang === 'en'
