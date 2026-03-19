@@ -659,7 +659,10 @@
   <div class="sample-report__content" style="max-width:700px;margin:0 auto">
     <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,48px);font-weight:300;margin-bottom:24px"><span class="inline-en">See AHBI in Action</span><span class="inline-zh">親眼看看AHBI的情報質量</span></h2>
     <p style="font-size:16px;line-height:1.75;margin-bottom:32px;color:var(--grey)"><span class="inline-en">Download our sample intelligence report — including a real-world private market case study showing the signals AHBI would have captured before a 740% IPO return.</span><span class="inline-zh">下載我們的情報樣本報告——包含一個真實一級市場案例研究，展示AHBI如何在IPO前捕捉關鍵投資信號。</span></p>
-    <a href="sample-report.html" download="AHBI_Sample_Report_MiniMax_Case_Study.pdf" style="background:var(--gold);color:var(--navy);padding:18px 40px;font-size:16px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;transition:all 0.3s;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block"><span class="inline-en">Download Sample Report</span><span class="inline-zh">下載樣本報告</span></a>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+ <button onclick="openSampleModal('en')" style="background:var(--gold);color:var(--navy);padding:18px 40px;font-size:16px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;transition:all 0.3s;font-family:'DM Sans',sans-serif">Download Sample Report</button>
+ <button onclick="openSampleModal('zh')" style="background:transparent;color:var(--gold);padding:18px 40px;font-size:16px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;border:1px solid var(--gold);cursor:pointer;transition:all 0.3s;font-family:'DM Sans',sans-serif">下載樣本報告</button>
+</div>
   </div>
 </section>
 
@@ -671,7 +674,7 @@
     <input type="text" placeholder="Full Name / 姓名" id="sample-name" required style="width:100%;background:var(--navy);border:1px solid var(--border);color:var(--white);padding:16px 20px;font-family:'DM Sans',sans-serif;font-size:16px;margin-bottom:16px;outline:none"/>
     <input type="text" placeholder="Company / 公司名稱" id="sample-company" required style="width:100%;background:var(--navy);border:1px solid var(--border);color:var(--white);padding:16px 20px;font-family:'DM Sans',sans-serif;font-size:16px;margin-bottom:16px;outline:none"/>
     <input type="email" placeholder="Email Address / 電郵地址" id="sample-email" required style="width:100%;background:var(--navy);border:1px solid var(--border);color:var(--white);padding:16px 20px;font-family:'DM Sans',sans-serif;font-size:16px;margin-bottom:24px;outline:none"/>
-    <button onclick="submitSampleRequest()" style="width:100%;background:var(--gold);color:var(--navy);padding:18px;font-size:16px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;transition:all 0.3s;font-family:'DM Sans',sans-serif"><span class="inline-en">Send Me the Report</span><span class="inline-zh">發送報告至我的郵箱</span></button>
+    <button onclick="submitSampleRequest()" style="width:100%;background:var(--gold);color:var(--navy);padding:18px;font-size:16px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;transition:all 0.3s;font-family:'DM Sans',sans-serif"><span class="inline-en">Download Report</span><span class="inline-zh">下載報告</span></button>
     <p style="font-size:12px;color:var(--grey);margin-top:16px;text-align:center"><span class="inline-en">Your information is kept strictly confidential.</span><span class="inline-zh">您的資料將受到嚴格保密。</span></p>
   </div>
 </div>
@@ -812,7 +815,13 @@
     });
   }
 
-  // Sample report form submission
+  let _sampleLang = 'en';
+
+  function openSampleModal(lang) {
+    _sampleLang = lang;
+    document.getElementById('sample-modal').style.display = 'flex';
+  }
+
   function submitSampleRequest() {
     const name = document.getElementById('sample-name').value;
     const company = document.getElementById('sample-company').value;
@@ -823,12 +832,12 @@
       return;
     }
     
-    // Submit to Formspree
     const formData = new FormData();
     formData.append('name', name);
     formData.append('company', company);
     formData.append('email', email);
-    formData.append('_subject', 'New Sample Report Request - AHBI');
+    formData.append('report_language', _sampleLang === 'en' ? 'English' : 'Traditional Chinese');
+    formData.append('_subject', 'New Sample Report Download - AHBI');
     
     fetch('https://formspree.io/f/meergyjw', {
       method: 'POST',
@@ -837,8 +846,19 @@
     }).then(response => {
       if (response.ok) {
         document.getElementById('sample-modal').style.display = 'none';
-        alert('Thank you! The sample report will be sent to your email shortly. / 感謝！樣本報告將很快發送至您的郵箱。');
-        // Reset form
+        // Trigger download
+        const pdfPath = _sampleLang === 'en'
+          ? '/reports/AHBI_Report_EN_final.pdf'
+          : '/reports/AHBI_Report_ZH_final.pdf';
+        const a = document.createElement('a');
+        a.href = pdfPath;
+        a.download = _sampleLang === 'en'
+          ? 'AHBI_Sample_Report_EN.pdf'
+          : 'AHBI_Sample_Report_ZH.pdf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        // Reset
         document.getElementById('sample-name').value = '';
         document.getElementById('sample-company').value = '';
         document.getElementById('sample-email').value = '';
