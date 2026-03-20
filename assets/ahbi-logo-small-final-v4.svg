@@ -1,0 +1,14 @@
+<svg width="222" height="52" viewBox="0 0 222 52" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="222" height="52" rx="6" fill="#0d1b2e"/>
+
+  <!-- AHBI -->
+  <text x="14" y="36" font-family="Georgia, serif" font-size="22" font-weight="700">
+    <tspan font-style="italic" fill="#c9a84c">A</tspan><tspan fill="#ffffff">HBI</tspan>
+  </text>
+
+  <!-- Vertical divider -->
+  <rect x="82" y="10" width="1.2" height="28" fill="#888888"/>
+
+  <!-- ATHENA HORIZON -->
+  <text x="92" y="30" font-family="Georgia, serif" font-size="7.5" letter-spacing="2.5" fill="#c9a84c">ATHENA  HORIZON</text>
+</svg>
