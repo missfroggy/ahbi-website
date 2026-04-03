@@ -1,1032 +1,1223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AHBI | AI Intelligence System for Family Offices and Capital Allocators</title>
-<meta name="description" content="Monitor private markets, regulation, and risk across jurisdictions. Weekly private market briefing + daily monitoring. Built for family offices and asset managers."/>
-<meta property="og:title" content="AHBI | AI Intelligence System for Family Offices"/>
-<meta property="og:description" content="Monitor private markets, regulation, and risk across jurisdictions. Delivered before the market opens."/>
-<meta property="og:url" content="https://www.ahbi.ai"/>
-<link rel="canonical" href="https://www.ahbi.ai"/>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"AHBI","applicationCategory":"BusinessApplication","description":"AI intelligence system for monitoring private markets, regulation, and risk across jurisdictions for family offices.","url":"https://www.ahbi.ai","offers":{"@type":"Offer","price":"688","priceCurrency":"USD"}}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --navy:#0d1b2e;
-  --navy-mid:#0f2640;
-  --navy-light:#1a3a5c;
-  --gold:#c9a84c;
-  --gold-light:#e8d5a0;
-  --gold-dim:rgba(201,168,76,0.15);
-  --white:#ffffff;
-  --off-white:#f5f2eb;
-  --gray:#888888;
-  --light:#d0d8e4;
-  --text:#c8d4e0;
-  --red:#e05252;
-  --green:#4caf82;
-  --font-display:'Cormorant Garamond',serif;
-  --font-body:'DM Sans',sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--navy);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AHBI | AI Intelligence System for Family Offices and Capital Allocators</title>
+  <meta name="description" content="Monitor private markets, regulation, and risk across jurisdictions. Weekly private market briefing + daily monitoring. Built for family offices and asset managers." />
+  <meta property="og:title" content="AHBI | AI Intelligence System for Family Offices" />
+  <meta property="og:description" content="Monitor private markets, regulation, and risk across jurisdictions. Delivered before the market opens." />
+  <meta property="og:url" content="https://www.ahbi.ai" />
+  <link rel="canonical" href="https://www.ahbi.ai" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"AHBI","applicationCategory":"BusinessApplication","description":"AI intelligence system for monitoring private markets, regulation, and risk across jurisdictions for family offices.","url":"https://www.ahbi.ai","offers":{"@type":"Offer","price":"688","priceCurrency":"USD"}}
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #B8952A;
+      --gold-light: #D4AF5A;
+      --navy: #0B1120;
+      --navy-mid: #141E35;
+      --navy-soft: #1C2A45;
+      --white: #F9F7F2;
+      --grey: #8A95A8;
+      --border: rgba(184,149,42,0.2);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--navy); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    p { font-size: 16px; line-height: 1.75; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.4; }
 
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(13,27,46,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.12);}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nav-logo img{height:40px;}
-.nav-links{display:flex;align-items:center;gap:32px;}
-.nav-links a{color:var(--light);font-size:13px;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:color 0.2s;}
-.nav-links a:hover{color:var(--gold);}
-.lang-toggle{display:flex;align-items:center;gap:8px;margin-left:8px;}
-.lang-btn{background:none;border:none;color:var(--gray);font-size:12px;font-family:var(--font-body);letter-spacing:0.08em;cursor:pointer;padding:4px 8px;border-radius:2px;transition:all 0.2s;}
-.lang-btn.active{color:var(--gold);border:1px solid rgba(201,168,76,0.3);}
-.nav-cta{background:var(--gold);color:var(--navy);font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:10px 20px;border-radius:2px;text-decoration:none;transition:all 0.2s;}
-.nav-cta:hover{background:var(--gold-light);}
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid transparent; transition: all 0.4s ease; }
+    nav.scrolled { background: rgba(11,17,32,0.92); backdrop-filter: blur(12px); border-bottom-color: var(--border); }
+    .logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+    .logo span { color: var(--gold); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 15px; font-weight: 600; letter-spacing: 0.02em; color: var(--grey); text-decoration: none; transition: color 0.3s; -webkit-font-smoothing: antialiased; }
+    .nav-links a:hover { color: var(--white); }
+    .lang-switch { display: flex; gap: 8px; align-items: center; }
+    .lang-btn { background: none; border: 1px solid var(--border); color: var(--grey); font-size: 15px; font-weight: 600; letter-spacing: 0.02em; padding: 8px 14px; cursor: pointer; transition: all 0.3s; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    .lang-btn.active { border-color: var(--gold); color: var(--gold); }
+    .cta-nav { font-size: 15px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; color: var(--gold); text-decoration: none; border: 1px solid var(--border); padding: 12px 28px; transition: all 0.3s ease; -webkit-font-smoothing: antialiased; }
+    .cta-nav:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
 
-/* ── HERO ── */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:100px 80px 80px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(201,168,76,0.04) 0%,transparent 70%);}
-.hero-eyebrow{font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;animation:fadeUp 0.8s 0.2s forwards;}
-.hero h1{font-family:var(--font-display);font-size:clamp(42px,5.5vw,76px);font-weight:500;line-height:1.1;color:var(--white);max-width:800px;margin-bottom:16px;opacity:0;animation:fadeUp 0.8s 0.35s forwards;}
-.hero h1 em{font-style:italic;color:var(--gold);}
-.hero-zh{font-family:var(--font-display);font-size:clamp(22px,2.8vw,38px);color:var(--light);font-weight:400;margin-bottom:32px;max-width:680px;opacity:0;animation:fadeUp 0.8s 0.45s forwards;line-height:1.4;}
-.hero-sub{font-size:16px;color:var(--light);max-width:620px;line-height:1.8;margin-bottom:8px;opacity:0;animation:fadeUp 0.8s 0.55s forwards;}
-.hero-sub-zh{font-size:14px;color:var(--gray);max-width:580px;line-height:1.8;margin-bottom:40px;opacity:0;animation:fadeUp 0.8s 0.6s forwards;}
-.hero-killer{font-size:14px;font-style:italic;color:rgba(201,168,76,0.7);margin-bottom:48px;opacity:0;animation:fadeUp 0.8s 0.65s forwards;}
-.hero-actions{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s 0.75s forwards;}
-.btn-primary{background:var(--gold);color:var(--navy);font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;transition:all 0.25s;}
-.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px);}
-.btn-secondary{border:1px solid rgba(201,168,76,0.35);color:var(--gold);font-size:12px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;transition:all 0.25s;}
-.btn-secondary:hover{border-color:var(--gold);background:var(--gold-dim);}
-.hero-stats{position:absolute;right:80px;bottom:80px;display:flex;flex-direction:column;gap:32px;opacity:0;animation:fadeUp 0.8s 0.9s forwards;}
-.hero-stat{text-align:right;}
-.hero-stat-value{font-family:var(--font-display);font-size:36px;font-weight:500;color:var(--white);line-height:1;}
-.hero-stat-label{font-size:11px;color:var(--gray);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;}
-.hero-divider{width:1px;height:60px;background:rgba(201,168,76,0.2);align-self:center;margin-left:auto;}
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 48px 80px; position: relative; }
+    .hero::after { content: ''; position: absolute; top: 20%; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(184,149,42,0.08) 0%, transparent 70%); pointer-events: none; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 6vw, 72px); font-weight: 300; line-height: 1.15; max-width: 900px; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
+    .hero h1 em { font-style: italic; color: var(--gold-light); }
+    .hero-sub { font-size: 17px; color: var(--grey); max-width: 520px; margin-bottom: 56px; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; }
+    .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; }
+    .btn-primary { background: var(--gold); color: var(--navy); padding: 18px 48px; font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; display: inline-block; font-family: 'DM Sans', sans-serif; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-ghost { color: var(--grey); font-size: 13px; letter-spacing: 0.05em; text-decoration: none; transition: color 0.3s ease; }
+    .btn-ghost:hover { color: var(--white); }
+    .scroll-hint { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeUp 0.8s ease 1.2s forwards; }
+    .scroll-hint span { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); }
+    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease infinite; }
 
-/* ── SECTION BASE ── */
-section{padding:100px 80px;}
-.section-label{font-size:10px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
-.section-title{font-family:var(--font-display);font-size:clamp(32px,4vw,52px);font-weight:500;color:var(--white);line-height:1.15;margin-bottom:12px;}
-.section-title em{font-style:italic;color:var(--gold);}
-.section-title-zh{font-family:var(--font-display);font-size:clamp(18px,2.2vw,28px);color:var(--light);font-weight:400;margin-bottom:40px;line-height:1.4;}
-.section-sub{font-size:15px;color:var(--light);max-width:600px;line-height:1.8;margin-bottom:12px;}
-.section-sub-zh{font-size:13px;color:var(--gray);max-width:580px;line-height:1.8;margin-bottom:48px;}
-.gold-rule{width:48px;height:1px;background:var(--gold);margin-bottom:24px;}
+    /* STATS */
+    .stats { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 40px 48px; display: grid; grid-template-columns: repeat(3, 1fr); }
+    .stat { text-align: center; padding: 0 32px; position: relative; }
+    .stat:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 20%; bottom: 20%; width: 1px; background: var(--border); }
+    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: var(--gold-light); line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); }
 
-/* ── SYSTEM ARCHITECTURE ── */
-.arch-section{background:var(--navy-mid);border-top:1px solid rgba(201,168,76,0.1);border-bottom:1px solid rgba(201,168,76,0.1);}
-.arch-flow{display:flex;align-items:stretch;gap:0;margin-top:56px;border:1px solid rgba(201,168,76,0.12);border-radius:4px;overflow:hidden;}
-.arch-step{flex:1;padding:32px 24px;position:relative;background:rgba(15,38,64,0.6);}
-.arch-step:not(:last-child){border-right:1px solid rgba(201,168,76,0.1);}
-.arch-step:not(:last-child)::after{content:'→';position:absolute;right:-14px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:18px;z-index:2;background:var(--navy-mid);padding:4px;}
-.arch-step-num{font-size:10px;font-weight:500;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;}
-.arch-step-title{font-family:var(--font-display);font-size:18px;color:var(--white);margin-bottom:10px;font-weight:500;}
-.arch-step-title-zh{font-size:12px;color:var(--gray);margin-bottom:12px;}
-.arch-tags{display:flex;flex-wrap:wrap;gap:6px;}
-.arch-tag{font-size:10px;padding:3px 8px;border:1px solid rgba(201,168,76,0.2);border-radius:2px;color:var(--light);letter-spacing:0.05em;}
-.arch-highlight{background:rgba(201,168,76,0.05);border-color:rgba(201,168,76,0.25);}
+    /* DATA SOURCES SECTION */
+    .data-sources-section { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px 48px; text-align: center; }
+    .data-sources-wrap { max-width: 1000px; margin: 0 auto; }
+    .data-sources-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--white); margin-bottom: 16px; }
+    .data-sources-section p { color: var(--grey); font-size: 14px; margin-bottom: 48px; }
+    .data-sources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; justify-items: center; }
+    .data-source-item { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .data-source-logo { width: 80px; height: 80px; background: var(--navy-soft); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+    .data-source-logo svg { width: 36px; height: 36px; stroke: var(--gold); }
+    .data-source-name { font-size: 15.6px; color: var(--grey); letter-spacing: 0.05em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    .data-source-abbr { font-size: 14.3px; color: var(--gold); letter-spacing: 0.1em; font-weight: 500; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-/* ── BEFORE/AFTER ── */
-.ba-section{background:var(--navy);}
-.ba-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-top:56px;border:1px solid rgba(201,168,76,0.12);border-radius:4px;overflow:hidden;}
-.ba-col{padding:0;}
-.ba-col-header{padding:20px 32px;font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;}
-.ba-col.before .ba-col-header{background:rgba(224,82,82,0.08);color:var(--red);border-bottom:1px solid rgba(224,82,82,0.15);}
-.ba-col.after .ba-col-header{background:rgba(76,175,130,0.08);color:var(--green);border-bottom:1px solid rgba(76,175,130,0.15);}
-.ba-divider{display:flex;align-items:center;justify-content:center;background:rgba(201,168,76,0.05);border-left:1px solid rgba(201,168,76,0.1);border-right:1px solid rgba(201,168,76,0.1);padding:0 16px;}
-.ba-vs{font-family:var(--font-display);font-size:28px;color:rgba(201,168,76,0.3);font-style:italic;}
-.ba-items{padding:8px 0;}
-.ba-item{display:flex;align-items:flex-start;gap:14px;padding:14px 32px;border-bottom:1px solid rgba(255,255,255,0.04);}
-.ba-item:last-child{border-bottom:none;}
-.ba-icon{font-size:14px;margin-top:2px;flex-shrink:0;}
-.ba-text{font-size:13.5px;color:var(--light);line-height:1.5;}
-.ba-text-zh{font-size:11px;color:var(--gray);line-height:1.4;margin-top:2px;}
+    /* DISCLAIMER SECTION */
+    .disclaimer-section { background: var(--navy); padding: 64px 48px; border-bottom: 1px solid var(--border); }
+    .disclaimer-wrap { max-width: 900px; margin: 0 auto; text-align: center; }
+    .disclaimer-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; color: var(--gold-light); margin-bottom: 24px; }
+    .disclaimer-box { background: var(--navy-soft); border: 1px solid var(--border); padding: 32px; margin-bottom: 24px; }
+    .disclaimer-section p { color: var(--white); font-size: 13px !important; line-height: 1.8; margin-bottom: 16px; -webkit-font-smoothing: antialiased; }
+    .disclaimer-section p:last-child { margin-bottom: 0; }
+    .disclaimer-links { display: flex; justify-content: center; gap: 32px; margin-top: 24px; }
+    .disclaimer-links a { color: var(--gold); font-size: 12px; letter-spacing: 0.05em; text-decoration: none; transition: color 0.3s; }
+    .disclaimer-links a:hover { color: var(--gold-light); }
 
-/* ── PROBLEM ── */
-.problem-section{background:var(--navy-mid);}
-.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;}
-.problem-card{padding:32px;border:1px solid rgba(255,255,255,0.06);border-radius:4px;background:rgba(13,27,46,0.5);}
-.problem-icon{font-size:28px;margin-bottom:16px;}
-.problem-title{font-family:var(--font-display);font-size:20px;color:var(--white);margin-bottom:6px;font-weight:500;}
-.problem-title-zh{font-size:12px;color:var(--gold);margin-bottom:12px;}
-.problem-desc{font-size:13.5px;color:var(--light);line-height:1.7;}
-.problem-desc-zh{font-size:12px;color:var(--gray);line-height:1.6;margin-top:6px;}
+    /* SECTIONS */
+    .section { padding: 120px 48px; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+    .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 300; line-height: 1.2; margin-bottom: 24px; }
+    .section h2 em { font-style: italic; color: var(--gold-light); }
+    .section p { color: var(--grey); font-size: 16px; max-width: 600px; margin-bottom: 16px; }
+    .gold-divider { width: 48px; height: 1px; background: var(--gold); margin: 32px 0; }
 
-/* ── SOLUTION / SAMPLE BRIEF ── */
-.solution-section{background:var(--navy);}
-.solution-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:56px;}
-.solution-text{}
-.solution-point{display:flex;gap:16px;margin-bottom:28px;}
-.solution-point-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:8px;}
-.solution-point-text{font-size:14px;color:var(--light);line-height:1.7;}
-.solution-point-zh{font-size:12px;color:var(--gray);margin-top:4px;line-height:1.5;}
-.brief-card{background:var(--navy-mid);border:1px solid rgba(201,168,76,0.15);border-radius:4px;overflow:hidden;}
-.brief-header{background:rgba(201,168,76,0.08);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(201,168,76,0.12);}
-.brief-header-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);}
-.brief-header-time{font-size:10px;color:var(--gray);}
-.brief-module{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.05);}
-.brief-module:last-child{border-bottom:none;}
-.brief-module-top{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
-.brief-module-icon{font-size:13px;}
-.brief-module-name{font-size:10px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);}
-.brief-module-headline{font-size:13px;color:var(--white);line-height:1.45;margin-bottom:4px;}
-.brief-module-body{font-size:11.5px;color:var(--gray);line-height:1.5;}
+    /* PAIN GRID */
+    .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 64px; }
+    .pain-item { background: var(--navy); padding: 40px 36px; transition: background 0.3s ease; }
+    .pain-item:hover { background: var(--navy-soft); }
+    .pain-icon { font-size: 28px; margin-bottom: 16px; }
+    .pain-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px; }
+    .pain-item p { font-size: 14px; color: var(--grey); line-height: 1.6; margin: 0; max-width: 100%; }
 
-/* ── MODULES ── */
-.modules-section{background:var(--navy-mid);}
-.modules-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;margin-top:56px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.1);border-radius:4px;overflow:hidden;}
-.module-card{background:var(--navy-mid);padding:28px 20px;transition:background 0.25s;}
-.module-card:hover{background:rgba(201,168,76,0.05);}
-.module-icon{font-size:22px;margin-bottom:14px;}
-.module-name{font-family:var(--font-display);font-size:17px;color:var(--white);font-weight:500;margin-bottom:4px;}
-.module-name-zh{font-size:11px;color:var(--gold);margin-bottom:10px;letter-spacing:0.05em;}
-.module-why{font-size:12px;color:var(--light);line-height:1.6;margin-bottom:6px;font-style:italic;}
-.module-why-zh{font-size:11px;color:var(--gray);line-height:1.5;}
+    /* SOLUTION */
+    .solution-wrap { background: var(--navy-mid); border: 1px solid var(--border); padding: 80px; margin-top: 64px; position: relative; overflow: hidden; }
+    .solution-wrap::before { content: 'Œë'; position: absolute; right: -20px; top: -40px; font-family: 'Cormorant Garamond', serif; font-size: 280px; color: rgba(184,149,42,0.04); line-height: 1; pointer-events: none; }
 
-/* ── INTELLIGENCE SYSTEM (PRODUCTS) ── */
-.products-section{background:var(--navy);}
+    /* EMAIL PREVIEW */
+    .email-preview { background: var(--navy-soft); border: 1px solid var(--border); margin-top: 48px; }
+    .email-header { background: var(--navy-mid); padding: 20px 28px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; }
+    .email-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); opacity: 0.6; }
+    .email-subject { font-size: 13px; color: var(--grey); letter-spacing: 0.05em; }
+    .email-subject span { color: var(--white); }
+    .email-body { padding: 32px 28px; }
+    .email-section { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(184,149,42,0.1); }
+    .email-section:last-child { border-bottom: none; margin-bottom: 0; }
+    .email-tag { display: inline-block; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .email-section h4 { font-size: 14px; font-weight: 400; margin-bottom: 6px; color: var(--white); }
+    .email-section p { font-size: 13px; color: var(--grey); line-height: 1.6; margin: 0; max-width: 100%; }
 
-/* PART A - SUBSCRIPTION */
-.sub-part-label{font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--light);margin-bottom:8px;}
-.sub-part-label span{color:var(--gold);}
-.sub-part-sub{font-size:13px;color:var(--gray);margin-bottom:36px;}
-.pricing-anchor{font-size:14px;color:var(--light);font-style:italic;margin-bottom:48px;padding:16px 24px;border-left:2px solid var(--gold);background:var(--gold-dim);}
-.pricing-anchor-zh{font-size:12px;color:var(--gray);margin-top:4px;}
-.sub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.1);border-radius:4px;overflow:hidden;margin-bottom:16px;}
-.sub-card{background:var(--navy-mid);padding:36px 28px;display:flex;flex-direction:column;position:relative;}
-.sub-card.featured{background:rgba(201,168,76,0.06);}
-.sub-badge{position:absolute;top:16px;right:16px;font-size:9px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--navy);background:var(--gold);padding:4px 10px;border-radius:2px;}
-.sub-name{font-family:var(--font-display);font-size:24px;color:var(--white);font-weight:500;margin-bottom:4px;}
-.sub-tagline{font-size:11px;color:var(--gold);letter-spacing:0.05em;margin-bottom:20px;}
-.sub-tagline-zh{font-size:11px;color:var(--gray);margin-bottom:20px;}
-.sub-price{font-family:var(--font-display);font-size:36px;color:var(--white);font-weight:400;margin-bottom:4px;line-height:1;}
-.sub-price span{font-size:13px;color:var(--gray);font-family:var(--font-body);}
-.sub-price-zh{font-size:11px;color:var(--gray);margin-bottom:24px;}
-.sub-features{list-style:none;flex:1;margin-bottom:28px;}
-.sub-features li{font-size:13px;color:var(--light);padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;gap:10px;align-items:flex-start;line-height:1.5;}
-.sub-features li:last-child{border-bottom:none;}
-.sub-features li::before{content:'—';color:var(--gold);font-size:12px;flex-shrink:0;margin-top:1px;}
-.sub-features .zh{display:block;font-size:11px;color:var(--gray);margin-top:2px;}
-.sub-cta{display:block;text-align:center;padding:12px;border:1px solid rgba(201,168,76,0.3);color:var(--gold);font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all 0.2s;}
-.sub-cta:hover,.sub-card.featured .sub-cta{background:var(--gold);color:var(--navy);border-color:var(--gold);}
-.sub-cta-zh{display:block;text-align:center;font-size:10px;color:var(--gray);margin-top:6px;}
+    /* SERVICES */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 64px; }
+    .service-card { background: var(--navy); padding: 48px 40px; transition: background 0.3s; position: relative; }
+    .service-card:hover { background: var(--navy-soft); }
+    .service-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
+    .service-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
+    .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; margin-bottom: 16px; }
+    .service-card p { font-size: 14px; color: var(--grey); line-height: 1.6; margin-bottom: 24px; }
+    .service-features { list-style: none; margin: 20px 0 28px; padding: 0; }
+    .service-features li { font-size: 14px; color: var(--grey); padding: 7px 0; border-bottom: 1px solid rgba(184,149,42,0.08); display: flex; gap: 10px; line-height: 1.5; }
+    .service-features li::before { content: '‚Äî'; color: var(--gold); flex-shrink: 0; }
+    .service-price { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--gold-light); }
+    .service-price span { font-size: 14px; color: var(--grey); font-family: 'DM Sans', sans-serif; }
+    .service-coming { display: inline-block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); border: 1px solid var(--border); padding: 4px 12px; margin-top: 8px; }
 
-/* PART B - BESPOKE */
-.bespoke-divider{display:flex;align-items:center;gap:24px;margin:64px 0 48px;}
-.bespoke-divider-line{flex:1;height:1px;background:rgba(201,168,76,0.15);}
-.bespoke-divider-label{font-size:10px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);white-space:nowrap;padding:8px 20px;border:1px solid rgba(201,168,76,0.2);border-radius:2px;}
-.bespoke-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.1);border-radius:4px;overflow:hidden;}
-.bespoke-card{background:rgba(10,26,48,0.8);padding:40px 36px;display:flex;flex-direction:column;}
-.bespoke-card:first-child{border-right:1px solid rgba(201,168,76,0.1);}
-.bespoke-type{font-size:9px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
-.bespoke-name{font-family:var(--font-display);font-size:28px;color:var(--white);font-weight:500;margin-bottom:4px;}
-.bespoke-name-zh{font-size:13px;color:var(--light);margin-bottom:20px;}
-.bespoke-price{font-family:var(--font-display);font-size:32px;color:var(--gold);font-weight:400;margin-bottom:4px;line-height:1;}
-.bespoke-price span{font-size:13px;color:var(--gray);font-family:var(--font-body);}
-.bespoke-price-zh{font-size:11px;color:var(--gray);margin-bottom:28px;}
-.bespoke-features{list-style:none;flex:1;margin-bottom:32px;}
-.bespoke-features li{font-size:13px;color:var(--light);padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;gap:10px;line-height:1.5;}
-.bespoke-features li:last-child{border-bottom:none;}
-.bespoke-features li::before{content:'—';color:rgba(201,168,76,0.5);font-size:12px;flex-shrink:0;margin-top:1px;}
-.bespoke-features .zh{display:block;font-size:11px;color:var(--gray);margin-top:2px;}
-.bespoke-cta{display:block;text-align:center;padding:14px;border:1px solid rgba(201,168,76,0.3);color:var(--gold);font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all 0.2s;}
-.bespoke-cta:hover{background:var(--gold-dim);}
-.bespoke-cta-zh{display:block;text-align:center;font-size:10px;color:var(--gray);margin-top:6px;}
+    /* STEPS */
+    .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px 80px; margin-top: 64px; }
+    @media (max-width: 600px) { .steps { grid-template-columns: 1fr; } }
+    .step-number { font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; color: rgba(184,149,42,0.15); line-height: 1; margin-bottom: 16px; }
+    .step h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px; }
+    .step p { font-size: 14px; color: var(--grey); line-height: 1.6; margin: 0; max-width: 100%; }
 
-/* ── DATA SOURCES ── */
-.sources-section{background:var(--navy-mid);padding:60px 80px;}
-.sources-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-bottom:24px;text-align:center;}
-.sources-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
-.source-tag{padding:8px 18px;border:1px solid rgba(255,255,255,0.08);border-radius:2px;font-size:11px;color:var(--light);letter-spacing:0.08em;}
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr) !important; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 64px; }
+    @media (max-width: 600px) { .pricing-grid { grid-template-columns: 1fr !important; } }
+    .pricing-card { background: var(--navy); padding: 48px 40px; position: relative; }
+    .pricing-card.featured { background: var(--navy-soft); }
+    .featured-label { position: absolute; top: 0; left: 0; right: 0; background: var(--gold); color: var(--navy); text-align: center; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px; font-weight: 500; }
+    .pricing-card.featured { padding-top: 52px; }
+    .pricing-tier { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .pricing-price { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; line-height: 1; margin-bottom: 4px; }
+    .pricing-price sup { font-size: 24px; vertical-align: super; }
+    .pricing-period { font-size: 13px; color: var(--grey); margin-bottom: 32px; }
+    .pricing-features { list-style: none; margin-bottom: 40px; }
+    .pricing-features li { font-size: 14px; color: var(--grey); padding: 8px 0; border-bottom: 1px solid rgba(184,149,42,0.08); display: flex; gap: 10px; }
+    .pricing-features li::before { content: '‚Äî'; color: var(--gold); flex-shrink: 0; }
 
-/* ── TESTIMONIALS ── */
-.testimonials-section{background:var(--navy);}
-.testimonials-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px;}
-.testimonial-card{background:var(--navy-mid);border:1px solid rgba(201,168,76,0.1);border-radius:4px;padding:36px 32px;}
-.testimonial-quote{font-family:var(--font-display);font-size:17px;color:var(--white);line-height:1.65;margin-bottom:12px;font-style:italic;}
-.testimonial-quote-zh{font-size:13px;color:var(--light);line-height:1.7;margin-bottom:24px;font-style:normal;}
-.testimonial-author{font-size:11px;color:var(--gold);letter-spacing:0.08em;}
-.testimonial-author-zh{font-size:11px;color:var(--gray);margin-top:2px;}
-.testimonial-note{font-size:11px;color:var(--gray);margin-top:24px;text-align:center;font-style:italic;}
-.testimonial-note-zh{font-size:10px;color:rgba(136,136,136,0.7);text-align:center;margin-top:4px;}
+    /* PRICING CARD: button always at bottom, top always aligned */
+    .pricing-grid { align-items: stretch; }
+    .pricing-card { display: flex; flex-direction: column; }
+    .pricing-card .pricing-top-label { 
+      font-size: 10px; 
+      letter-spacing: 0.15em; 
+      text-transform: uppercase; 
+      color: var(--gold); 
+      margin-bottom: 12px;
+      min-height: 20px;
+    }
+    .pricing-features { flex: 1; }
 
-/* ── FOUNDER ── */
-.founder-section{background:var(--navy-mid);border-top:1px solid rgba(201,168,76,0.08);}
-.founder-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:56px;}
-.founder-stats{display:flex;flex-direction:column;gap:0;border:1px solid rgba(201,168,76,0.12);border-radius:4px;overflow:hidden;margin-top:40px;}
-.founder-stat{padding:20px 24px;border-bottom:1px solid rgba(201,168,76,0.08);}
-.founder-stat:last-child{border-bottom:none;}
-.founder-stat-value{font-family:var(--font-display);font-size:28px;color:var(--gold);font-weight:400;}
-.founder-stat-label{font-size:12px;color:var(--light);margin-top:2px;}
-.founder-stat-label-zh{font-size:11px;color:var(--gray);}
-.founder-quote{font-family:var(--font-display);font-size:20px;color:var(--white);font-style:italic;line-height:1.6;margin-top:32px;padding-left:20px;border-left:2px solid var(--gold);}
-.founder-quote-zh{font-size:13px;color:var(--light);line-height:1.7;margin-top:12px;padding-left:20px;}
-.founder-text{font-size:14px;color:var(--light);line-height:1.8;margin-bottom:10px;}
-.founder-text-zh{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:20px;}
+    /* Placeholder for cards without featured-label, keeps top aligned */
+    .pricing-card-spacer { height: 28px; display: block; }
+    body.lang-en .pricing-card-spacer,
+    body.lang-zh .pricing-card-spacer { display: block; }
 
-/* ── SAMPLE REPORT CTA ── */
-.report-section{background:rgba(201,168,76,0.04);border-top:1px solid rgba(201,168,76,0.1);border-bottom:1px solid rgba(201,168,76,0.1);padding:80px;}
-.report-inner{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;}
-.report-title{font-family:var(--font-display);font-size:32px;color:var(--white);font-weight:500;margin-bottom:8px;}
-.report-title-zh{font-family:var(--font-display);font-size:18px;color:var(--light);font-weight:400;margin-bottom:16px;}
-.report-desc{font-size:14px;color:var(--light);max-width:540px;line-height:1.7;}
-.report-desc-zh{font-size:12px;color:var(--gray);max-width:520px;line-height:1.6;margin-top:6px;}
-.btn-report{background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:14px 28px;border-radius:2px;cursor:pointer;font-family:var(--font-body);transition:all 0.2s;white-space:nowrap;}
-.btn-report:hover{background:var(--gold-dim);}
+    /* BESPOKE INTELLIGENCE SECTION */
+    .bespoke-section { padding: 120px 48px; background: var(--navy); border-top: 1px solid var(--border); }
+    .bespoke-wrap { max-width: 1100px; margin: 0 auto; }
+    .bespoke-header { text-align: center; margin-bottom: 64px; }
+    .bespoke-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    @media (max-width: 768px) { .bespoke-grid { grid-template-columns: 1fr; } }
+    .bespoke-card { background: var(--navy-mid); border: 1px solid var(--border); padding: 48px 40px; display: flex; flex-direction: column; }
+    .bespoke-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; margin-bottom: 8px; color: var(--white); }
+    .bespoke-card .bespoke-subtitle { font-size: 14px; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 24px; }
+    .bespoke-card .bespoke-price { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; color: var(--gold-light); margin-bottom: 32px; }
+    .bespoke-card .bespoke-price span { font-size: 14px; color: var(--grey); font-family: 'DM Sans', sans-serif; }
+    .bespoke-features { list-style: none; margin: 0 0 32px; padding: 0; flex: 1; }
+    .bespoke-features li { font-size: 14px; color: var(--grey); padding: 10px 0; border-bottom: 1px solid rgba(184,149,42,0.08); display: flex; gap: 10px; line-height: 1.6; }
+    .bespoke-features li::before { content: '‚Äî'; color: var(--gold); flex-shrink: 0; }
+    .bespoke-features li:last-child { border-bottom: none; }
+    .btn-enquire { background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 16px 32px; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; cursor: pointer; transition: all 0.3s ease; display: inline-block; font-family: 'DM Sans', sans-serif; text-align: center; text-decoration: none; }
+    .btn-enquire:hover { background: var(--gold); color: var(--navy); }
 
-/* ── ENQUIRE ── */
-.enquire-section{background:var(--navy-mid);}
-.enquire-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:56px;}
-.enquire-form{background:var(--navy);border:1px solid rgba(201,168,76,0.12);border-radius:4px;padding:40px;}
-.form-row{margin-bottom:20px;}
-.form-label{display:block;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--light);margin-bottom:8px;}
-.form-input,.form-select,.form-textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:2px;padding:12px 14px;color:var(--white);font-size:14px;font-family:var(--font-body);outline:none;transition:border-color 0.2s;}
-.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:rgba(201,168,76,0.4);}
-.form-select option{background:var(--navy);}
-.form-textarea{resize:vertical;min-height:80px;}
-.form-submit{width:100%;background:var(--gold);color:var(--navy);font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:14px;border:none;border-radius:2px;cursor:pointer;font-family:var(--font-body);transition:all 0.2s;margin-top:8px;}
-.form-submit:hover{background:var(--gold-light);}
-.form-note{font-size:11px;color:var(--gray);margin-top:12px;text-align:center;}
-.form-success{display:none;text-align:center;padding:40px;}
-.form-success-title{font-family:var(--font-display);font-size:24px;color:var(--white);margin-bottom:12px;}
-.form-success-sub{font-size:14px;color:var(--light);}
-.enquire-info{}
-.enquire-info-point{margin-bottom:28px;}
-.enquire-info-title{font-family:var(--font-display);font-size:18px;color:var(--white);font-weight:500;margin-bottom:6px;}
-.enquire-info-title-zh{font-size:12px;color:var(--gold);margin-bottom:8px;}
-.enquire-info-desc{font-size:13.5px;color:var(--light);line-height:1.7;}
-.enquire-info-desc-zh{font-size:12px;color:var(--gray);line-height:1.6;margin-top:4px;}
+    /* TESTIMONIALS SECTION */
+    .testimonials-section { padding: 120px 48px; background: var(--navy-mid); border-top: 1px solid var(--border); }
+    .testimonials-wrap { max-width: 1100px; margin: 0 auto; }
+    .testimonials-header { text-align: center; margin-bottom: 64px; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    @media (max-width: 768px) { .testimonials-grid { grid-template-columns: 1fr; } }
+    .testimonial-card { background: var(--navy); border: 1px solid var(--border); padding: 48px 40px; position: relative; }
+    .testimonial-card::before { content: '"'; position: absolute; top: 24px; left: 32px; font-family: 'Cormorant Garamond', serif; font-size: 72px; color: rgba(184,149,42,0.15); line-height: 1; }
+    .testimonial-quote { font-size: 15px; line-height: 1.8; color: var(--white); margin-bottom: 16px; font-style: italic; }
+    .testimonial-quote-zh { font-size: 14px; line-height: 1.8; color: var(--grey); margin-bottom: 24px; }
+    .testimonial-author { font-size: 13px; color: var(--gold); letter-spacing: 0.05em; }
+    .testimonials-footer { text-align: center; margin-top: 48px; font-size: 12px; color: var(--grey); letter-spacing: 0.05em; }
 
-/* ── LEGAL MODAL ── */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:200;align-items:center;justify-content:center;padding:40px;}
-.modal-overlay.active{display:flex;}
-.modal{background:var(--navy-mid);border:1px solid rgba(201,168,76,0.15);border-radius:4px;max-width:640px;width:100%;max-height:80vh;overflow-y:auto;padding:40px;}
-.modal-close{float:right;background:none;border:none;color:var(--gray);font-size:20px;cursor:pointer;line-height:1;}
-.modal-title{font-family:var(--font-display);font-size:24px;color:var(--white);margin-bottom:24px;}
-.modal-body h3{font-size:14px;color:var(--gold);margin:20px 0 8px;}
-.modal-body p{font-size:13px;color:var(--light);line-height:1.7;margin-bottom:10px;}
-.modal-body p strong{color:var(--white);}
+    /* FOUNDER SECTION */
+    .founder-section { padding: 120px 48px; background: var(--navy); border-top: 1px solid var(--border); }
+    .founder-wrap { max-width: 900px; margin: 0 auto; text-align: center; }
+    .founder-header { margin-bottom: 48px; }
+    .founder-name { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 400; color: var(--white); margin-bottom: 8px; }
+    .founder-title { font-size: 14px; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 32px; }
+    .founder-bio { font-size: 16px; line-height: 1.8; color: var(--grey); max-width: 700px; margin: 0 auto 48px; }
+    .founder-stats { display: flex; justify-content: center; gap: 64px; margin-bottom: 48px; flex-wrap: wrap; }
+    @media (max-width: 600px) { .founder-stats { gap: 32px; } }
+    .founder-stat { text-align: center; }
+    .founder-stat-number { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--gold-light); line-height: 1; }
+    .founder-stat-label { font-size: 12px; color: var(--grey); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 8px; }
+    .founder-quote { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; color: var(--gold-light); line-height: 1.6; max-width: 600px; margin: 0 auto; }
 
-/* ── REPORT MODAL ── */
-.report-form-wrap{display:block;}
-.report-success-wrap{display:none;text-align:center;padding:20px 0;}
+    /* FORM */
+    .form-section { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 140px 48px; text-align: center; -webkit-font-smoothing: antialiased; }
+    .form-section form { max-width: 560px; margin: 0 auto; }
+    .form-section input, .form-section select, .form-section textarea { padding: 14px 16px; font-size: 16px; border-color: rgba(184,149,42,0.35); }
+    .form-section input::placeholder, .form-section textarea::placeholder { font-size: 16px; }
+    .form-section select option { font-size: 16px; }
+    .form-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 300; margin-bottom: 16px; }
+    .form-section p { color: var(--grey); font-size: 16px; margin-bottom: 48px; }
+    .form-wrap, #enquiry-form, .success-msg { max-width: 560px; margin: 0 auto; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-field { margin-bottom: 16px; }
+    input, select, textarea { width: 100%; background: var(--navy); border: 1px solid var(--border); color: var(--white); padding: 16px 20px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; outline: none; transition: border-color 0.3s ease; appearance: none; }
+    input::placeholder, textarea::placeholder { color: var(--grey); }
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+    select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A95A8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 20px center; padding-right: 44px; }
+    .form-submit { width: 100%; background: var(--gold); color: var(--navy); border: none; padding: 20px; font-size: 16px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; cursor: pointer; transition: all 0.3s ease; font-family: 'DM Sans', sans-serif; margin-top: 8px; -webkit-appearance: none; appearance: none; }
+    .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .form-note { font-size: 12px; color: var(--grey); margin-top: 16px; }
+    .success-msg { display: none; background: rgba(184,149,42,0.1); border: 1px solid var(--border); padding: 32px; text-align: center; }
+    .success-msg.show { display: block; }
+    .success-msg h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--gold-light); margin-bottom: 8px; }
 
-/* ── FOOTER ── */
-footer{background:var(--navy);border-top:1px solid rgba(201,168,76,0.1);padding:40px 80px;}
-.footer-inner{display:flex;justify-content:space-between;align-items:center;}
-.footer-brand{font-family:var(--font-display);font-size:13px;color:var(--gray);}
-.footer-links{display:flex;gap:24px;}
-.footer-links a,.footer-links button{color:var(--gray);font-size:12px;text-decoration:none;background:none;border:none;cursor:pointer;font-family:var(--font-body);transition:color 0.2s;}
-.footer-links a:hover,.footer-links button:hover{color:var(--gold);}
-.footer-copy{font-size:11px;color:rgba(136,136,136,0.5);}
+    /* FOOTER */
+    footer { padding: 48px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--grey); }
+    .footer-logo span { color: var(--gold); }
 
-/* ── DISCLAIMER BAR ── */
-.disclaimer-bar{background:rgba(15,38,64,0.6);border-top:1px solid rgba(255,255,255,0.05);padding:24px 80px;}
-.disclaimer-title{font-size:11px;font-weight:500;color:var(--light);margin-bottom:8px;letter-spacing:0.05em;}
-.disclaimer-text{font-size:11px;color:var(--gray);line-height:1.6;max-width:900px;}
-.disclaimer-text-zh{font-size:10px;color:rgba(136,136,136,0.7);line-height:1.6;margin-top:6px;max-width:900px;}
+    /* MODAL STYLES */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(11, 17, 32, 0.95);
+      overflow: auto;
+    }
+    .modal-content {
+      background-color: var(--navy-mid);
+      margin: 5% auto;
+      padding: 40px;
+      border: 1px solid var(--border);
+      max-width: 800px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      color: var(--grey);
+      font-size: 28px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .close-btn:hover { color: var(--gold); }
+    .modal h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--gold-light);
+      margin-bottom: 24px;
+      padding-right: 40px;
+    }
+    .modal h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--white);
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+    .modal p { font-size: 14px; color: var(--grey); line-height: 1.8; margin-bottom: 12px; }
+    .modal-body { padding-right: 20px; }
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes scrollPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ── RESPONSIVE ── */
-@media(max-width:1024px){
-  .hero{padding:100px 40px 80px;}
-  section{padding:80px 40px;}
-  .hero-stats{right:40px;bottom:60px;}
-  .modules-grid{grid-template-columns:repeat(3,1fr);}
-  .arch-flow{flex-direction:column;}
-  .arch-step:not(:last-child)::after{content:'↓';right:50%;top:auto;bottom:-14px;transform:translateX(50%);}
-  .arch-step:not(:last-child){border-right:none;border-bottom:1px solid rgba(201,168,76,0.1);}
-}
-@media(max-width:768px){
-  nav{padding:0 20px;}
-  .nav-links{display:none;}
-  .hero{padding:100px 24px 60px;}
-  .hero-stats{position:static;flex-direction:row;gap:24px;margin-top:48px;}
-  section{padding:64px 24px;}
-  .solution-grid,.founder-grid,.enquire-grid,.report-inner,.ba-grid,.bespoke-grid,.testimonials-grid,.sub-grid,.problem-grid{grid-template-columns:1fr;}
-  .ba-divider{display:none;}
-  .modules-grid{grid-template-columns:1fr 1fr;}
-  footer{padding:32px 24px;}
-  .footer-inner{flex-direction:column;gap:20px;text-align:center;}
-  .disclaimer-bar{padding:24px;}
-  .sources-section{padding:48px 24px;}
-  .report-section{padding:60px 24px;}
-  .enquire-section{padding:64px 24px;}
-}
-</style>
+    /* HIDDEN LANG */
+    [data-lang] { display: none; }
+    body.lang-en [data-lang="en"] { display: block; }
+    body.lang-zh [data-lang="zh"] { display: block; }
+    body.lang-en .inline-en { display: inline; }
+    body.lang-zh .inline-zh { display: inline; }
+    .inline-en, .inline-zh { display: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 24px 60px; }
+      .stats { grid-template-columns: 1fr; padding: 24px; }
+      .stat:not(:last-child)::after { display: none; }
+      .section { padding: 80px 24px; }
+      .solution-wrap { padding: 48px 32px; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { padding: 32px 24px; flex-direction: column; }
+      .modal-content { margin: 10% 20px; padding: 24px; max-height: 85vh; }
+      .modal h2 { font-size: 24px; }
+    }
+
+    /* SYSTEM ARCHITECTURE */
+    .arch-section { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 100px 48px; }
+    .arch-wrap { max-width: 1100px; margin: 0 auto; }
+    .arch-flow { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 56px; }
+    .arch-step { background: var(--navy); padding: 36px 28px; position: relative; }
+    .arch-step.highlight { background: var(--navy-soft); }
+    .arch-step-num { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .arch-step h4 { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 400; color: var(--white); margin-bottom: 6px; }
+    .arch-step-zh { font-size: 11px; color: var(--grey); margin-bottom: 14px; }
+    .arch-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .arch-tag { font-size: 10px; padding: 3px 8px; border: 1px solid var(--border); color: var(--grey); letter-spacing: 0.04em; }
+    .arch-tag.gold { border-color: rgba(184,149,42,0.4); color: var(--gold); }
+    .pricing-anchor { background: var(--navy-soft); border-left: 2px solid var(--gold); padding: 16px 24px; margin-bottom: 40px; }
+    .pricing-anchor p { font-size: 15px; color: var(--white); margin: 0; font-style: italic; }
+    .pricing-anchor p span { color: var(--grey); font-size: 13px; display: block; margin-top: 4px; font-style: normal; }
+    @media (max-width: 900px) { .arch-flow { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .arch-flow { grid-template-columns: 1fr; } }
+
+    /* BEFORE / AFTER */
+    .ba-section { background: var(--navy); border-bottom: 1px solid var(--border); padding: 100px 48px; }
+    .ba-wrap { max-width: 1100px; margin: 0 auto; }
+    .ba-grid { display: grid; grid-template-columns: 1fr 48px 1fr; margin-top: 56px; border: 1px solid var(--border); }
+    .ba-col {}
+    .ba-col-header { padding: 16px 28px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; border-bottom: 1px solid var(--border); }
+    .ba-col.before .ba-col-header { background: rgba(220,80,80,0.06); color: #e07070; }
+    .ba-col.after .ba-col-header { background: rgba(76,175,130,0.06); color: #70c4a0; }
+    .ba-vs { display: flex; align-items: center; justify-content: center; background: var(--navy-soft); border-left: 1px solid var(--border); border-right: 1px solid var(--border); font-family: 'Cormorant Garamond', serif; font-size: 22px; color: rgba(184,149,42,0.3); font-style: italic; }
+    .ba-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px 28px; border-bottom: 1px solid rgba(184,149,42,0.06); }
+    .ba-item:last-child { border-bottom: none; }
+    .ba-item-icon { font-size: 15px; flex-shrink: 0; margin-top: 2px; }
+    .ba-item-text { font-size: 13.5px; color: var(--grey); line-height: 1.55; }
+    .ba-item-zh { font-size: 11px; color: rgba(138,149,168,0.7); margin-top: 2px; }
+    @media (max-width: 700px) { .ba-grid { grid-template-columns: 1fr; } .ba-vs { display: none; } }
+
+    /* MODULES WHY */
+    .module-why { font-size: 13px; color: var(--gold); font-style: italic; margin-top: 8px; line-height: 1.5; }
+    .module-why-zh { font-size: 11px; color: rgba(184,149,42,0.6); margin-top: 4px; line-height: 1.4; }
+
+    /* SERVICE CARD UPDATED */
+    .service-features-new { list-style: none; margin: 16px 0 28px; padding: 0; }
+    .service-features-new li { font-size: 13.5px; color: var(--grey); padding: 7px 0; border-bottom: 1px solid rgba(184,149,42,0.08); display: flex; gap: 10px; line-height: 1.5; }
+    .service-features-new li::before { content: '‚Äî'; color: var(--gold); flex-shrink: 0; }
+    .service-features-new li:last-child { border-bottom: none; }
+  </style>
 </head>
-<body>
+<body class="lang-en">
 
-<!-- ── NAV ── -->
-<nav>
-  <a href="#" class="nav-logo">
-    <img src="/assets/ahbi-logo-small-final-v4.svg" alt="AHBI"/>
-  </a>
-  <div class="nav-links">
-    <a href="#system" data-en="Intelligence System" data-zh="情報系統">Intelligence System</a>
-    <a href="#products" data-en="Services & Pricing" data-zh="服務及定價">Services & Pricing</a>
-    <a href="#enquire" data-en="Request Access" data-zh="申請使用">Request Access</a>
-    <div class="lang-toggle">
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo" style="display:flex;align-items:center;text-decoration:none">
+ <img src="/assets/ahbi-logo-small-final-v4.svg" alt="AHBI" style="height:64px;width:auto" />
+</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#system" class="inline-en">Intelligence System</a><a href="#system" class="inline-zh">ÊÉÖÂ†±Á≥ªÁµ±</a></li>
+      <li><a href="#services" class="inline-en">Services & Pricing</a><a href="#services" class="inline-zh">ÊúçÂãôÂèäÂÆöÂÉπ</a></li>
+      <li><a href="#enquire" class="inline-en">Request Access</a><a href="#enquire" class="inline-zh">Áî≥Ë´ã‰ΩøÁî®</a></li>
+    </ul>
+    <div class="lang-switch">
       <button class="lang-btn active" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('zh')">繁中</button>
+      <button class="lang-btn" onclick="setLang('zh')">ÁπÅ‰∏≠</button>
     </div>
+    <a href="#enquire" class="cta-nav"><span class="inline-en">Request Access</span><span class="inline-zh">Áî≥Ë´ã‰ΩøÁî®</span></a>
   </div>
-  <a href="#enquire" class="nav-cta" data-en="Request Access" data-zh="申請使用">Request Access</a>
 </nav>
 
-<!-- ── HERO ── -->
-<section class="hero" id="top">
-  <div class="hero-eyebrow" data-en="Athena Horizon Business Intelligence" data-zh="Athena Horizon Business Intelligence">Athena Horizon Business Intelligence</div>
-  <h1 data-en="A Daily Intelligence System for Family Offices <em>and Capital Allocators</em>" data-zh="">
-    A Daily Intelligence System for Family Offices <em>and Capital Allocators</em>
-  </h1>
-  <div class="hero-zh" data-zh="為家族辦公室及資本配置者而設的每日情報系統" data-en="">為家族辦公室及資本配置者而設的每日情報系統</div>
-  <p class="hero-sub" data-en="Monitoring private markets, regulation, and risk across jurisdictions — delivered before the market opens." data-zh="">
-    Monitoring private markets, regulation, and risk across jurisdictions — delivered before the market opens.
-  </p>
-  <p class="hero-sub-zh" data-zh="跨司法管轄區監控私募市場、監管動態及風險訊號——在市場開盤前送達。" data-en="">跨司法管轄區監控私募市場、監管動態及風險訊號——在市場開盤前送達。</p>
-  <p class="hero-killer" data-en="Without it, you're relying on fragmented information." data-zh="沒有它，您只能依賴碎片化的資訊。">Without it, you're relying on fragmented information.</p>
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow" style="font-size:16px;color:var(--gold);font-weight:400;letter-spacing:0.15em"><span class="inline-en">AI-Powered Intelligence for Family Offices</span><span class="inline-zh">ÂÆ∂ÊóèËæ¶ÂÖ¨ÂÆ§AIÊÉÖÂ†±ÊúçÂãô</span></p>
+  
+  <h1 data-lang="en">A daily intelligence system that monitors private markets, regulation, and risk ‚Äî <em>so you do not have to.</em></h1>
+  <h1 data-lang="zh">ÊØèÂÄã‰∫§ÊòìÊó•ÔºåAHBIÁÇ∫ÂÆ∂ÊóèËæ¶ÂÖ¨ÂÆ§Áõ£ÊéßÁßÅÂãüÂ∏ÇÂ†¥„ÄÅÁõ£ÁÆ°ÂãïÊÖãËàáÈ¢®Èö™Ë®äËôü‚Äî‚Äî<em>ËÆìÊÇ®Â∞àÊ≥®Ê±∫Á≠ñ„ÄÇ</em></h1>
+
+  <p class="hero-sub" data-lang="en">AHBI delivers two integrated intelligence streams: weekly private market intelligence covering Pre-IPO signals, fund launches, and deal flow ‚Äî plus daily regulatory and public market monitoring. Delivered before markets open.</p>
+  <p class="hero-sub" data-lang="zh">AHBIÊèê‰æõÈõôÁ∑öÊÉÖÂ†±ÔºöÊØèÈÄ±ÁßÅÂãüÂ∏ÇÂ†¥ÊÉÖÂ†±ÔºàÊ∂µËìãPre-IPOË®äËôü„ÄÅÂü∫ÈáëÂãïÊÖãÂèä‰∫§ÊòìÊµÅÔºâÂèäÊØèÊó•Áõ£ÁÆ°ËàáÂÖ¨ÈñãÂ∏ÇÂ†¥Áõ£ÊéßÔºåÂú®ÈñãÂ∏ÇÂâçÈÄÅÈÅîÊÇ®ÁöÑÊî∂‰ª∂ÁÆ±„ÄÇ</p>
+
   <div class="hero-actions">
-    <a href="#enquire" class="btn-primary" data-en="Request Early Access" data-zh="申請早鳥使用">Request Early Access</a>
-    <a href="#system" class="btn-secondary" data-en="See how it works →" data-zh="了解運作方式 →">See how it works →</a>
+    <a href="#enquire" class="btn-primary"><span class="inline-en">Request Early Access</span><span class="inline-zh">Áî≥Ë´ãÊó©È≥•‰ΩøÁî®</span></a>
+    <a href="#how" class="btn-ghost"><span class="inline-en">See how it works ‚Üí</span><span class="inline-zh">‰∫ÜËß£ÈÅã‰ΩúÊñπÂºè ‚Üí</span></a>
   </div>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-value">3,380+</div>
-      <div class="hero-stat-label" data-en="Family Offices in HK" data-zh="香港家族辦公室">Family Offices in HK</div>
-    </div>
-    <div class="hero-divider"></div>
-    <div class="hero-stat">
-      <div class="hero-stat-value">2</div>
-      <div class="hero-stat-label" data-en="Intelligence Streams" data-zh="情報線">Intelligence Streams</div>
-    </div>
-    <div class="hero-divider"></div>
-    <div class="hero-stat">
-      <div class="hero-stat-value">7:30<span style="font-size:18px;color:var(--gray)"> AM</span></div>
-      <div class="hero-stat-label" data-en="Daily · HKT" data-zh="每日港時">Daily · HKT</div>
-    </div>
+  <div class="scroll-hint">
+    <span class="inline-en">Scroll</span><span class="inline-zh">Âêë‰∏ãÊªæÂãï</span>
+    <div class="scroll-line"></div>
   </div>
 </section>
 
-<!-- ── SYSTEM ARCHITECTURE ── -->
-<section class="arch-section reveal" id="system">
-  <div class="section-label" data-en="How AHBI Works" data-zh="AHBI如何運作">How AHBI Works</div>
-  <h2 class="section-title" data-en="A Structured System. <em>Not a Newsletter.</em>" data-zh="">A Structured System. <em>Not a Newsletter.</em></h2>
-  <div class="section-title-zh" data-zh="結構化情報系統，而非電子報" data-en="">結構化情報系統，而非電子報</div>
-  <p class="section-sub" data-en="Three proprietary technology layers process thousands of public signals daily — and deliver structured intelligence to your inbox before markets open." data-zh="">Three proprietary technology layers process thousands of public signals daily — and deliver structured intelligence to your inbox before markets open.</p>
-  <p class="section-sub-zh" data-zh="三層專有技術架構每日處理數千個公開訊號，在市場開盤前將結構化情報送達您的收件箱。" data-en="">三層專有技術架構每日處理數千個公開訊號，在市場開盤前將結構化情報送達您的收件箱。</p>
-  <div class="arch-flow">
-    <div class="arch-step">
-      <div class="arch-step-num" data-en="Layer 1" data-zh="第一層">Layer 1</div>
-      <div class="arch-step-title" data-en="Data Fusion Engine" data-zh="">Data Fusion Engine</div>
-      <div class="arch-step-title-zh" data-zh="多源數據融合引擎" data-en="">多源數據融合引擎</div>
-      <div class="arch-tags">
-        <span class="arch-tag">HKEX</span><span class="arch-tag">SFC</span><span class="arch-tag">HKMA</span><span class="arch-tag">SEC</span><span class="arch-tag">DFSA</span><span class="arch-tag">DIFC</span><span class="arch-tag">OFAC</span><span class="arch-tag">UN</span><span class="arch-tag">Companies Registry</span><span class="arch-tag">Public Newswires</span>
-      </div>
-    </div>
-    <div class="arch-step arch-highlight">
-      <div class="arch-step-num" data-en="Layer 2 · Core Innovation" data-zh="第二層 · 核心創新">Layer 2 · Core Innovation</div>
-      <div class="arch-step-title" data-en="Signal Extraction & Event Objects" data-zh="">Signal Extraction & Event Objects</div>
-      <div class="arch-step-title-zh" data-zh="訊號提取與事件物件" data-en="">訊號提取與事件物件</div>
-      <div class="arch-tags">
-        <span class="arch-tag">Pre-IPO</span><span class="arch-tag">Fund Launch</span><span class="arch-tag">Institutional Positioning</span><span class="arch-tag">M&A</span><span class="arch-tag">Regulatory Milestone</span><span class="arch-tag">Signal Convergence Detection</span>
-      </div>
-    </div>
-    <div class="arch-step">
-      <div class="arch-step-num" data-en="Layer 3" data-zh="第三層">Layer 3</div>
-      <div class="arch-step-title" data-en="Adaptive Personalisation" data-zh="">Adaptive Personalisation</div>
-      <div class="arch-step-title-zh" data-zh="自適應個性化引擎" data-en="">自適應個性化引擎</div>
-      <div class="arch-tags">
-        <span class="arch-tag">Client Profile</span><span class="arch-tag">Market Focus</span><span class="arch-tag">Watchlist</span><span class="arch-tag">Human QA</span><span class="arch-tag">EN / ZH Output</span>
-      </div>
-    </div>
-    <div class="arch-step">
-      <div class="arch-step-num" data-en="Delivery" data-zh="送達">Delivery</div>
-      <div class="arch-step-title" data-en="Your Inbox · 7:30 AM HKT" data-zh="">Your Inbox · 7:30 AM HKT</div>
-      <div class="arch-step-title-zh" data-zh="您的收件箱 · 港時早上7:30" data-en="">您的收件箱 · 港時早上7:30</div>
-      <div class="arch-tags">
-        <span class="arch-tag">Weekly Private Market Brief</span><span class="arch-tag">Daily Public Market Brief</span><span class="arch-tag">Immediate Alerts</span>
-      </div>
-    </div>
+<!-- STATS -->
+<div class="stats reveal">
+  <div class="stat">
+    <div class="stat-number">3,380+</div>
+    <div class="stat-label"><span class="inline-en">Family Offices in Hong Kong</span><span class="inline-zh">È¶ôÊ∏ØÂÆ∂ÊóèËæ¶ÂÖ¨ÂÆ§Êï∏Èáè</span></div>
   </div>
-</section>
-
-<!-- ── BEFORE / AFTER ── -->
-<section class="ba-section reveal">
-  <div class="section-label" data-en="The Difference" data-zh="差異所在">The Difference</div>
-  <h2 class="section-title" data-en="Before vs After <em>AHBI</em>" data-zh="">Before vs After <em>AHBI</em></h2>
-  <div class="section-title-zh" data-zh="使用AHBI前後對比" data-en="">使用AHBI前後對比</div>
-  <div class="ba-grid">
-    <div class="ba-col before">
-      <div class="ba-col-header" data-en="❌ Without AHBI" data-zh="❌ 沒有AHBI">❌ Without AHBI</div>
-      <div class="ba-items">
-        <div class="ba-item"><span class="ba-icon">📰</span><div><div class="ba-text" data-en="Fragmented information across dozens of platforms" data-zh="">Fragmented information across dozens of platforms</div><div class="ba-text-zh" data-zh="資訊分散在數十個平台" data-en="">資訊分散在數十個平台</div></div></div>
-        <div class="ba-item"><span class="ba-icon">⏱</span><div><div class="ba-text" data-en="1–2 hours of manual monitoring every morning" data-zh="">1–2 hours of manual monitoring every morning</div><div class="ba-text-zh" data-zh="每天早晨1-2小時人工監控" data-en="">每天早晨1-2小時人工監控</div></div></div>
-        <div class="ba-item"><span class="ba-icon">🚫</span><div><div class="ba-text" data-en="Private market signals overlooked before they move" data-zh="">Private market signals overlooked before they move</div><div class="ba-text-zh" data-zh="私募市場訊號在變動前被忽略" data-en="">私募市場訊號在變動前被忽略</div></div></div>
-        <div class="ba-item"><span class="ba-icon">⚖️</span><div><div class="ba-text" data-en="Regulatory changes missed until it's too late" data-zh="">Regulatory changes missed until it's too late</div><div class="ba-text-zh" data-zh="監管變化在為時已晚時才被發現" data-en="">監管變化在為時已晚時才被發現</div></div></div>
-        <div class="ba-item"><span class="ba-icon">💸</span><div><div class="ba-text" data-en="Senior staff time spent on information gathering" data-zh="">Senior staff time spent on information gathering</div><div class="ba-text-zh" data-zh="資深員工時間耗費在資訊收集上" data-en="">資深員工時間耗費在資訊收集上</div></div></div>
-      </div>
-    </div>
-    <div class="ba-divider"><div class="ba-vs">vs</div></div>
-    <div class="ba-col after">
-      <div class="ba-col-header" data-en="✓ With AHBI" data-zh="✓ 使用AHBI">✓ With AHBI</div>
-      <div class="ba-items">
-        <div class="ba-item"><span class="ba-icon">📊</span><div><div class="ba-text" data-en="Structured intelligence, one briefing, every morning" data-zh="">Structured intelligence, one briefing, every morning</div><div class="ba-text-zh" data-zh="結構化情報，每天一份簡報" data-en="">結構化情報，每天一份簡報</div></div></div>
-        <div class="ba-item"><span class="ba-icon">⚡</span><div><div class="ba-text" data-en="Automated delivery at 7:30 AM HKT — zero effort" data-zh="">Automated delivery at 7:30 AM HKT — zero effort</div><div class="ba-text-zh" data-zh="港時7:30自動送達，零人工" data-en="">港時7:30自動送達，零人工</div></div></div>
-        <div class="ba-item"><span class="ba-icon">🎯</span><div><div class="ba-text" data-en="Weekly private market briefing with converging signals" data-zh="">Weekly private market briefing with converging signals</div><div class="ba-text-zh" data-zh="每週私募市場簡報含聚合訊號分析" data-en="">每週私募市場簡報含聚合訊號分析</div></div></div>
-        <div class="ba-item"><span class="ba-icon">🚨</span><div><div class="ba-text" data-en="Immediate alerts for regulatory and sanctions events" data-zh="">Immediate alerts for regulatory and sanctions events</div><div class="ba-text-zh" data-zh="監管及制裁事件即時推送" data-en="">監管及制裁事件即時推送</div></div></div>
-        <div class="ba-item"><span class="ba-icon">🧠</span><div><div class="ba-text" data-en="Senior staff focused entirely on decisions" data-zh="">Senior staff focused entirely on decisions</div><div class="ba-text-zh" data-zh="資深員工專注於投資決策" data-en="">資深員工專注於投資決策</div></div></div>
-      </div>
-    </div>
+  <div class="stat">
+    <div class="stat-number">2 Streams</div>
+    <div class="stat-label"><span class="inline-en">Private Market + Daily Monitoring</span><span class="inline-zh">ÁßÅÂãüÂ∏ÇÂ†¥ + ÊØèÊó•Áõ£Êéß</span></div>
   </div>
-</section>
-
-<!-- ── SAMPLE BRIEF ── -->
-<section class="solution-section reveal">
-  <div class="section-label" data-en="What You Receive" data-zh="您收到什麼">What You Receive</div>
-  <h2 class="section-title" data-en="A Sample of <em>Your Daily Brief</em>" data-zh="">A Sample of <em>Your Daily Brief</em></h2>
-  <div class="section-title-zh" data-zh="每日情報簡報示例" data-en="">每日情報簡報示例</div>
-  <div class="solution-grid">
-    <div class="solution-text">
-      <div class="solution-point">
-        <div class="solution-point-dot"></div>
-        <div>
-          <div class="solution-point-text" data-en="Every briefing is assembled from your profile — your markets, your watchlist, your regulatory obligations. Not generic. Not editorial." data-zh="">Every briefing is assembled from your profile — your markets, your watchlist, your regulatory obligations. Not generic. Not editorial.</div>
-          <div class="solution-point-zh" data-zh="每份簡報根據您的偏好組合——您的市場、您的關注名單、您的監管義務。非通用，非編輯。" data-en="">每份簡報根據您的偏好組合——您的市場、您的關注名單、您的監管義務。非通用，非編輯。</div>
-        </div>
-      </div>
-      <div class="solution-point">
-        <div class="solution-point-dot"></div>
-        <div>
-          <div class="solution-point-text" data-en="Five structured modules, each designed around a decision — not information for its own sake." data-zh="">Five structured modules, each designed around a decision — not information for its own sake.</div>
-          <div class="solution-point-zh" data-zh="五大結構化模組，每個均圍繞決策設計，而非為了資訊而資訊。" data-en="">五大結構化模組，每個均圍繞決策設計，而非為了資訊而資訊。</div>
-        </div>
-      </div>
-      <div class="solution-point">
-        <div class="solution-point-dot"></div>
-        <div>
-          <div class="solution-point-text" data-en="Private market briefing delivered every Friday. Immediate alerts when material signals emerge between cycles." data-zh="">Private market briefing delivered every Friday. Immediate alerts when material signals emerge between cycles.</div>
-          <div class="solution-point-zh" data-zh="每週五送達私募市場簡報。週期之間出現重大訊號時即時推送。" data-en="">每週五送達私募市場簡報。週期之間出現重大訊號時即時推送。</div>
-        </div>
-      </div>
-    </div>
-    <div class="brief-card">
-      <div class="brief-header">
-        <span class="brief-header-label" data-en="AHBI Daily Brief — 7:30 AM HKT" data-zh="AHBI每日簡報 — 港時早上7:30">AHBI Daily Brief — 7:30 AM HKT</span>
-        <span class="brief-header-time">Today</span>
-      </div>
-      <div class="brief-module">
-        <div class="brief-module-top"><span class="brief-module-icon">🌏</span><span class="brief-module-name" data-en="Market Pulse" data-zh="市場脈搏">Market Pulse</span></div>
-        <div class="brief-module-headline" data-en="Hang Seng opens cautiously amid Fed uncertainty" data-zh="美聯儲不確定性下，恒指謹慎開市">Hang Seng opens cautiously amid Fed uncertainty</div>
-        <div class="brief-module-body" data-en="HSI futures -0.4%. Tech sector under pressure. PBOC liquidity injection expected mid-session." data-zh="恒指期貨-0.4%。科技板塊承壓。人民銀行預計在午盤注入流動性。">HSI futures -0.4%. Tech sector under pressure. PBOC liquidity injection expected mid-session.</div>
-      </div>
-      <div class="brief-module">
-        <div class="brief-module-top"><span class="brief-module-icon">⚖️</span><span class="brief-module-name" data-en="Regulatory Radar" data-zh="監管雷達">Regulatory Radar</span></div>
-        <div class="brief-module-headline" data-en="SFC issues guidance on virtual asset fund structures" data-zh="證監會就虛擬資產基金架構發出指引">SFC issues guidance on virtual asset fund structures</div>
-        <div class="brief-module-body" data-en="Action required for Type 9 licensed entities by Q2 2026." data-zh="第9類持牌機構須於2026年第二季前採取行動。">Action required for Type 9 licensed entities by Q2 2026.</div>
-      </div>
-      <div class="brief-module">
-        <div class="brief-module-top"><span class="brief-module-icon">🚨</span><span class="brief-module-name" data-en="Risk Alert" data-zh="風險預警">Risk Alert</span></div>
-        <div class="brief-module-headline" data-en="OFAC sanctions list updated — 3 new entities" data-zh="OFAC制裁名單更新——新增3個實體">OFAC sanctions list updated — 3 new entities</div>
-        <div class="brief-module-body" data-en="Two PRC-linked trading companies and one UAE-based intermediary added." data-zh="新增兩家中資貿易公司及一家阿聯酋中介機構。">Two PRC-linked trading companies and one UAE-based intermediary added.</div>
-      </div>
-      <div class="brief-module">
-        <div class="brief-module-top"><span class="brief-module-icon">📊</span><span class="brief-module-name" data-en="HKEX Watch" data-zh="港交所監控">HKEX Watch</span></div>
-        <div class="brief-module-headline" data-en="4 watchlist companies filed material announcements" data-zh="4家關注名單公司發布重大公告">4 watchlist companies filed material announcements</div>
-        <div class="brief-module-body" data-en="2 profit warnings, 1 major acquisition, 1 board restructuring." data-zh="2份盈利預警、1項重大收購、1次董事會重組。">2 profit warnings, 1 major acquisition, 1 board restructuring.</div>
-      </div>
-      <div class="brief-module">
-        <div class="brief-module-top"><span class="brief-module-icon">🔮</span><span class="brief-module-name" data-en="30-Day Horizon" data-zh="未來30天展望">30-Day Horizon</span></div>
-        <div class="brief-module-headline" data-en="Key deadlines and events in the next 30 days" data-zh="未來30天內的重要截止日期及事件">Key deadlines and events in the next 30 days</div>
-        <div class="brief-module-body" data-en="HKMA quarterly return due in 12 days · Fed decision Mar 19." data-zh="金管局季度申報表於12天後到期 · 美聯儲利率決議3月19日。">HKMA quarterly return due in 12 days · Fed decision Mar 19.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── MODULES ── -->
-<section class="modules-section reveal" id="modules">
-  <div class="section-label" data-en="Intelligence Modules" data-zh="情報模組">Intelligence Modules</div>
-  <h2 class="section-title" data-en="Five Modules. <em>One Decision Framework.</em>" data-zh="">Five Modules. <em>One Decision Framework.</em></h2>
-  <div class="section-title-zh" data-zh="五大模組。一套決策框架。" data-en="">五大模組。一套決策框架。</div>
-  <div class="modules-grid">
-    <div class="module-card">
-      <div class="module-icon">🌏</div>
-      <div class="module-name" data-en="Market Pulse" data-zh="">Market Pulse</div>
-      <div class="module-name-zh" data-zh="市場脈搏" data-en="">市場脈搏</div>
-      <div class="module-why" data-en="See where capital is actually moving — before it becomes consensus." data-zh="">See where capital is actually moving — before it becomes consensus.</div>
-      <div class="module-why-zh" data-zh="在市場形成共識之前，看清資金真正的流向。" data-en="">在市場形成共識之前，看清資金真正的流向。</div>
-    </div>
-    <div class="module-card">
-      <div class="module-icon">⚖️</div>
-      <div class="module-name" data-en="Regulatory Radar" data-zh="">Regulatory Radar</div>
-      <div class="module-name-zh" data-zh="監管雷達" data-en="">監管雷達</div>
-      <div class="module-why" data-en="Know what regulators are signalling before it affects your obligations." data-zh="">Know what regulators are signalling before it affects your obligations.</div>
-      <div class="module-why-zh" data-zh="在監管變化影響您的義務之前，提前掌握監管動向。" data-en="">在監管變化影響您的義務之前，提前掌握監管動向。</div>
-    </div>
-    <div class="module-card">
-      <div class="module-icon">🚨</div>
-      <div class="module-name" data-en="Risk Alert" data-zh="">Risk Alert</div>
-      <div class="module-name-zh" data-zh="風險預警" data-en="">風險預警</div>
-      <div class="module-why" data-en="Avoid counterparty exposure before it becomes visible to the market." data-zh="">Avoid counterparty exposure before it becomes visible to the market.</div>
-      <div class="module-why-zh" data-zh="在風險暴露於市場之前，提前識別交易對手風險。" data-en="">在風險暴露於市場之前，提前識別交易對手風險。</div>
-    </div>
-    <div class="module-card">
-      <div class="module-icon">📊</div>
-      <div class="module-name" data-en="HKEX Watch" data-zh="">HKEX Watch</div>
-      <div class="module-name-zh" data-zh="港交所監控" data-en="">港交所監控</div>
-      <div class="module-why" data-en="Never miss a material announcement from your watchlist — even when you're not watching." data-zh="">Never miss a material announcement from your watchlist — even when you're not watching.</div>
-      <div class="module-why-zh" data-zh="即使您未能即時關注，也不會錯過關注名單的任何重大公告。" data-en="">即使您未能即時關注，也不會錯過關注名單的任何重大公告。</div>
-    </div>
-    <div class="module-card">
-      <div class="module-icon">🔮</div>
-      <div class="module-name" data-en="30-Day Horizon" data-zh="">30-Day Horizon</div>
-      <div class="module-name-zh" data-zh="未來30天展望" data-en="">未來30天展望</div>
-      <div class="module-why" data-en="Prepare for what's coming, not just react to what's happened." data-zh="">Prepare for what's coming, not just react to what's happened.</div>
-      <div class="module-why-zh" data-zh="提前準備即將發生的事，而非只是被動應對已發生的事。" data-en="">提前準備即將發生的事，而非只是被動應對已發生的事。</div>
-    </div>
-  </div>
-</section>
-
-<!-- ── DATA SOURCES ── -->
-<div class="sources-section reveal">
-  <div class="sources-label" data-en="Monitored Data Sources — All Public Channels" data-zh="監控數據來源——全部公開渠道">Monitored Data Sources — All Public Channels</div>
-  <div class="sources-grid">
-    <span class="source-tag">HKEX</span><span class="source-tag">SFC</span><span class="source-tag">HKMA</span><span class="source-tag">SEC</span><span class="source-tag">DFSA</span><span class="source-tag">DIFC</span><span class="source-tag">ADGM</span><span class="source-tag">OFAC</span><span class="source-tag">UN Sanctions</span><span class="source-tag">HK Companies Registry</span><span class="source-tag">Cayman Registry</span><span class="source-tag">Public Newswires</span>
+  <div class="stat">
+    <div class="stat-number">7:30 AM</div>
+    <div class="stat-label"><span class="inline-en">Daily delivery HKT</span><span class="inline-zh">ÊØèÊó•Ê∏ØÊôÇÈÄÅÈÅî</span></div>
   </div>
 </div>
 
-<!-- ── PRODUCTS & PRICING ── -->
-<section class="products-section reveal" id="products">
-  <div class="section-label" data-en="Services & Pricing" data-zh="服務及定價">Services & Pricing</div>
-  <h2 class="section-title" data-en="The AHBI <em>Intelligence System</em>" data-zh="">The AHBI <em>Intelligence System</em></h2>
-  <div class="section-title-zh" data-zh="AHBI情報系統" data-en="">AHBI情報系統</div>
+<!-- DATA SOURCES SECTION -->
+<section class="data-sources-section reveal">
+  <div class="data-sources-wrap">
+    <h3><span class="inline-en">Trusted Data Sources</span><span class="inline-zh">ÂèØ‰ø°Ë≥¥ÁöÑÊï∏Êìö‰æÜÊ∫ê</span></h3>
+    <p data-lang="en">We monitor official regulatory bodies, exchanges, and public databases ‚Äî so you don't have to.</p>
+    <p data-lang="zh">ÊàëÂÄëÁõ£ÊéßÂÆòÊñπÁõ£ÁÆ°Ê©üÊßã„ÄÅ‰∫§ÊòìÊâÄÂèäÂÖ¨ÂÖ±Êï∏ÊìöÂ∫´‚Äî‚ÄîËÆìÊÇ®ÁÑ°ÈúÄË¶™ÂäõË¶™ÁÇ∫„ÄÇ</p>
+    
+    <div class="data-sources-grid">
+      <div class="data-source-item">
+        <div class="data-source-logo">
+          <i data-lucide="trending-up"></i>
+        </div>
+        <div class="data-source-name"><span class="inline-en">Hong Kong Exchanges</span><span class="inline-zh">È¶ôÊ∏Ø‰∫§ÊòìÊâÄ</span></div>
+        <div class="data-source-abbr">HKEX</div>
+      </div>
+      <div class="data-source-item">
+        <div class="data-source-logo">
+          <i data-lucide="scale"></i>
+        </div>
+        <div class="data-source-name"><span class="inline-en">Securities & Futures Commission</span><span class="inline-zh">Ë≠âÂà∏ÂèäÊúüË≤®‰∫ãÂãôÁõ£ÂØüÂßîÂì°ÊúÉ</span></div>
+        <div class="data-source-abbr">SFC</div>
+      </div>
+      <div class="data-source-item">
+        <div class="data-source-logo">
+          <i data-lucide="landmark"></i>
+        </div>
+        <div class="data-source-name"><span class="inline-en">Hong Kong Monetary Authority</span><span class="inline-zh">È¶ôÊ∏ØÈáëËûçÁÆ°ÁêÜÂ±Ä</span></div>
+        <div class="data-source-abbr">HKMA</div>
+      </div>
+      <div class="data-source-item">
+        <div class="data-source-logo">
+          <i data-lucide="shield-check"></i>
+        </div>
+        <div class="data-source-name"><span class="inline-en">Dubai Financial Services Authority</span><span class="inline-zh">Ëø™ÊãúÈáëËûçÊúçÂãôÁÆ°ÁêÜÂ±Ä</span></div>
+        <div class="data-source-abbr">DFSA</div>
+      </div>
+      <div class="data-source-item">
+        <div class="data-source-logo">
+          <i data-lucide="alert-triangle"></i>
+        </div>
+        <div class="data-source-name"><span class="inline-en">US Treasury Sanctions</span><span class="inline-zh">ÁæéÂúãË≤°ÊîøÈÉ®Âà∂Ë£Å</span></div>
+        <div class="data-source-abbr">OFAC</div>
+      </div>
+      <div class="data-source-item">
+        <div class="data-source-logo">
+          <i data-lucide="globe"></i>
+        </div>
+        <div class="data-source-name"><span class="inline-en">UN Sanctions List</span><span class="inline-zh">ËÅØÂêàÂúãÂà∂Ë£ÅÂêçÂñÆ</span></div>
+        <div class="data-source-abbr">UN</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- PART A -->
-  <div class="sub-part-label" data-en="PART A — <span>SUBSCRIPTION INTELLIGENCE</span> · Recurring · Automated · Delivered Daily & Weekly" data-zh="A部分 — <span>訂閱情報服務</span> · 定期 · 自動化 · 每日及每週送達">PART A — <span>SUBSCRIPTION INTELLIGENCE</span> · Recurring · Automated · Delivered Daily & Weekly</div>
-  <div class="sub-part-sub" data-en="Three tiers. One integrated platform. Choose the depth that matches your mandate." data-zh="三個層級。一個整合平台。選擇符合您需求的深度。">Three tiers. One integrated platform. Choose the depth that matches your mandate.</div>
+<!-- BEFORE / AFTER -->
+<section class="ba-section reveal">
+  <div class="ba-wrap">
+    <p class="section-label"><span class="inline-en">The Difference</span><span class="inline-zh">Â∑ÆÁï∞ÊâÄÂú®</span></p>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,56px);font-weight:300;line-height:1.2;margin-bottom:8px" data-lang="en">How decisions are made ‚Äî<br><em>Before vs After AHBI</em></h2>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,44px);font-weight:300;line-height:1.2;margin-bottom:8px" data-lang="zh">Ê±∫Á≠ñÊñπÂºèÁöÑËΩâËÆä‚Äî‚Äî<br><em>‰ΩøÁî®AHBIÂâçÂæåÂ∞çÊØî</em></h2>
+    <div class="ba-grid">
+      <div class="ba-col before">
+        <div class="ba-col-header"><span class="inline-en">‚ùå Without AHBI</span><span class="inline-zh">‚ùå Ê≤íÊúâAHBI</span></div>
+        <div class="ba-item"><span class="ba-item-icon">üì∞</span><div><div class="ba-item-text"><span class="inline-en">Fragmented information across dozens of platforms every morning</span><span class="inline-zh">Ë≥áË®äÂàÜÊï£ÊñºÊï∏ÂçÅÂÄãÂπ≥Âè∞</span></div><div class="ba-item-zh"><span class="inline-en">Ë≥áË®äÂàÜÊï£Âú®Êï∏ÂçÅÂÄãÂπ≥Âè∞‰∏ä</span><span class="inline-zh">Information fragmented across dozens of platforms</span></div></div></div>
+        <div class="ba-item"><span class="ba-item-icon">‚è±</span><div><div class="ba-item-text"><span class="inline-en">1‚Äì2 hours of manual monitoring by senior staff every day</span><span class="inline-zh">ÊØèÂ§©1-2Â∞èÊôÇ‰∫∫Â∑•Áõ£Êéß</span></div><div class="ba-item-zh"><span class="inline-en">Ë≥áÊ∑±Âì°Â∑•ÊØèÂ§©ËÄóË≤ª1-2Â∞èÊôÇÊâãÂãïÁõ£Êéß</span><span class="inline-zh">1‚Äì2 hours of manual monitoring daily</span></div></div></div>
+        <div class="ba-item"><span class="ba-item-icon">üö´</span><div><div class="ba-item-text"><span class="inline-en">Private market signals overlooked before they move</span><span class="inline-zh">ÁßÅÂãüÂ∏ÇÂ†¥Ë®äËôüÂú®ËÆäÂãïÂâçË¢´ÂøΩÁï•</span></div><div class="ba-item-zh"><span class="inline-en">ÁßÅÂãüÂ∏ÇÂ†¥Ë®äËôüÂú®Â∏ÇÂ†¥ÂèçÊáâÂâçË¢´ÈÅ∫Êºè</span><span class="inline-zh">Private market signals missed before the market reacts</span></div></div></div>
+        <div class="ba-item"><span class="ba-item-icon">‚öñÔ∏è</span><div><div class="ba-item-text"><span class="inline-en">Regulatory changes discovered too late to act</span><span class="inline-zh">Áõ£ÁÆ°ËÆäÂåñÂú®ÁÇ∫ÊôÇÂ∑≤ÊôöÊôÇÊâçË¢´ÁôºÁèæ</span></div><div class="ba-item-zh"><span class="inline-en">Áõ£ÁÆ°ËÆäÂåñÊªØÂæåÁôºÁèæÔºåÈåØÈÅéË°åÂãïÊôÇÊ©ü</span><span class="inline-zh">Regulatory changes discovered after the window to act</span></div></div></div>
+        <div class="ba-item"><span class="ba-item-icon">üí∏</span><div><div class="ba-item-text"><span class="inline-en">Senior talent spent on monitoring, not decisions</span><span class="inline-zh">Ë≥áÊ∑±‰∫∫ÊâçËÄóË≤ªÂú®Áõ£ÊéßËÄåÈùûÊ±∫Á≠ñ</span></div><div class="ba-item-zh"><span class="inline-en">È´òË≥™Á¥†‰∫∫ÊâçÊôÇÈñìËÄóË≤ªÂú®Ë≥áË®äÊï¥Âêà‰∏ä</span><span class="inline-zh">High-quality talent time spent on information gathering</span></div></div></div>
+      </div>
+      <div class="ba-vs">vs</div>
+      <div class="ba-col after">
+        <div class="ba-col-header"><span class="inline-en">‚úì With AHBI</span><span class="inline-zh">‚úì ‰ΩøÁî®AHBI</span></div>
+        <div class="ba-item"><span class="ba-item-icon">üìä</span><div><div class="ba-item-text"><span class="inline-en">Structured intelligence in one briefing, every morning</span><span class="inline-zh">ÊØèÂ§©‰∏Ä‰ªΩÁµêÊßãÂåñÊÉÖÂ†±Á∞°Â†±</span></div><div class="ba-item-zh"><span class="inline-en">ÊØèÊó•‰∏Ä‰ªΩÁµêÊßãÂåñÊÉÖÂ†±ÔºåÂÆåÊï¥Ë¶ÜËìã</span><span class="inline-zh">One structured briefing daily, complete coverage</span></div></div></div>
+        <div class="ba-item"><span class="ba-item-icon">‚ö°</span><div><div class="ba-item-text"><span class="inline-en">Automated delivery at 7:30 AM HKT ‚Äî zero manual effort</span><span class="inline-zh">Ê∏ØÊôÇ7:30Ëá™ÂãïÈÄÅÈÅîÔºåÈõ∂‰∫∫Â∑•</span></div><div class="ba-item-zh"><span class="inline-en">Ê∏ØÊôÇÊó©‰∏ä7:30ÂÖ®Ëá™ÂãïÈÄÅÈÅîÔºåÁÑ°ÈúÄ‰∫∫Êâã</span><span class="inline-zh">Automated at 7:30 AM HKT, no manual work</span></div></div></div>
+        <div class="ba-item"><span class="ba-item-icon">üéØ</span><div><div class="ba-item-text"><span class="inline-en">Weekly private market briefing with converging signal analysis</span><span class="inline-zh">ÊØèÈÄ±ÁßÅÂãüÂ∏ÇÂ†¥Á∞°Â†±Âê´ËÅöÂêàË®äËôüÂàÜÊûê</span></div><div class="ba-item-zh"><span class="inline-en">ÊØèÈÄ±ÁßÅÂãüÂ∏ÇÂ†¥Á∞°Â†±ÔºåÊ∂µËìãËÅöÂêàË®äËôü</span><span class="inline-zh">Weekly private market brief with signal convergence</span></div></div></div>
+        <div class="ba-item"><span class="ba-item-icon">üö®</span><div><div class="ba-item-text"><span class="inline-en">Immediate alerts for regulatory and sanctions events</span><span class="inline-zh">Áõ£ÁÆ°ÂèäÂà∂Ë£Å‰∫ã‰ª∂Âç≥ÊôÇÊé®ÈÄÅ</span></div><div class="ba-item-zh"><span class="inline-en">ÈáçÂ§ßÁõ£ÁÆ°ÂèäÂà∂Ë£Å‰∫ã‰ª∂Âç≥ÊôÇÊé®ÈÄÅÊèêÈÜí</span><span class="inline-zh">Real-time push alerts for material events</span></div></div></div>
+        <div class="ba-item"><span class="ba-item-icon">üß†</span><div><div class="ba-item-text"><span class="inline-en">Senior staff focused entirely on investment decisions</span><span class="inline-zh">Ë≥áÊ∑±Âì°Â∑•Â∞àÊ≥®ÊñºÊäïË≥áÊ±∫Á≠ñ</span></div><div class="ba-item-zh"><span class="inline-en">Ë≥áÊ∑±‰∫∫ÊâçÂ∞àÊ≥®ÊñºÈ´òÂÉπÂÄºÊ±∫Á≠ñÂ∑•‰Ωú</span><span class="inline-zh">High-quality talent focused on decisions</span></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<div class="section reveal">
+  <p class="section-label"><span class="inline-en">The Problem</span><span class="inline-zh">ÂïèÈ°åÊâÄÂú®</span></p>
+  <h2 data-lang="en">Information overload is<br><em>costing you clarity.</em></h2>
+  <h2 data-lang="zh">Ë≥áË®äÈÅéËºâÔºå<br><em>‰ª§ÊÇ®ÈåØÂ§±ÈóúÈçµË®äËôü„ÄÇ</em></h2>
+  <p data-lang="en">Family office principals spend hours each morning scanning news, regulatory updates, and market data ‚Äî across multiple sources, in multiple languages. Critical signals get missed. Decisions get delayed.</p>
+  <p data-lang="zh">ÂÆ∂ÊóèËæ¶ÂÖ¨ÂÆ§Ë≤†Ë≤¨‰∫∫ÊØèÂ§©Êó©‰∏äÈúÄË¶ÅËä±Ë≤ªÊï∏Â∞èÊôÇÁÄèË¶ΩÊñ∞ËÅû„ÄÅÁõ£ÁÆ°Êõ¥Êñ∞ÂíåÂ∏ÇÂ†¥Êï∏Êìö‚Äî‚ÄîË∑®Â§öÂÄã‰æÜÊ∫ê„ÄÅÂ§öÁ®ÆË™ûË®Ä„ÄÇÈóúÈçµË®äËôüË¢´ÈÅ∫ÊºèÔºåÊ±∫Á≠ñË¢´Âª∂Ë™§„ÄÇ</p>
+  <div class="gold-divider"></div>
+  <p data-lang="en">There is a better way.</p>
+  <p data-lang="zh">ÁèæÂú®ÊúâÊõ¥Â•ΩÁöÑÊñπÂºè„ÄÇ</p>
+
+  <div class="pain-grid">
+    <div class="pain-item">
+      <div class="pain-icon">üì∞</div>
+      <h3><span class="inline-en">Fragmented Sources</span><span class="inline-zh">Ë≥áË®ä‰æÜÊ∫êÂàÜÊï£</span></h3>
+      <p data-lang="en">Market news, HKEX announcements, regulatory circulars, geopolitical risk ‚Äî scattered across dozens of platforms every day.</p>
+      <p data-lang="zh">Â∏ÇÂ†¥Êñ∞ËÅû„ÄÅÊ∏Ø‰∫§ÊâÄÂÖ¨Âëä„ÄÅÁõ£ÁÆ°ÈÄöÂáΩ„ÄÅÂú∞Á∑£ÊîøÊ≤ªÈ¢®Èö™‚Äî‚ÄîÊØèÂ§©ÂàÜÊï£Âú®Êï∏ÂçÅÂÄãÂπ≥Âè∞‰∏ä„ÄÇ</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">‚è±</div>
+      <h3><span class="inline-en">Time Consumed</span><span class="inline-zh">ËÄóË≤ªÂ§ßÈáèÊôÇÈñì</span></h3>
+      <p data-lang="en">Senior staff spending 1-2 hours each morning on manual monitoring ‚Äî time better spent on investment decisions.</p>
+      <p data-lang="zh">Ë≥áÊ∑±Âì°Â∑•ÊØèÂ§©Êó©‰∏äËä±1-2Â∞èÊôÇÊâãÂãïÁõ£ÊéßË≥áË®ä‚Äî‚ÄîÈÄô‰∫õÊôÇÈñìÊú¨ÂèØÁî®ÊñºÊõ¥ÈáçË¶ÅÁöÑÊäïË≥áÊ±∫Á≠ñ„ÄÇ</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">‚ö†Ô∏è</div>
+      <h3><span class="inline-en">Missed Signals</span><span class="inline-zh">ÈÅ∫ÊºèÈóúÈçµË®äËôü</span></h3>
+      <p data-lang="en">Regulatory changes, sanction list updates, and profit warnings that slip through the cracks ‚Äî until it's too late.</p>
+      <p data-lang="zh">Áõ£ÁÆ°ËÆäÂåñ„ÄÅÂà∂Ë£ÅÂêçÂñÆÊõ¥Êñ∞„ÄÅÁõàÂà©È†êË≠¶Âú®‰∏çÁü•‰∏çË¶∫‰∏≠Ë¢´ÈÅ∫Êºè‚Äî‚ÄîÁõ¥Âà∞ÁÇ∫ÊôÇÂ∑≤Êôö„ÄÇ</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">üåê</div>
+      <h3><span class="inline-en">Language Barriers</span><span class="inline-zh">Ë™ûË®ÄÈöúÁ§ô</span></h3>
+      <p data-lang="en">Critical information published in Chinese, English, and Arabic ‚Äî requiring constant translation and interpretation.</p>
+      <p data-lang="zh">ÈóúÈçµË≥áË®ä‰ª•‰∏≠Êñá„ÄÅËã±ÊñáÂíåÈòøÊãâ‰ºØÊñáÁôºÂ∏É‚Äî‚ÄîÈúÄË¶ÅÊåÅÁ∫åÁøªË≠ØÂíåÁêÜËß£„ÄÇ</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">‚öñÔ∏è</div>
+      <h3><span class="inline-en">Compliance Risk</span><span class="inline-zh">ÂêàË¶èÈ¢®Èö™</span></h3>
+      <p data-lang="en">Missing regulatory deadlines or sanctions updates can result in penalties ‚Äî yet monitoring is manual and inconsistent.</p>
+      <p data-lang="zh">ÈåØÈÅéÁõ£ÁÆ°Êà™Ê≠¢Êó•ÊúüÊàñÂà∂Ë£ÅÊõ¥Êñ∞ÂèØËÉΩÂ∞éËá¥ÁΩ∞Ê¨æ‚Äî‚Äî‰ΩÜÁõ£ÊéßÂ∑•‰Ωú‰ªç‰æùË≥¥‰∫∫Â∑•‰∏îÁº∫‰πè‰∏ÄËá¥ÊÄß„ÄÇ</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">üí°</div>
+      <h3><span class="inline-en">Opportunity Cost</span><span class="inline-zh">Ê©üÊúÉÊàêÊú¨</span></h3>
+      <p data-lang="en">Hours spent on information gathering means less time for strategic decisions, relationship building, and value creation.</p>
+      <p data-lang="zh">Ëä±Âú®Ë≥áË®äÊî∂ÈõÜ‰∏äÁöÑÊôÇÈñìÔºåÊÑèÂë≥ËëóÁî®ÊñºÊà∞Áï•Ê±∫Á≠ñ„ÄÅÈóú‰øÇÂª∫Á´ãÂíåÂÉπÂÄºÂâµÈÄ†ÁöÑÊôÇÈñìÊõ¥Â∞ë„ÄÇ</p>
+    </div>
+  </div>
+</div>
+
+<!-- SOLUTION -->
+<div class="section reveal" style="padding-top:0">
+  <div class="solution-wrap">
+    <p class="section-label"><span class="inline-en">The Solution</span><span class="inline-zh">Ëß£Ê±∫ÊñπÊ°à</span></p>
+    <h2 data-lang="en">One email. Every morning.<br><em>Everything you need to know.</em></h2>
+    <h2 data-lang="zh">‰∏ÄÂ∞ÅÈÉµ‰ª∂„ÄÇÊØèÂÄã‰∫§ÊòìÊó•Êó©Êô®„ÄÇ<br><em>ÊÇ®ÈúÄË¶ÅÁü•ÈÅìÁöÑ‰∏ÄÂàá„ÄÇ</em></h2>
+    <p data-lang="en" style="color:var(--grey);font-size:16px;max-width:560px;margin-bottom:0">AHBI monitors hundreds of sources overnight, synthesizes the signal from the noise, and delivers a clean, personalized briefing ‚Äî before markets open.</p>
+    <p data-lang="zh" style="color:var(--grey);font-size:16px;max-width:560px;margin-bottom:0">AHBIÂú®ÊÇ®Áù°Áú†ÊúüÈñìÁõ£ÊéßÊï∏ÁôæÂÄãË≥áË®ä‰æÜÊ∫êÔºåÂæûÈõúË®ä‰∏≠ÊèêÁÖâÂá∫ÈóúÈçµË®äËôüÔºåÂú®Â∏ÇÂ†¥ÈñãÁõ§ÂâçÈÄÅÈÅî‰∏Ä‰ªΩÁ∞°ÊΩî„ÄÅÂÄã‰∫∫ÂåñÁöÑÊÉÖÂ†±Á∞°Â†±„ÄÇ</p>
+
+    <div class="email-preview">
+      <div class="email-header">
+        <div class="email-dot"></div>
+        <div class="email-subject">
+          <span>AHBI Daily Brief</span> ‚Äî <span id="email-date-en"></span><span id="email-date-zh"></span>
+        </div>
+      </div>
+      <div class="email-body">
+        <div class="email-section">
+          <span class="email-tag">üåè <span class="inline-en">Market Pulse</span><span class="inline-zh">Â∏ÇÂ†¥ËÑàÊêè</span></span>
+          <h4><span class="inline-en">Hang Seng opens cautiously amid Fed uncertainty</span><span class="inline-zh">ÁæéËÅØÂÑ≤‰∏çÁ¢∫ÂÆöÊÄß‰∏ãÔºåÊÅíÊåáË¨πÊÖéÈñãÂ∏Ç</span></h4>
+          <p data-lang="en">HSI futures pointing -0.4%. Tech sector under pressure. Regional currencies stable. Key watch: PBOC liquidity injection expected mid-session.</p>
+          <p data-lang="zh">ÊÅíÊåáÊúüË≤®ÊåáÂêë-0.4%„ÄÇÁßëÊäÄÊùøÂ°äÊâøÂ£ì„ÄÇÂçÄÂüüË≤®Âπ£Á©©ÂÆö„ÄÇÈáçÈªûÈóúÊ≥®Ôºö‰∫∫Ê∞ëÈäÄË°åÈ†êË®àÂú®ÂçàÁõ§Ê≥®ÂÖ•ÊµÅÂãïÊÄß„ÄÇ</p>
+        </div>
+        <div class="email-section">
+          <span class="email-tag">‚öñÔ∏è <span class="inline-en">Regulatory Radar</span><span class="inline-zh">Áõ£ÁÆ°Èõ∑ÈÅî</span></span>
+          <h4><span class="inline-en">SFC issues guidance on virtual asset fund structures</span><span class="inline-zh">Ë≠âÁõ£ÊúÉÂ∞±ËôõÊì¨Ë≥áÁî¢Âü∫ÈáëÊû∂ÊßãÁôºÂá∫ÊåáÂºï</span></h4>
+          <p data-lang="en">New circular clarifies requirements for family offices holding tokenized assets. Action required for Type 9 licensed entities by Q2 2026.</p>
+          <p data-lang="zh">Êñ∞ÈÄöÂáΩÈáêÊ∏ÖÊåÅÊúâ‰ª£Âπ£ÂåñË≥áÁî¢ÁöÑÂÆ∂ÊóèËæ¶ÂÖ¨ÂÆ§ÁöÑË¶ÅÊ±Ç„ÄÇÁ¨¨9È°ûÊåÅÁâåÊ©üÊßãÈ†àÊñº2026Âπ¥Á¨¨‰∫åÂ≠£ÂâçÊé°ÂèñË°åÂãï„ÄÇ</p>
+        </div>
+        <div class="email-section">
+          <span class="email-tag">üö® <span class="inline-en">Risk Alert</span><span class="inline-zh">È¢®Èö™È†êË≠¶</span></span>
+          <h4><span class="inline-en">OFAC sanctions list updated ‚Äî 3 new entities</span><span class="inline-zh">OFACÂà∂Ë£ÅÂêçÂñÆÊõ¥Êñ∞‚Äî‚ÄîÊñ∞Â¢û3ÂÄãÂØ¶È´î</span></h4>
+          <p data-lang="en">Two PRC-linked trading companies and one UAE-based intermediary added. Cross-reference with counterparty exposure recommended.</p>
+          <p data-lang="zh">Êñ∞Â¢ûÂÖ©ÂÆ∂‰∏≠Ë≥áË≤øÊòìÂÖ¨Âè∏Âèä‰∏ÄÂÆ∂ÈòøËÅØÈÖã‰∏≠‰ªãÊ©üÊßã„ÄÇÂª∫Ë≠∞Ëàá‰∫§ÊòìÂ∞çÊâãÈ¢®Èö™ÊïûÂè£ÈÄ≤Ë°å‰∫§ÂèâÊ†∏Â∞ç„ÄÇ</p>
+        </div>
+        <div class="email-section">
+          <span class="email-tag">üìä <span class="inline-en">HKEX Watch</span><span class="inline-zh">Ê∏Ø‰∫§ÊâÄÁõ£Êéß</span></span>
+          <h4><span class="inline-en">4 companies on your watchlist filed material announcements</span><span class="inline-zh">ÊÇ®ÈóúÊ≥®ÂêçÂñÆ‰∏≠4ÂÆ∂ÂÖ¨Âè∏ÁôºÂ∏ÉÈáçÂ§ßÂÖ¨Âëä</span></h4>
+          <p data-lang="en">2 profit warnings, 1 major acquisition disclosure, 1 board restructuring. Details in full brief.</p>
+          <p data-lang="zh">2‰ªΩÁõàÂà©È†êË≠¶„ÄÅ1È†ÖÈáçÂ§ßÊî∂Ë≥ºÊä´Èú≤„ÄÅ1Ê¨°Ëë£‰∫ãÊúÉÈáçÁµÑ„ÄÇË©≥ÊÉÖË¶ãÂÆåÊï¥Á∞°Â†±„ÄÇ</p>
+        </div>
+        <div class="email-section">
+          <span class="email-tag">üîÆ <span class="inline-en">30-Day Horizon</span><span class="inline-zh">Êú™‰æÜ30Â§©Â±ïÊúõ</span></span>
+          <h4><span class="inline-en">Upcoming deadlines & events to prepare for</span><span class="inline-zh">Âç≥Â∞áÂà∞‰æÜÁöÑÊà™Ê≠¢Êó•ÊúüÂèäÈúÄÊ∫ñÂÇôÁöÑ‰∫ãÈ†Ö</span></h4>
+          <p data-lang="en">HKMA quarterly return due in 12 days ¬∑ Fed rate decision Mar 19 ¬∑ HK Budget implementation begins Apr 1</p>
+          <p data-lang="zh">ÈáëÁÆ°Â±ÄÂ≠£Â∫¶Áî≥Â†±Ë°®Êñº12Â§©ÂæåÂà∞Êúü ¬∑ ÁæéËÅØÂÑ≤Âà©ÁéáÊ±∫Ë≠∞3Êúà19Êó• ¬∑ È¶ôÊ∏ØÈ†êÁÆóÊ°àÂØ¶ÊñΩ4Êúà1Êó•Ëµ∑</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SYSTEM ARCHITECTURE -->
+<section class="arch-section reveal" id="system">
+  <div class="arch-wrap">
+    <p class="section-label"><span class="inline-en">How AHBI Works</span><span class="inline-zh">AHBIÂ¶Ç‰ΩïÈÅã‰Ωú</span></p>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,56px);font-weight:300;line-height:1.2;margin-bottom:12px" data-lang="en">A Structured System.<br><em>Not a Newsletter.</em></h2>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,44px);font-weight:300;line-height:1.2;margin-bottom:12px" data-lang="zh">ÁµêÊßãÂåñÊÉÖÂ†±Á≥ªÁµ±Ôºå<br><em>ËÄåÈùûÈõªÂ≠êÂ†±„ÄÇ</em></h2>
+    <p data-lang="en" style="color:var(--grey);font-size:16px;max-width:580px">Three proprietary technology layers process thousands of public signals daily and deliver structured intelligence before markets open.</p>
+    <p data-lang="zh" style="color:var(--grey);font-size:16px;max-width:580px">‰∏âÂ±§Â∞àÊúâÊäÄË°ìÊû∂ÊßãÊØèÊó•ËôïÁêÜÊï∏ÂçÉÂÄãÂÖ¨ÈñãË®äËôüÔºåÂú®Â∏ÇÂ†¥ÈñãÁõ§ÂâçÂ∞áÁµêÊßãÂåñÊÉÖÂ†±ÈÄÅÈÅîÊÇ®ÁöÑÊî∂‰ª∂ÁÆ±„ÄÇ</p>
+    <div class="arch-flow">
+      <div class="arch-step">
+        <div class="arch-step-num"><span class="inline-en">Layer 1</span><span class="inline-zh">Á¨¨‰∏ÄÂ±§</span></div>
+        <h4 data-lang="en">Data Fusion Engine</h4>
+        <h4 data-lang="zh">Â§öÊ∫êÊï∏ÊìöËûçÂêàÂºïÊìé</h4>
+        <div class="arch-step-zh" data-lang="en">Â§öÊ∫êÁï∞ÊßãÊï∏ÊìöËûçÂêà</div>
+        <div class="arch-step-zh" data-lang="zh">Multi-Source Heterogeneous Data Fusion</div>
+        <div class="arch-tags">
+          <span class="arch-tag">HKEX</span><span class="arch-tag">SFC</span><span class="arch-tag">HKMA</span><span class="arch-tag">SEC</span><span class="arch-tag">DFSA</span><span class="arch-tag">DIFC</span><span class="arch-tag">OFAC</span><span class="arch-tag">UN</span><span class="arch-tag gold"><span class="inline-en">Companies Registry</span><span class="inline-zh">ÂÖ¨Âè∏Ê≥®ÂÜäËôï</span></span><span class="arch-tag gold"><span class="inline-en">Public Newswires</span><span class="inline-zh">ÂÖ¨ÈñãÊñ∞ËÅûÁ∑ö</span></span>
+        </div>
+      </div>
+      <div class="arch-step highlight">
+        <div class="arch-step-num"><span class="inline-en">Layer 2 ¬∑ Core Innovation</span><span class="inline-zh">Á¨¨‰∫åÂ±§ ¬∑ Ê†∏ÂøÉÂâµÊñ∞</span></div>
+        <h4 data-lang="en">Signal Extraction & Event Objects</h4>
+        <h4 data-lang="zh">Ë®äËôüÊèêÂèñËàá‰∫ã‰ª∂Áâ©‰ª∂</h4>
+        <div class="arch-step-zh" data-lang="en">‰∫ã‰ª∂È©ÖÂãïË®äËôüÊèêÂèñÁ≥ªÁµ±</div>
+        <div class="arch-step-zh" data-lang="zh">Event-Driven Signal Extraction System</div>
+        <div class="arch-tags">
+          <span class="arch-tag gold">Pre-IPO</span><span class="arch-tag gold">Fund Launch</span><span class="arch-tag gold"><span class="inline-en">Institutional Positioning</span><span class="inline-zh">Ê©üÊßãÊåÅÂÄâ</span></span><span class="arch-tag gold">M&A</span><span class="arch-tag gold"><span class="inline-en">Regulatory Milestone</span><span class="inline-zh">Áõ£ÁÆ°ÈáåÁ®ãÁ¢ë</span></span><span class="arch-tag gold"><span class="inline-en">Signal Convergence Detection</span><span class="inline-zh">Ë®äËôüËÅöÂêàÊ™¢Ê∏¨</span></span>
+        </div>
+      </div>
+      <div class="arch-step">
+        <div class="arch-step-num"><span class="inline-en">Layer 3</span><span class="inline-zh">Á¨¨‰∏âÂ±§</span></div>
+        <h4 data-lang="en">Adaptive Personalisation</h4>
+        <h4 data-lang="zh">Ëá™ÈÅ©ÊáâÂÄãÊÄßÂåñÂºïÊìé</h4>
+        <div class="arch-step-zh" data-lang="en">Ëá™ÈÅ©ÊáâÂÄãÊÄßÂåñÁ∞°Â†±ÁîüÊàê</div>
+        <div class="arch-step-zh" data-lang="zh">Adaptive Briefing Generation</div>
+        <div class="arch-tags">
+          <span class="arch-tag"><span class="inline-en">Client Profile</span><span class="inline-zh">ÂÆ¢Êà∂Ê™îÊ°à</span></span><span class="arch-tag"><span class="inline-en">Market Focus</span><span class="inline-zh">Â∏ÇÂ†¥ÈáçÈªû</span></span><span class="arch-tag"><span class="inline-en">Watchlist</span><span class="inline-zh">ÈóúÊ≥®ÂêçÂñÆ</span></span><span class="arch-tag"><span class="inline-en">Human QA</span><span class="inline-zh">‰∫∫Â∑•Ë≥™Ê™¢</span></span><span class="arch-tag gold"><span class="inline-en">EN / ZH Output</span><span class="inline-zh">‰∏≠Ëã±ÈõôË™ûËº∏Âá∫</span></span>
+        </div>
+      </div>
+      <div class="arch-step">
+        <div class="arch-step-num"><span class="inline-en">Delivery</span><span class="inline-zh">ÈÄÅÈÅî</span></div>
+        <h4 data-lang="en">Your Inbox ¬∑ 7:30 AM HKT</h4>
+        <h4 data-lang="zh">ÊÇ®ÁöÑÊî∂‰ª∂ÁÆ± ¬∑ Ê∏ØÊôÇÊó©‰∏ä7:30</h4>
+        <div class="arch-step-zh" data-lang="en">ÊØèÊó•ÂèäÊØèÈÄ±ÈõôÁ∑öÊÉÖÂ†±ÈÄÅÈÅî</div>
+        <div class="arch-step-zh" data-lang="zh">Daily & Weekly Dual-Stream Delivery</div>
+        <div class="arch-tags">
+          <span class="arch-tag gold"><span class="inline-en">Weekly Private Market Brief</span><span class="inline-zh">ÊØèÈÄ±ÁßÅÂãüÂ∏ÇÂ†¥Á∞°Â†±</span></span><span class="arch-tag gold"><span class="inline-en">Daily Public Market Brief</span><span class="inline-zh">ÊØèÊó•ÂÖ¨ÈñãÂ∏ÇÂ†¥Á∞°Â†±</span></span><span class="arch-tag gold"><span class="inline-en">Immediate Alerts</span><span class="inline-zh">Âç≥ÊôÇÊé®ÈÄÅ</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES & PRICING -->
+<div class="section reveal" id="services" style="padding-top:80px">
+  <p class="section-label"><span class="inline-en">Services & Pricing</span><span class="inline-zh">ÊúçÂãôÂèäÂÆöÂÉπ</span></p>
+  <h2 data-lang="en">The AHBI<br><em>Intelligence System</em></h2>
+  <h2 data-lang="zh">AHBIÊÉÖÂ†±Á≥ªÁµ±<br><em>Ë®ÇÈñ±ÊúçÂãô</em></h2>
+  <p data-lang="en" style="color:var(--grey);font-size:14px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">Part A ‚Äî Subscription Intelligence ¬∑ Recurring ¬∑ Automated ¬∑ Delivered Daily & Weekly</p>
+  <p data-lang="zh" style="color:var(--grey);font-size:14px;letter-spacing:0.08em;margin-bottom:4px">AÈÉ®ÂàÜ ‚Äî Ë®ÇÈñ±ÊÉÖÂ†±ÊúçÂãô ¬∑ ÂÆöÊúü ¬∑ Ëá™ÂãïÂåñ ¬∑ ÊØèÊó•ÂèäÊØèÈÄ±ÈÄÅÈÅî</p>
+  <p data-lang="en" style="color:var(--grey);font-size:15px;margin-bottom:32px">Three tiers. One integrated platform. Choose the depth that matches your mandate.</p>
+  <p data-lang="zh" style="color:var(--grey);font-size:15px;margin-bottom:32px">‰∏âÂÄãÂ±§Á¥öÔºå‰∏ÄÂÄãÊï¥ÂêàÂπ≥Âè∞ÔºåÈÅ∏ÊìáÁ¨¶ÂêàÊÇ®ÈúÄÊ±ÇÁöÑÊ∑±Â∫¶„ÄÇ</p>
 
   <div class="pricing-anchor">
-    <div data-en="Less than the cost of one analyst hour per day. More coverage than a full monitoring team." data-zh="">Less than the cost of one analyst hour per day. More coverage than a full monitoring team.</div>
-    <div class="pricing-anchor-zh" data-zh="每日費用低於一名分析師一小時的工時成本，覆蓋範圍超越整個監控團隊。" data-en="">每日費用低於一名分析師一小時的工時成本，覆蓋範圍超越整個監控團隊。</div>
+    <p data-lang="en">Less than the cost of one analyst hour per day. More coverage than a full monitoring team.<span>Áõ∏ÊØîËÅòË´ãÂÖ®ËÅ∑ÂàÜÊûêÂ∏´ÔºåAHBIÊØèÊúàÁÇ∫ÊÇ®ÁØÄÁúÅÂ§ßÈáèÊàêÊú¨‚Äî‚ÄîË¶ÜËìãÁØÑÂúçË∂ÖË∂äÊï¥ÂÄãÁõ£ÊéßÂúòÈöä„ÄÇ</span></p>
+    <p data-lang="zh">ÊØèÊó•Ë≤ªÁî®‰ΩéÊñº‰∏ÄÂêçÂàÜÊûêÂ∏´‰∏ÄÂ∞èÊôÇÁöÑÂ∑•ÊôÇÊàêÊú¨ÔºåË¶ÜËìãÁØÑÂúçË∂ÖË∂äÊï¥ÂÄãÁõ£ÊéßÂúòÈöä„ÄÇ<span>Less than one analyst hour per day. More coverage than a full monitoring team.</span></p>
   </div>
 
-  <div class="sub-grid">
+  <div class="services-grid">
+
     <!-- Essentials -->
-    <div class="sub-card">
-      <div class="sub-name">Essentials</div>
-      <div class="sub-tagline" data-en="HK market · Dual-stream · Entry tier" data-zh="">HK market · Dual-stream · Entry tier</div>
-      <div class="sub-tagline-zh" data-zh="香港市場 · 雙線 · 入門級" data-en="">香港市場 · 雙線 · 入門級</div>
-      <div class="sub-price">$688 <span data-en="USD / month" data-zh="美元/月">USD / month</span></div>
-      <div class="sub-price-zh" data-zh="月費" data-en="">月費</div>
-      <ul class="sub-features">
-        <li><span data-en="Weekly private market briefing (HK)" data-zh="">Weekly private market briefing (HK)<span class="zh" data-zh="每週一級市場簡報（香港）" data-en="">每週一級市場簡報（香港）</span></span></li>
-        <li><span data-en="Immediate alerts for material private market signals" data-zh="">Immediate alerts for material private market signals<span class="zh" data-zh="重大一級市場訊號即時推送" data-en="">重大一級市場訊號即時推送</span></span></li>
-        <li><span data-en="Daily public market briefing — all 5 modules" data-zh="">Daily public market briefing — all 5 modules<span class="zh" data-zh="每日公開市場簡報——5大模組" data-en="">每日公開市場簡報——5大模組</span></span></li>
-        <li><span data-en="Regulatory updates: SFC & HKMA" data-zh="">Regulatory updates: SFC & HKMA<span class="zh" data-zh="監管更新：證監會及金管局" data-en="">監管更新：證監會及金管局</span></span></li>
-        <li><span data-en="Sanctions monitoring: OFAC & UN" data-zh="">Sanctions monitoring: OFAC & UN<span class="zh" data-zh="制裁名單監控：OFAC及聯合國" data-en="">制裁名單監控：OFAC及聯合國</span></span></li>
-        <li><span data-en="Up to 20 HKEX watchlist stocks" data-zh="">Up to 20 HKEX watchlist stocks<span class="zh" data-zh="最多20隻關注股票" data-en="">最多20隻關注股票</span></span></li>
-        <li><span data-en="English language" data-zh="">English language<span class="zh" data-zh="英文版本" data-en="">英文版本</span></span></li>
+    <div class="service-card" style="padding:48px 36px">
+      <div class="service-label"><span class="inline-en">Core Service ¬∑ Entry Tier</span><span class="inline-zh">Ê†∏ÂøÉÊúçÂãô ¬∑ ÂÖ•ÈñÄÁ¥ö</span></div>
+      <h3><span class="inline-en">Essentials</span><span class="inline-zh">Âü∫Á§éÁâà</span></h3>
+      <p style="font-size:12px;letter-spacing:0.1em;color:var(--gold);margin-bottom:12px"><span class="inline-en">Hong Kong market ¬∑ Dual-stream ¬∑ Entry tier</span><span class="inline-zh">È¶ôÊ∏ØÂ∏ÇÂ†¥ ¬∑ ÈõôÁ∑ö ¬∑ ÂÖ•ÈñÄÁ¥ö</span></p>
+      <div class="service-price" style="margin-bottom:20px">$688 <span><span class="inline-en">USD / month</span><span class="inline-zh">ÊúàË≤ª</span></span></div>
+      <ul class="service-features-new">
+        <li><span class="inline-en">Weekly private market briefing (HK) ‚Äî major M&A, fund registrations, Pre-IPO signals</span><span class="inline-zh">ÊØèÈÄ±‰∏ÄÁ¥öÂ∏ÇÂ†¥Á∞°Â†±ÔºàÈ¶ôÊ∏ØÔºâ‚Äî‚ÄîÈáçÂ§ß‰∏¶Ë≥º„ÄÅÂü∫ÈáëÂÇôÊ°à„ÄÅPre-IPOË®äËôü</span></li>
+        <li><span class="inline-en">Immediate alerts for material private market signals</span><span class="inline-zh">ÈáçÂ§ß‰∏ÄÁ¥öÂ∏ÇÂ†¥Ë®äËôüÂç≥ÊôÇÊé®ÈÄÅ</span></li>
+        <li><span class="inline-en">Daily public market briefing ‚Äî all 5 modules</span><span class="inline-zh">ÊØèÊó•ÂÖ¨ÈñãÂ∏ÇÂ†¥Á∞°Â†±‚Äî‚Äî5Â§ßÊ®°ÁµÑ</span></li>
+        <li><span class="inline-en">Regulatory updates: SFC & HKMA</span><span class="inline-zh">Áõ£ÁÆ°Êõ¥Êñ∞ÔºöË≠âÁõ£ÊúÉÂèäÈáëÁÆ°Â±Ä</span></li>
+        <li><span class="inline-en">Sanctions monitoring: OFAC & UN</span><span class="inline-zh">Âà∂Ë£ÅÂêçÂñÆÁõ£ÊéßÔºöOFACÂèäËÅØÂêàÂúã</span></li>
+        <li><span class="inline-en">Up to 20 HKEX watchlist stocks</span><span class="inline-zh">ÊúÄÂ§ö20ÈöªÈóúÊ≥®ËÇ°Á•®</span></li>
+        <li><span class="inline-en">English language</span><span class="inline-zh">Ëã±ÊñáÁâàÊú¨</span></li>
       </ul>
-      <a href="#enquire" class="sub-cta" data-en="Get Started" data-zh="立即開始">Get Started</a>
-      <span class="sub-cta-zh" data-zh="立即開始" data-en="">立即開始</span>
+      <a href="#enquire" class="btn-primary" style="display:block;text-align:center"><span class="inline-en">Get Started</span><span class="inline-zh">Á´ãÂç≥ÈñãÂßã</span></a>
     </div>
 
     <!-- Professional -->
-    <div class="sub-card featured">
-      <div class="sub-badge" data-en="Most Popular" data-zh="最受歡迎">Most Popular</div>
-      <div class="sub-name">Professional</div>
-      <div class="sub-tagline" data-en="HK + US · Full private market depth" data-zh="">HK + US · Full private market depth</div>
-      <div class="sub-tagline-zh" data-zh="香港+美國 · 完整一級市場深度" data-en="">香港+美國 · 完整一級市場深度</div>
-      <div class="sub-price">$1,888 <span data-en="USD / month" data-zh="美元/月">USD / month</span></div>
-      <div class="sub-price-zh" data-zh="月費" data-en="">月費</div>
-      <ul class="sub-features">
-        <li><span data-en="Everything in Essentials" data-zh="">Everything in Essentials<span class="zh" data-zh="包含基礎版所有功能" data-en="">包含基礎版所有功能</span></span></li>
-        <li><span data-en="Full weekly private market intelligence briefing — AHBI's highest-value output" data-zh="">Full weekly private market intelligence briefing — AHBI's highest-value output<span class="zh" data-zh="完整每週一級市場情報簡報——AHBI最核心的價值輸出" data-en="">完整每週一級市場情報簡報——AHBI最核心的價值輸出</span></span></li>
-        <li><span data-en="Rising Radar: 3–5 early-stage targets with converging signals weekly" data-zh="">Rising Radar: 3–5 early-stage targets with converging signals weekly<span class="zh" data-zh="潛力雷達：每週3-5個顯示聚合訊號的早期標的" data-en="">潛力雷達：每週3-5個顯示聚合訊號的早期標的</span></span></li>
-        <li><span data-en="Institutional positioning tracking: SEC 13F / 13G / 13D" data-zh="">Institutional positioning tracking: SEC 13F / 13G / 13D<span class="zh" data-zh="機構持倉追蹤：SEC 13F/13G/13D" data-en="">機構持倉追蹤：SEC 13F/13G/13D</span></span></li>
-        <li><span data-en="Hong Kong + United States (default) · +1 additional market" data-zh="">Hong Kong + United States (default) · +1 additional market<span class="zh" data-zh="香港+美國（默認）· 可額外選一個市場" data-en="">香港+美國（默認）· 可額外選一個市場</span></span></li>
-        <li><span data-en="Unlimited HKEX watchlist · Custom alert thresholds" data-zh="">Unlimited HKEX watchlist · Custom alert thresholds<span class="zh" data-zh="無限關注股票 · 自定義預警閾值" data-en="">無限關注股票 · 自定義預警閾值</span></span></li>
-        <li><span data-en="Monthly intelligence summary · Bilingual EN / ZH" data-zh="">Monthly intelligence summary · Bilingual EN / ZH<span class="zh" data-zh="每月情報總結 · 中英雙語" data-en="">每月情報總結 · 中英雙語</span></span></li>
+    <div class="service-card" style="padding:48px 36px;background:var(--navy-soft);border-top:2px solid var(--gold)">
+      <div class="service-label" style="color:var(--gold-light)"><span class="inline-en">‚òÖ Most Popular ¬∑ Full Private Market Depth</span><span class="inline-zh">‚òÖ ÊúÄÂèóÊ≠°Ëøé ¬∑ ÂÆåÊï¥‰∏ÄÁ¥öÂ∏ÇÂ†¥Ê∑±Â∫¶</span></div>
+      <h3><span class="inline-en">Professional</span><span class="inline-zh">Â∞àÊ•≠Áâà</span></h3>
+      <p style="font-size:12px;letter-spacing:0.1em;color:var(--gold);margin-bottom:12px"><span class="inline-en">HK + US markets (default) ¬∑ Full private market depth</span><span class="inline-zh">È¶ôÊ∏Ø+ÁæéÂúãÂ∏ÇÂ†¥ÔºàÈªòË™çÔºâ¬∑ ÂÆåÊï¥‰∏ÄÁ¥öÂ∏ÇÂ†¥Ê∑±Â∫¶</span></p>
+      <div class="service-price" style="margin-bottom:20px">$1,888 <span><span class="inline-en">USD / month</span><span class="inline-zh">ÊúàË≤ª</span></span></div>
+      <ul class="service-features-new">
+        <li><span class="inline-en">Everything in Essentials</span><span class="inline-zh">ÂåÖÂê´Âü∫Á§éÁâàÊâÄÊúâÂäüËÉΩ</span></li>
+        <li><span class="inline-en">Full weekly private market intelligence briefing ‚Äî AHBI's highest-value output: Pre-IPO filings, institutional positioning (SEC 13F/13G/13D), deal flow</span><span class="inline-zh">ÂÆåÊï¥ÊØèÈÄ±‰∏ÄÁ¥öÂ∏ÇÂ†¥ÊÉÖÂ†±Á∞°Â†±‚Äî‚ÄîAHBIÊúÄÊ†∏ÂøÉÁöÑÂÉπÂÄºËº∏Âá∫ÔºöPre-IPOÁî≥Â†±„ÄÅÊ©üÊßãÊåÅÂÄâÔºàSEC 13F/13G/13DÔºâ„ÄÅ‰∫§ÊòìÊµÅ</span></li>
+        <li><span class="inline-en">Rising Radar: 3‚Äì5 early-stage targets with converging signals weekly</span><span class="inline-zh">ÊΩõÂäõÈõ∑ÈÅîÔºöÊØèÈÄ±3-5ÂÄãÈ°ØÁ§∫ËÅöÂêàË®äËôüÁöÑÊó©ÊúüÊ®ôÁöÑ</span></li>
+        <li><span class="inline-en">Hong Kong + United States (default) ¬∑ +1 additional market: China, Dubai, Singapore, or Europe</span><span class="inline-zh">È¶ôÊ∏Ø+ÁæéÂúãÔºàÈªòË™çÔºâ¬∑ ÂèØÈ°çÂ§ñÈÅ∏‰∏ÄÂÄãÂ∏ÇÂ†¥Ôºö‰∏≠ÂúãÂÖßÂú∞„ÄÅËø™Êãú„ÄÅÊñ∞Âä†Âù°ÊàñÊ≠êÊ¥≤</span></li>
+        <li><span class="inline-en">Unlimited HKEX watchlist ¬∑ Custom alert thresholds ¬∑ Monthly intelligence summary</span><span class="inline-zh">ÁÑ°ÈôêÈóúÊ≥®ËÇ°Á•® ¬∑ Ëá™ÂÆöÁæ©È†êË≠¶ÈñæÂÄº ¬∑ ÊØèÊúàÊÉÖÂ†±Á∏ΩÁµê</span></li>
+        <li><span class="inline-en">English & Traditional Chinese bilingual</span><span class="inline-zh">Ëã±ÊñáÂèäÁπÅÈ´î‰∏≠ÊñáÈõôË™û</span></li>
       </ul>
-      <a href="#enquire" class="sub-cta" data-en="Get Started" data-zh="立即開始">Get Started</a>
-      <span class="sub-cta-zh" data-zh="立即開始" data-en="">立即開始</span>
+      <a href="#enquire" class="btn-primary" style="display:block;text-align:center"><span class="inline-en">Get Started</span><span class="inline-zh">Á´ãÂç≥ÈñãÂßã</span></a>
     </div>
 
     <!-- Enterprise -->
-    <div class="sub-card">
-      <div class="sub-name">Enterprise</div>
-      <div class="sub-tagline" data-en="Institutional · Fully customised" data-zh="">Institutional · Fully customised</div>
-      <div class="sub-tagline-zh" data-zh="機構級 · 完全定制" data-en="">機構級 · 完全定制</div>
-      <div class="sub-price">$5,000<span style="font-size:18px">–</span>$15,000 <span data-en="USD / month" data-zh="美元/月">USD / month</span></div>
-      <div class="sub-price-zh" data-zh="月費 · 定制定價" data-en="">月費 · 定制定價</div>
-      <ul class="sub-features">
-        <li><span data-en="Everything in Professional" data-zh="">Everything in Professional<span class="zh" data-zh="包含專業版所有功能" data-en="">包含專業版所有功能</span></span></li>
-        <li><span data-en="Fully customised monitoring scope across all jurisdictions" data-zh="">Fully customised monitoring scope across all jurisdictions<span class="zh" data-zh="跨所有司法管轄區的完全定制監控範圍" data-en="">跨所有司法管轄區的完全定制監控範圍</span></span></li>
-        <li><span data-en="Multi-user access with role-based delivery" data-zh="">Multi-user access with role-based delivery<span class="zh" data-zh="多用戶訪問，按角色送達" data-en="">多用戶訪問，按角色送達</span></span></li>
-        <li><span data-en="White-label delivery under your brand" data-zh="">White-label delivery under your brand<span class="zh" data-zh="白標交付，以您的品牌呈現" data-en="">白標交付，以您的品牌呈現</span></span></li>
-        <li><span data-en="API access for system integration" data-zh="">API access for system integration<span class="zh" data-zh="API接入，整合至您的系統" data-en="">API接入，整合至您的系統</span></span></li>
-        <li><span data-en="Dedicated briefing analyst · SLA guarantee" data-zh="">Dedicated briefing analyst · SLA guarantee<span class="zh" data-zh="專屬簡報分析師 · SLA保障" data-en="">專屬簡報分析師 · SLA保障</span></span></li>
+    <div class="service-card" style="padding:48px 36px">
+      <div class="service-label"><span class="inline-en">Institutional ¬∑ Fully Customised</span><span class="inline-zh">Ê©üÊßãÁ¥ö ¬∑ ÂÆåÂÖ®ÂÆöÂà∂</span></div>
+      <h3><span class="inline-en">Enterprise</span><span class="inline-zh">‰ºÅÊ•≠Áâà</span></h3>
+      <p style="font-size:12px;letter-spacing:0.1em;color:var(--gold);margin-bottom:12px"><span class="inline-en">Asset managers ¬∑ Multi-family offices ¬∑ Financial institutions</span><span class="inline-zh">Ë≥áÁî¢ÁÆ°ÁêÜÂÖ¨Âè∏ ¬∑ ËÅØÂêàÂÆ∂ÊóèËæ¶ÂÖ¨ÂÆ§ ¬∑ ÈáëËûçÊ©üÊßã</span></p>
+      <div class="service-price" style="margin-bottom:20px;font-size:28px">$5,000‚Äì$15,000 <span><span class="inline-en">USD / month ¬∑ tailored</span><span class="inline-zh">ÊúàË≤ª ¬∑ ÂÆöÂà∂ÂÆöÂÉπ</span></span></div>
+      <ul class="service-features-new">
+        <li><span class="inline-en">Everything in Professional</span><span class="inline-zh">ÂåÖÂê´Â∞àÊ•≠ÁâàÊâÄÊúâÂäüËÉΩ</span></li>
+        <li><span class="inline-en">Fully customised monitoring scope across all target jurisdictions</span><span class="inline-zh">Ë∑®ÊâÄÊúâÁõÆÊ®ôÂ∏ÇÂ†¥ÁöÑÂÆåÂÖ®ÂÆöÂà∂Áõ£ÊéßÁØÑÂúç</span></li>
+        <li><span class="inline-en">Multi-user access with role-based delivery</span><span class="inline-zh">Â§öÁî®Êà∂Ë®™ÂïèÔºåÊåâËßíËâ≤ÈÄÅÈÅî</span></li>
+        <li><span class="inline-en">White-label delivery under your brand</span><span class="inline-zh">ÁôΩÊ®ô‰∫§‰ªòÔºå‰ª•ÊÇ®ÁöÑÂìÅÁâåÂëàÁèæ</span></li>
+        <li><span class="inline-en">API access for system integration</span><span class="inline-zh">APIÊé•ÂÖ•ÔºåÊï¥ÂêàËá≥ÊÇ®ÁöÑÁ≥ªÁµ±</span></li>
+        <li><span class="inline-en">Dedicated briefing analyst ¬∑ SLA guarantee</span><span class="inline-zh">Â∞àÂ±¨Á∞°Â†±ÂàÜÊûêÂ∏´ ¬∑ SLA‰øùÈöú</span></li>
       </ul>
-      <a href="#enquire" class="sub-cta" data-en="Contact Us" data-zh="聯繫我們">Contact Us</a>
-      <span class="sub-cta-zh" data-zh="聯繫我們" data-en="">聯繫我們</span>
-    </div>
-  </div>
-
-  <!-- PART B -->
-  <div class="bespoke-divider">
-    <div class="bespoke-divider-line"></div>
-    <div class="bespoke-divider-label" data-en="PART B — AHBI BESPOKE INTELLIGENCE" data-zh="B部分 — AHBI定制情報專案">PART B — AHBI BESPOKE INTELLIGENCE</div>
-    <div class="bespoke-divider-line"></div>
-  </div>
-  <div class="sub-part-sub" style="margin-bottom:32px;" data-en="Project-based. High-depth. For complex decisions that require dedicated intelligence engagement." data-zh="項目制。高深度。為需要專屬情報服務的複雜決策而設。">Project-based. High-depth. For complex decisions that require dedicated intelligence engagement.</div>
-
-  <div class="bespoke-grid">
-    <!-- Intelligence Mandate -->
-    <div class="bespoke-card">
-      <div class="bespoke-type" data-en="PROJECT-BASED ENGAGEMENT · HIGHEST DEPTH" data-zh="項目制合作 · 最高深度">PROJECT-BASED ENGAGEMENT · HIGHEST DEPTH</div>
-      <div class="bespoke-name" data-en="Intelligence Mandate" data-zh="">Intelligence Mandate</div>
-      <div class="bespoke-name-zh" data-zh="情報委託" data-en="">情報委託</div>
-      <div class="bespoke-price">$100,000<span data-en="+ USD / engagement" data-zh="+ 美元/項目">+ USD / engagement</span></div>
-      <div class="bespoke-price-zh" data-zh="起 · 項目制" data-en="">起 · 項目制</div>
-      <ul class="bespoke-features">
-        <li><span data-en="Bespoke project-based intelligence for specific investment decisions or market entry" data-zh="">Bespoke project-based intelligence for specific investment decisions or market entry<span class="zh" data-zh="針對特定投資決策或市場進入的定制項目制情報" data-en="">針對特定投資決策或市場進入的定制項目制情報</span></span></li>
-        <li><span data-en="Target jurisdiction regulatory landscape mapping" data-zh="">Target jurisdiction regulatory landscape mapping<span class="zh" data-zh="目標司法管轄區監管環境全景梳理" data-en="">目標司法管轄區監管環境全景梳理</span></span></li>
-        <li><span data-en="Sector deal flow and competitive positioning analysis" data-zh="">Sector deal flow and competitive positioning analysis<span class="zh" data-zh="行業交易流及競爭格局分析" data-en="">行業交易流及競爭格局分析</span></span></li>
-        <li><span data-en="Target company signal tracking over a defined period" data-zh="">Target company signal tracking over a defined period<span class="zh" data-zh="目標公司在特定時期的訊號追蹤" data-en="">目標公司在特定時期的訊號追蹤</span></span></li>
-        <li><span data-en="Delivered as institutional-grade structured intelligence report" data-zh="">Delivered as institutional-grade structured intelligence report<span class="zh" data-zh="以機構級結構化情報報告形式交付" data-en="">以機構級結構化情報報告形式交付</span></span></li>
-        <li><span data-en="Dedicated analyst support throughout the engagement" data-zh="">Dedicated analyst support throughout the engagement<span class="zh" data-zh="項目期間專屬分析師全程支持" data-en="">項目期間專屬分析師全程支持</span></span></li>
-      </ul>
-      <a href="#enquire" class="bespoke-cta" data-en="Enquire About a Mandate" data-zh="查詢情報委託">Enquire About a Mandate</a>
-      <span class="bespoke-cta-zh" data-zh="查詢情報委託" data-en="">查詢情報委託</span>
+      <a href="#enquire" class="btn-primary" style="display:block;text-align:center"><span class="inline-en">Contact Us</span><span class="inline-zh">ËÅØÁπ´ÊàëÂÄë</span></a>
     </div>
 
-    <!-- Intelligence Dossier -->
-    <div class="bespoke-card">
-      <div class="bespoke-type" data-en="PER-REPORT ENGAGEMENT · STANDARDISED" data-zh="按報告收費 · 標準化">PER-REPORT ENGAGEMENT · STANDARDISED</div>
-      <div class="bespoke-name" data-en="Intelligence Dossier" data-zh="">Intelligence Dossier</div>
-      <div class="bespoke-name-zh" data-zh="情報檔案" data-en="">情報檔案</div>
-      <div class="bespoke-price">$15,000 <span data-en="USD / report" data-zh="美元/份">USD / report</span></div>
-      <div class="bespoke-price-zh" data-zh="起 · 每份報告" data-en="">起 · 每份報告</div>
-      <ul class="bespoke-features">
-        <li><span data-en="Standardised deep research on a specific company, sector, or market development" data-zh="">Standardised deep research on a specific company, sector, or market development<span class="zh" data-zh="針對特定公司、行業或市場事件的標準化深度研究" data-en="">針對特定公司、行業或市場事件的標準化深度研究</span></span></li>
-        <li><span data-en="All signals sourced exclusively from public channels" data-zh="">All signals sourced exclusively from public channels<span class="zh" data-zh="所有訊號均來自公開渠道" data-en="">所有訊號均來自公開渠道</span></span></li>
-        <li><span data-en="Structured output: signal history, regulatory landscape, institutional positioning" data-zh="">Structured output: signal history, regulatory landscape, institutional positioning<span class="zh" data-zh="結構化交付：訊號歷史、監管環境、機構持倉分析" data-en="">結構化交付：訊號歷史、監管環境、機構持倉分析</span></span></li>
-        <li><span data-en="Appropriate for public information due diligence prior to engagement" data-zh="">Appropriate for public information due diligence prior to engagement<span class="zh" data-zh="適合進入前的公開資訊盡職調查" data-en="">適合進入前的公開資訊盡職調查</span></span></li>
-        <li><span data-en="Turnaround: 5–7 business days" data-zh="">Turnaround: 5–7 business days<span class="zh" data-zh="交付週期：5-7個工作日" data-en="">交付週期：5-7個工作日</span></span></li>
-      </ul>
-      <a href="#enquire" class="bespoke-cta" data-en="Enquire About a Dossier" data-zh="查詢情報檔案">Enquire About a Dossier</a>
-      <span class="bespoke-cta-zh" data-zh="查詢情報檔案" data-en="">查詢情報檔案</span>
+  </div>
+</div>
+
+<!-- SYSTEM ARCHITECTURE replaces How It Works -->
+
+<!-- BESPOKE INTELLIGENCE SECTION -->
+<section class="bespoke-section reveal" id="bespoke">
+  <div class="bespoke-wrap">
+    <div class="bespoke-header">
+      <p class="section-label"><span class="inline-en">PART B ‚Äî AHBI BESPOKE INTELLIGENCE</span><span class="inline-zh">BÈÉ®ÂàÜ ‚Äî AHBIÂÆöÂà∂ÊÉÖÂ†±Â∞àÊ°à</span></p>
+      <h2 data-lang="en">Project-Based Intelligence<br><em>For Complex Decisions</em></h2>
+      <h2 data-lang="zh">È†ÖÁõÆÂà∂ÊÉÖÂ†±ÊúçÂãô<br><em>ÊáâÂ∞çË§áÈõúÊ±∫Á≠ñ</em></h2>
+      <p data-lang="en" style="color:var(--grey);font-size:15px;max-width:560px;margin:16px auto 0">High-depth. Bespoke. For specific investment decisions or market entry strategies that require dedicated intelligence engagement.</p>
+      <p data-lang="zh" style="color:var(--grey);font-size:15px;max-width:560px;margin:16px auto 0">È´òÊ∑±Â∫¶„ÄÇÂÆöÂà∂Âåñ„ÄÇÁÇ∫ÈúÄË¶ÅÂ∞àÂ±¨ÊÉÖÂ†±ÊúçÂãôÁöÑÁâπÂÆöÊäïË≥áÊ±∫Á≠ñÊàñÂ∏ÇÂ†¥ÈÄ≤ÂÖ•Á≠ñÁï•ËÄåË®≠„ÄÇ</p>
+    </div>
+    
+    <div class="bespoke-grid">
+      <!-- Intelligence Mandate -->
+      <div class="bespoke-card">
+        <h3><span class="inline-en">Intelligence Mandate</span><span class="inline-zh">ÊÉÖÂ†±ÂßîË®ó</span></h3>
+        <p class="bespoke-subtitle"><span class="inline-en">PROJECT-BASED ENGAGEMENT</span><span class="inline-zh">È†ÖÁõÆÂà∂Âêà‰Ωú</span></p>
+        <div class="bespoke-price">$100,000+ <span><span class="inline-en">USD / engagement</span><span class="inline-zh">Ëµ∑ / È†ÖÁõÆ</span></span></div>
+        <ul class="bespoke-features">
+          <li><span class="inline-en">Bespoke project-based intelligence for specific investment decisions or market entry</span><span class="inline-zh">ÈáùÂ∞çÁâπÂÆöÊäïË≥áÊ±∫Á≠ñÊàñÂ∏ÇÂ†¥ÈÄ≤ÂÖ•ÁöÑÂÆöÂà∂È†ÖÁõÆÂà∂ÊÉÖÂ†±</span></li>
+          <li><span class="inline-en">May include: target jurisdiction mapping, deal flow analysis, signal tracking</span><span class="inline-zh">ÂèØÊ∂µËìãÔºöÁõÆÊ®ôÂ∏ÇÂ†¥Áõ£ÁÆ°Ê¢≥ÁêÜ„ÄÅ‰∫§ÊòìÊµÅÂàÜÊûê„ÄÅË®äËôüËøΩËπ§</span></li>
+          <li><span class="inline-en">Delivered as institutional-grade structured intelligence report</span><span class="inline-zh">‰ª•Ê©üÊßãÁ¥öÁµêÊßãÂåñÊÉÖÂ†±Â†±ÂëäÂΩ¢Âºè‰∫§‰ªò</span></li>
+          <li><span class="inline-en">Dedicated analyst support throughout the engagement</span><span class="inline-zh">È†ÖÁõÆÊúüÈñìÂ∞àÂ±¨ÂàÜÊûêÂ∏´ÊîØÊåÅ</span></li>
+        </ul>
+        <a href="#enquire" class="btn-enquire"><span class="inline-en">Enquire</span><span class="inline-zh">Êü•Ë©¢</span></a>
+      </div>
+      
+      <!-- Intelligence Dossier -->
+      <div class="bespoke-card">
+        <h3><span class="inline-en">Intelligence Dossier</span><span class="inline-zh">ÊÉÖÂ†±Ê™îÊ°à</span></h3>
+        <p class="bespoke-subtitle"><span class="inline-en">PER-REPORT ENGAGEMENT</span><span class="inline-zh">ÊåâÂ†±ÂëäÊî∂Ë≤ª</span></p>
+        <div class="bespoke-price">$15,000 <span><span class="inline-en">USD / report</span><span class="inline-zh">Ëµ∑ / Â†±Âëä</span></span></div>
+        <ul class="bespoke-features">
+          <li><span class="inline-en">Standardised deep research on a specific company, sector, or market development</span><span class="inline-zh">ÈáùÂ∞çÁâπÂÆöÂÖ¨Âè∏„ÄÅË°åÊ•≠ÊàñÂ∏ÇÂ†¥‰∫ã‰ª∂ÁöÑÊ®ôÊ∫ñÂåñÊ∑±Â∫¶Á†îÁ©∂</span></li>
+          <li><span class="inline-en">All signals sourced exclusively from public channels</span><span class="inline-zh">ÊâÄÊúâË®äËôüÂùá‰æÜËá™ÂÖ¨ÈñãÊ∏†ÈÅì</span></li>
+          <li><span class="inline-en">Structured output: signal history, regulatory landscape, institutional positioning</span><span class="inline-zh">ÁµêÊßãÂåñ‰∫§‰ªòÔºöË®äËôüÊ≠∑Âè≤„ÄÅÁõ£ÁÆ°Áí∞Â¢É„ÄÅÊ©üÊßãÊåÅÂÄâÂàÜÊûê</span></li>
+          <li><span class="inline-en">Turnaround time: 5-7 business days</span><span class="inline-zh">‰∫§‰ªòÈÄ±ÊúüÔºö5-7ÂÄãÂ∑•‰ΩúÊó•</span></li>
+        </ul>
+        <a href="#enquire" class="btn-enquire"><span class="inline-en">Enquire</span><span class="inline-zh">Êü•Ë©¢</span></a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ── TESTIMONIALS ── -->
+<!-- TESTIMONIALS SECTION (NEW) -->
 <section class="testimonials-section reveal">
-  <div class="section-label" data-en="Early Subscribers" data-zh="早期訂閱者">Early Subscribers</div>
-  <h2 class="section-title" data-en="Trusted by Those <em>Who Know the Value of Time</em>" data-zh="">Trusted by Those <em>Who Know the Value of Time</em></h2>
-  <div class="section-title-zh" data-zh="深受珍視時間價值之人信賴" data-en="">深受珍視時間價值之人信賴</div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <div class="testimonial-quote" data-en='"AHBI surfaces the Pre-IPO signals we used to spend hours hunting manually. The weekly private market briefing has become a core part of our Monday morning process."' data-zh="">"AHBI surfaces the Pre-IPO signals we used to spend hours hunting manually. The weekly private market briefing has become a core part of our Monday morning process."</div>
-      <div class="testimonial-quote-zh" data-zh="「AHBI能捕捉到我們以往需要花費數小時手動搜尋的Pre-IPO訊號。每週私募市場簡報已成為我們週一早晨工作流程的核心部分。」" data-en="">「AHBI能捕捉到我們以往需要花費數小時手動搜尋的Pre-IPO訊號。每週私募市場簡報已成為我們週一早晨工作流程的核心部分。」</div>
-      <div class="testimonial-author" data-en="— Family Office Principal, Hong Kong" data-zh="">— Family Office Principal, Hong Kong</div>
-      <div class="testimonial-author-zh" data-zh="—— 香港家族辦公室負責人" data-en="">—— 香港家族辦公室負責人</div>
+  <div class="testimonials-wrap">
+    <div class="testimonials-header">
+      <p class="section-label"><span class="inline-en">What Early Subscribers Are Saying</span><span class="inline-zh">Êó©ÊúüË®ÇÈñ±ËÄÖÁöÑË©ïÂÉπ</span></p>
+      <h2 data-lang="en">Trusted by Those<br><em>Who Know the Value of Time</em></h2>
+      <h2 data-lang="zh">Ê∑±Âèó‰ø°Ë≥¥<br><em>Ê∑±Áü•ÊôÇÈñìÂÉπÂÄº‰πã‰∫∫</em></h2>
     </div>
-    <div class="testimonial-card">
-      <div class="testimonial-quote" data-en='"The signal convergence logic is what sets this apart. Seeing multiple independent signals align around a single target — before it becomes public news — is exactly what we needed."' data-zh="">"The signal convergence logic is what sets this apart. Seeing multiple independent signals align around a single target — before it becomes public news — is exactly what we needed."</div>
-      <div class="testimonial-quote-zh" data-zh="「訊號聚合邏輯是其最大的差異化優勢。在消息公開之前，看到多個獨立訊號聚焦於同一標的，正是我們所需要的。」" data-en="">「訊號聚合邏輯是其最大的差異化優勢。在消息公開之前，看到多個獨立訊號聚焦於同一標的，正是我們所需要的。」</div>
-      <div class="testimonial-author" data-en="— CIO, Single Family Office, Hong Kong" data-zh="">— CIO, Single Family Office, Hong Kong</div>
-      <div class="testimonial-author-zh" data-zh="—— 香港單一家族辦公室首席投資官" data-en="">—— 香港單一家族辦公室首席投資官</div>
+    
+    <div class="testimonials-grid">
+      <!-- Testimonial 1 -->
+      <div class="testimonial-card">
+        <p class="testimonial-quote" data-lang="en">"AHBI has fundamentally changed how I start my day. Instead of sifting through dozens of sources, I get exactly what I need in one concise email. The regulatory alerts alone have saved us from potential compliance issues."</p>
+        <p class="testimonial-quote-zh" data-lang="zh">„ÄåAHBIÂæπÂ∫ïÊîπËÆä‰∫ÜÊàëÈñãÂßã‰∏ÄÂ§©ÁöÑÊñπÂºè„ÄÇÁÑ°ÈúÄÂú®Êï∏ÂçÅÂÄã‰æÜÊ∫ê‰∏≠ÁØ©ÈÅ∏ÔºåÊàëÂè™ÈúÄ‰∏ÄÂ∞ÅÁ∞°ÊΩîÁöÑÈÉµ‰ª∂Â∞±ËÉΩÁç≤ÂæóÊâÄÈúÄÁöÑ‰∏ÄÂàá„ÄÇÂñÆÊòØÁõ£ÁÆ°È†êË≠¶Â∞±Âπ´ÊàëÂÄëÈÅøÂÖç‰∫ÜÊΩõÂú®ÁöÑÂêàË¶èÂïèÈ°å„ÄÇ„Äç</p>
+        <p class="testimonial-author"><span class="inline-en">‚Äî Managing Director, Single Family Office, Hong Kong</span><span class="inline-zh">‚Äî‚Äî È¶ôÊ∏ØÂñÆ‰∏ÄÂÆ∂ÊóèËæ¶ÂÖ¨ÂÆ§Ëë£‰∫ãÁ∏ΩÁ∂ìÁêÜ</span></p>
+      </div>
+      
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card">
+        <p class="testimonial-quote" data-lang="en">"The private market intelligence is exceptional. We've identified two promising Pre-IPO opportunities through AHBI's weekly briefings that we would have otherwise missed. The ROI on this subscription is undeniable."</p>
+        <p class="testimonial-quote-zh" data-lang="zh">„ÄåÁßÅÂãüÂ∏ÇÂ†¥ÊÉÖÂ†±ÈùûÂ∏∏Âá∫Ëâ≤„ÄÇÈÄöÈÅéAHBIÁöÑÊØèÈÄ±Á∞°Â†±ÔºåÊàëÂÄëÁôºÁèæ‰∫ÜÂÖ©ÂÄãÊúâÂâçÊôØÁöÑPre-IPOÊ©üÊúÉÔºåÂê¶ÂâáÊàëÂÄëËÇØÂÆöÊúÉÈåØÈÅé„ÄÇÈÄôÈ†ÖË®ÇÈñ±ÁöÑÊäïË≥áÂõûÂ†±ÊØãÂ∫∏ÁΩÆÁñë„ÄÇ„Äç</p>
+        <p class="testimonial-author"><span class="inline-en">‚Äî Investment Principal, Multi-Family Office, Dubai</span><span class="inline-zh">‚Äî‚Äî Ëø™ÊãúËÅØÂêàÂÆ∂ÊóèËæ¶ÂÖ¨ÂÆ§ÊäïË≥áË≤†Ë≤¨‰∫∫</span></p>
+      </div>
     </div>
+    
+    <p class="testimonials-footer"><span class="inline-en">Early access programme ¬∑ Testimonials reflect subscriber feedback during pilot phase</span><span class="inline-zh">Êó©Êúü‰ΩøÁî®Ë®àÂäÉ ¬∑ Ë©ïÂÉπÂèçÊò†Ë©¶ÈªûÈöéÊÆµË®ÇÈñ±ËÄÖÂèçÈ•ã</span></p>
   </div>
-  <div class="testimonial-note" data-en="Early access programme · Testimonials reflect subscriber feedback during pilot phase" data-zh="">Early access programme · Testimonials reflect subscriber feedback during pilot phase</div>
-  <div class="testimonial-note-zh" data-zh="早鳥計劃 · 評價反映試點階段訂閱者反饋" data-en="">早鳥計劃 · 評價反映試點階段訂閱者反饋</div>
 </section>
 
-<!-- ── FOUNDER ── -->
+<!-- FOUNDER SECTION (NEW) -->
 <section class="founder-section reveal">
-  <div class="section-label" data-en="Built By A Domain Expert" data-zh="由領域專家打造">Built By A Domain Expert</div>
-  <h2 class="section-title" data-en="Designed by someone who <em>lived the problem.</em>" data-zh="">Designed by someone who <em>lived the problem.</em></h2>
-  <div class="section-title-zh" data-zh="由親歷問題之人親手設計。" data-en="">由親歷問題之人親手設計。</div>
-  <div class="founder-grid">
-    <div>
-      <p class="founder-text" data-en="AHBI was founded by Ling Wu, a senior financial services professional with over nine years of direct experience in family office and cross-border investment operations across Asia. Having personally navigated the daily intelligence demands that family office principals face — monitoring Pre-IPO deal flow, tracking regulatory changes, assessing emerging targets from public signals — she built AHBI to solve a problem she knew from the inside." data-zh="">AHBI was founded by Ling Wu, a senior financial services professional with over nine years of direct experience in family office and cross-border investment operations across Asia. Having personally navigated the daily intelligence demands that family office principals face — monitoring Pre-IPO deal flow, tracking regulatory changes, assessing emerging targets from public signals — she built AHBI to solve a problem she knew from the inside.</p>
-      <p class="founder-text-zh" data-zh="AHBI由吳靈霞（Ling Wu）創立，她在亞洲家族辦公室及跨境投資領域擁有逾九年直接從業經驗。親身經歷了家族辦公室負責人每日面對的情報壓力——監控Pre-IPO交易流、追蹤監管變化、從公開訊號評估潛在標的——她創立AHBI，以解決她深刻了解的行業痛點。" data-en="">AHBI由吳靈霞（Ling Wu）創立，她在亞洲家族辦公室及跨境投資領域擁有逾九年直接從業經驗。親身經歷了家族辦公室負責人每日面對的情報壓力——監控Pre-IPO交易流、追蹤監管變化、從公開訊號評估潛在標的——她創立AHBI，以解決她深刻了解的行業痛點。</p>
-      <div class="founder-quote" data-en='"AHBI is not technology seeking a market. It is a financial services expert who built the technology to solve a problem she lived every day."' data-zh="">"AHBI is not technology seeking a market. It is a financial services expert who built the technology to solve a problem she lived every day."</div>
-      <div class="founder-quote-zh" data-zh="「AHBI並非尋找市場的科技公司，而是一位金融服務專家，為解決她每天親身面對的問題而建立的技術平台。」" data-en="">「AHBI並非尋找市場的科技公司，而是一位金融服務專家，為解決她每天親身面對的問題而建立的技術平台。」</div>
+  <div class="founder-wrap">
+    <div class="founder-header">
+      <p class="section-label"><span class="inline-en">BUILT BY A DOMAIN EXPERT</span><span class="inline-zh">Áî±È†òÂüüÂ∞àÂÆ∂ÊâìÈÄ†</span></p>
+      <h2 data-lang="en">Designed by someone who<br><em>lived the problem.</em></h2>
+      <h2 data-lang="zh">Áî±Ë¶™Ê≠∑ÂïèÈ°å‰πã‰∫∫<br><em>Ë¶™ÊâãË®≠Ë®à„ÄÇ</em></h2>
     </div>
-    <div>
-      <div class="founder-stats">
-        <div class="founder-stat">
-          <div class="founder-stat-value">9+</div>
-          <div class="founder-stat-label" data-en="Years of direct family office & cross-border financial services experience" data-zh="">Years of direct family office & cross-border financial services experience</div>
-          <div class="founder-stat-label-zh" data-zh="年家族辦公室及跨境金融服務直接從業經驗" data-en="">年家族辦公室及跨境金融服務直接從業經驗</div>
-        </div>
-        <div class="founder-stat">
-          <div class="founder-stat-value">$100M+</div>
-          <div class="founder-stat-label" data-en="Transaction involvement across private financings and equity deals" data-zh="">Transaction involvement across private financings and equity deals</div>
-          <div class="founder-stat-label-zh" data-zh="私募融資及股權交易參與規模" data-en="">私募融資及股權交易參與規模</div>
-        </div>
-        <div class="founder-stat">
-          <div class="founder-stat-value">MBA</div>
-          <div class="founder-stat-label" data-en="University of Sheffield · QS World Top 110" data-zh="">University of Sheffield · QS World Top 110</div>
-          <div class="founder-stat-label-zh" data-zh="謝菲爾德大學 · QS全球前110" data-en="">謝菲爾德大學 · QS全球前110</div>
-        </div>
+    
+    <p class="founder-name">Ling Wu</p>
+    <p class="founder-title"><span class="inline-en">Founder & CEO, Athena Horizon Limited</span><span class="inline-zh">Athena Horizon Limited ÂâµÂßã‰∫∫ÂÖºÈ¶ñÂ∏≠Âü∑Ë°åÂÆò</span></p>
+    
+    <p class="founder-bio" data-lang="en">AHBI was founded by Ling Wu, who spent years navigating the complexities of private market intelligence and regulatory monitoring for family offices. Having experienced firsthand the challenges of information overload and fragmented data sources, Ling set out to build a solution that combines domain expertise with cutting-edge AI technology.</p>
+    <p class="founder-bio" data-lang="zh">AHBIÁî±Ling WuÂâµÁ´ãÔºåÂ•πÂ§öÂπ¥‰æÜÁÇ∫ÂÆ∂ÊóèËæ¶ÂÖ¨ÂÆ§ËôïÁêÜÁßÅÂãüÂ∏ÇÂ†¥ÊÉÖÂ†±ÂíåÁõ£ÁÆ°Áõ£ÊéßÁöÑË§áÈõú‰∫ãÂãô„ÄÇË¶™Ë∫´Á∂ìÊ≠∑‰∫ÜË≥áË®äÈÅéËºâÂíåÊï∏Êìö‰æÜÊ∫êÂàÜÊï£ÁöÑÊåëÊà∞ÂæåÔºåLingÊ±∫ÂøÉÊâìÈÄ†‰∏ÄÂÄãÁµêÂêàÈ†òÂüüÂ∞àÊ•≠Áü•Ë≠òËàáÂ∞ñÁ´ØAIÊäÄË°ìÁöÑËß£Ê±∫ÊñπÊ°à„ÄÇ</p>
+    
+    <div class="founder-stats">
+      <div class="founder-stat">
+        <div class="founder-stat-number">9+</div>
+        <div class="founder-stat-label"><span class="inline-en">Years Experience</span><span class="inline-zh">Âπ¥Á∂ìÈ©ó</span></div>
       </div>
+      <div class="founder-stat">
+        <div class="founder-stat-number">$100M+</div>
+        <div class="founder-stat-label"><span class="inline-en">Transaction Volume</span><span class="inline-zh">‰∫§ÊòìË¶èÊ®°</span></div>
+      </div>
+      <div class="founder-stat">
+        <div class="founder-stat-number">MBA</div>
+        <div class="founder-stat-label"><span class="inline-en">University of Sheffield</span><span class="inline-zh">Ë¨ùËè≤ÁàæÂæ∑Â§ßÂ≠∏</span></div>
+      </div>
+    </div>
+    
+    <p class="founder-quote" data-lang="en">"I built AHBI because I believed family offices deserved better intelligence‚Äîdelivered faster, with greater precision, and without the noise."</p>
+    <p class="founder-quote" data-lang="zh">„ÄåÊàëÂâµÁ´ãAHBIÔºåÊòØÂõ†ÁÇ∫ÊàëÁõ∏‰ø°ÂÆ∂ÊóèËæ¶ÂÖ¨ÂÆ§ÂÄºÂæóÊìÅÊúâÊõ¥ÂÑ™Ë≥™ÁöÑÊÉÖÂ†±‚Äî‚Äî‰∫§‰ªòÊõ¥Âø´„ÄÅÊõ¥Á≤æÊ∫ñ„ÄÅÊ≤íÊúâÈõúË®ä„ÄÇ„Äç</p>
+  </div>
+</section>
+
+<!-- Sample Report Download Section -->
+<section class="sample-report" style="padding:100px 48px;text-align:center;background:var(--navy-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="sample-report__content" style="max-width:700px;margin:0 auto">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,48px);font-weight:300;margin-bottom:24px"><span class="inline-en">See AHBI in Action</span><span class="inline-zh">Ë¶™ÁúºÁúãÁúãAHBIÁöÑÊÉÖÂ†±Ë≥™Èáè</span></h2>
+    <p style="font-size:16px;line-height:1.75;margin-bottom:32px;color:var(--grey)"><span class="inline-en">Download our sample intelligence report ‚Äî including a real-world private market case study showing +109% first-day return, +700% peak gain.</span><span class="inline-zh">‰∏ãËºâÊàëÂÄëÁöÑÊÉÖÂ†±Ê®£Êú¨Â†±Âëä‚Äî‚ÄîÂåÖÂê´‰∏ÄÂÄãÁúüÂØ¶‰∏ÄÁ¥öÂ∏ÇÂ†¥Ê°à‰æãÁ†îÁ©∂ÔºåÂ±ïÁ§∫+109%È¶ñÊó•ÂõûÂ†±„ÄÅ+700%Â≥∞ÂÄºÊî∂Áõä„ÄÇ</span></p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+ <button onclick="openSampleModal('en')" style="background:var(--gold);color:var(--navy);padding:18px 40px;font-size:16px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;transition:all 0.3s;font-family:'DM Sans',sans-serif">Download Sample Report</button>
+ <button onclick="openSampleModal('zh')" style="background:transparent;color:var(--gold);padding:18px 40px;font-size:16px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;border:1px solid var(--gold);cursor:pointer;transition:all 0.3s;font-family:'DM Sans',sans-serif">‰∏ãËºâÊ®£Êú¨Â†±Âëä</button>
+</div>
+  </div>
+</section>
+
+<!-- Modal: Lead Capture Form -->
+<div id="sample-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(11,17,32,0.95);z-index:1000;align-items:center;justify-content:center">
+  <div style="background:var(--navy-mid);border:1px solid var(--border);padding:48px;max-width:480px;width:90%;position:relative">
+    <button onclick="document.getElementById('sample-modal').style.display='none'" style="position:absolute;top:16px;right:16px;background:none;border:none;color:var(--grey);font-size:24px;cursor:pointer">‚úï</button>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;margin-bottom:24px;text-align:center"><span class="inline-en">Get Your Free Sample Report</span><span class="inline-zh">Áç≤ÂèñÂÖçË≤ªÊ®£Êú¨Â†±Âëä</span></h3>
+    <input type="text" placeholder="Full Name / ÂßìÂêç" id="sample-name" required style="width:100%;background:var(--navy);border:1px solid var(--border);color:var(--white);padding:16px 20px;font-family:'DM Sans',sans-serif;font-size:16px;margin-bottom:16px;outline:none"/>
+    <input type="text" placeholder="Company / ÂÖ¨Âè∏ÂêçÁ®±" id="sample-company" required style="width:100%;background:var(--navy);border:1px solid var(--border);color:var(--white);padding:16px 20px;font-family:'DM Sans',sans-serif;font-size:16px;margin-bottom:16px;outline:none"/>
+    <input type="email" placeholder="Email Address / ÈõªÈÉµÂú∞ÂùÄ" id="sample-email" required style="width:100%;background:var(--navy);border:1px solid var(--border);color:var(--white);padding:16px 20px;font-family:'DM Sans',sans-serif;font-size:16px;margin-bottom:24px;outline:none"/>
+    <button onclick="submitSampleRequest()" style="width:100%;background:var(--gold);color:var(--navy);padding:18px;font-size:16px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;transition:all 0.3s;font-family:'DM Sans',sans-serif"><span class="inline-en">Download Report</span><span class="inline-zh">‰∏ãËºâÂ†±Âëä</span></button>
+    <p style="font-size:12px;color:var(--grey);margin-top:16px;text-align:center"><span class="inline-en">Your information is kept strictly confidential.</span><span class="inline-zh">ÊÇ®ÁöÑË≥áÊñôÂ∞áÂèóÂà∞Âö¥Ê†º‰øùÂØÜ„ÄÇ</span></p>
+  </div>
+</div>
+
+<!-- FORM -->
+<section class="form-section reveal" id="enquire">
+  <h2><span class="inline-en">Request <em style="font-style:italic;color:var(--gold-light)">Early Access</em></span><span class="inline-zh">Áî≥Ë´ã<em style="font-style:italic;color:var(--gold-light)">Êó©È≥•‰ΩøÁî®Ë≥áÊ†º</em></span></h2>
+  <p data-lang="en">We are onboarding a select group of family offices for our launch cohort. Secure your place today.</p>
+  <p data-lang="zh">ÊàëÂÄëÊ≠£Âú®ÁÇ∫È¶ñÊâπÂÆ∂ÊóèËæ¶ÂÖ¨ÂÆ§ÈñãÊîæ‰ΩøÁî®Ë≥áÊ†º„ÄÇÁ´ãÂç≥Á¢∫‰øùÊÇ®ÁöÑ‰ΩçÁΩÆ„ÄÇ</p>
+
+  <div id="enquiry-form">
+    <form id="enquiry-form-el" onsubmit="submitForm(event)">
+      <div class="form-row">
+        <input type="text" name="first_name" placeholder="First Name / ÂêçÂ≠ó" required />
+        <input type="text" name="last_name" placeholder="Last Name / ÂßìÊ∞è" required />
+      </div>
+      <div class="form-field">
+        <input type="email" name="email" placeholder="Email Address / ÈõªÈÉµÂú∞ÂùÄ" required />
+      </div>
+      <div class="form-field">
+        <input type="text" name="firm" placeholder="Firm / Family Office Name / ÂÖ¨Âè∏ÊàñÂÆ∂ÊóèËæ¶ÂÖ¨ÂÆ§ÂêçÁ®±" required />
+      </div>
+      <div class="form-field">
+        <select name="tier" required>
+          <option value="" disabled selected>Interested Plan / ÊÑüËààË∂£ÁöÑÊñπÊ°à</option>
+          <option>Essentials ‚Äî $688 USD/month</option>
+          <option>Professional ‚Äî $1,888 USD/month</option>
+          <option>Enterprise ‚Äî Custom / ÂÆöÂà∂</option>
+          <option>Intelligence Dossier ‚Äî $15,000 USD/report</option>
+          <option>Intelligence Mandate ‚Äî $100,000+ USD</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <select name="market" required>
+          <option value="" disabled selected>Primary Market Focus / ‰∏ªË¶ÅÂ∏ÇÂ†¥ÈáçÈªû</option>
+          <option>Hong Kong / È¶ôÊ∏Ø</option>
+          <option>Hong Kong + Mainland China / È¶ôÊ∏Ø + ‰∏≠ÂúãÂÖßÂú∞</option>
+          <option>Hong Kong + Dubai / È¶ôÊ∏Ø + Ëø™Êãú</option>
+          <option>Multi-Market / Â§öÂ∏ÇÂ†¥</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <textarea name="message" rows="3" placeholder="Any specific intelligence needs? / Êúâ‰ªª‰ΩïÁâπÂÆöÊÉÖÂ†±ÈúÄÊ±ÇÔºüÔºàÈÅ∏Â°´Ôºâ"></textarea>
+      </div>
+      <button type="submit" class="form-submit">
+        <span class="inline-en">Request Access ‚Üí</span>
+        <span class="inline-zh">Áî≥Ë´ã‰ΩøÁî® ‚Üí</span>
+      </button>
+      <p class="direct-contact" style="font-size:17px;color:var(--gold);text-align:center;margin-top:16px;-webkit-font-smoothing:antialiased">
+        <span class="inline-en">Or email us directly: <a href="/cdn-cgi/l/email-protection#086d66797d617a714869606a61266961" style="color:var(--gold);text-decoration:underline"><span class="__cf_email__" data-cfemail="76131807031f040f36171e141f58171f">[email&#160;protected]</span></a></span>
+        <span class="inline-zh">ÊàñÁõ¥Êé•ÁôºÈÄÅÈÉµ‰ª∂Ëá≥Ôºö<a href="/cdn-cgi/l/email-protection#20454e515549525960414842490e4149" style="color:var(--gold);text-decoration:underline"><span class="__cf_email__" data-cfemail="2c49425d59455e556c4d444e45024d45">[email&#160;protected]</span></a></span>
+      </p>
+      <p class="form-note">
+        <span class="inline-en">Your information is kept strictly confidential. We will respond within 24 hours.</span>
+        <span class="inline-zh">ÊÇ®ÁöÑË≥áÊñôÂ∞áÂèóÂà∞Âö¥Ê†º‰øùÂØÜ„ÄÇÊàëÂÄëÂ∞áÂú®24Â∞èÊôÇÂÖßÂõûË¶Ü„ÄÇ</span>
+      </p>
+    </form>
+  </div>
+  <div class="success-msg" id="success">
+    <h3><span class="inline-en">Request Received</span><span class="inline-zh">Áî≥Ë´ãÂ∑≤Êî∂Âà∞</span></h3>
+    <p style="color:var(--grey);font-size:14px;margin:0"><span class="inline-en">Thank you. Our team will be in touch within 24 hours to discuss your intelligence requirements.</span><span class="inline-zh">ÊÑüË¨ùÊÇ®„ÄÇÊàëÂÄëÁöÑÂúòÈöäÂ∞áÂú®24Â∞èÊôÇÂÖßËàáÊÇ®ËÅØÁπ´ÔºåË®éË´ñÊÇ®ÁöÑÊÉÖÂ†±ÈúÄÊ±Ç„ÄÇ</span></p>
+  </div>
+</section>
+
+<!-- DISCLAIMER SECTION -->
+<section class="disclaimer-section reveal">
+  <div class="disclaimer-wrap">
+    <h3><span class="inline-en">Information Aggregation, Not Investment Advice</span><span class="inline-zh">Ë≥áË®äÊï¥ÂêàÔºåËÄåÈùûÊäïË≥áÂª∫Ë≠∞</span></h3>
+    
+    <div class="disclaimer-box">
+      <p data-lang="en"><strong>AHBI is a technology-driven information services company.</strong> We do not hold any financial regulatory licenses and do not provide investment advice, asset management services, or securities brokerage services.</p>
+      <p data-lang="zh"><strong>AHBIÊòØ‰∏ÄÂÆ∂ÊäÄË°ìÈ©ÖÂãïÁöÑË≥áË®äÊúçÂãôÂÖ¨Âè∏„ÄÇ</strong>ÊàëÂÄë‰∏çÊåÅÊúâ‰ªª‰ΩïÈáëËûçÁõ£ÁÆ°ÁâåÁÖßÔºå‰∏çÊèê‰æõÊäïË≥áÂª∫Ë≠∞„ÄÅË≥áÁî¢ÁÆ°ÁêÜÊúçÂãôÊàñË≠âÂà∏Á∂ìÁ¥ÄÊúçÂãô„ÄÇ</p>
+      
+      <p data-lang="en">All content delivered by AHBI is sourced from publicly available information and is provided for <strong>informational purposes only</strong>. Nothing in our service constitutes financial, investment, legal, or compliance advice.</p>
+      <p data-lang="zh">AHBIÊèê‰æõÁöÑÊâÄÊúâÂÖßÂÆπÂùá‰æÜËá™ÂÖ¨ÈñãÂèØÁç≤ÂèñÁöÑË≥áË®äÔºåÂÉÖ‰æõ<strong>ÂèÉËÄÉ</strong>„ÄÇÊàëÂÄëÁöÑÊúçÂãô‰∏çÊßãÊàêË≤°Âãô„ÄÅÊäïË≥á„ÄÅÊ≥ïÂæãÊàñÂêàË¶èÂª∫Ë≠∞„ÄÇ</p>
+      
+      <p data-lang="en">Clients should independently verify all critical information and consult licensed professional advisors before making investment or compliance decisions. AHBI is not licensed by the SFC, HKMA, DFSA, or any other regulatory authority to provide investment advice.</p>
+      <p data-lang="zh">ÂÆ¢Êà∂ÊáâÁç®Á´ãÊ†∏ÂØ¶ÊâÄÊúâÈóúÈçµË≥áË®äÔºå‰∏¶Âú®ÂÅöÂá∫ÊäïË≥áÊàñÂêàË¶èÊ±∫Á≠ñÂâçË´ÆË©¢ÊåÅÁâåÂ∞àÊ•≠È°ßÂïè„ÄÇAHBIÊú™Áç≤Ë≠âÁõ£ÊúÉ„ÄÅÈáëÁÆ°Â±Ä„ÄÅËø™ÊãúÈáëËûçÊúçÂãôÂ±ÄÊàñ‰ªª‰ΩïÂÖ∂‰ªñÁõ£ÁÆ°Ê©üÊßãÁôºÁâåÊèê‰æõÊäïË≥áÂª∫Ë≠∞„ÄÇ</p>
+    </div>
+    
+    <div class="disclaimer-links">
+      <a href="#" onclick="openModal('terms-modal'); return false;"><span class="inline-en">Terms of Use</span><span class="inline-zh">‰ΩøÁî®Ê¢ùÊ¨æ</span></a>
+      <a href="#" onclick="openModal('privacy-modal'); return false;"><span class="inline-en">Privacy Policy</span><span class="inline-zh">Èö±ÁßÅÊîøÁ≠ñ</span></a>
+      <a href="#" onclick="openModal('disclaimer-modal'); return false;"><span class="inline-en">Full Disclaimer</span><span class="inline-zh">ÂÆåÊï¥ÂÖçË≤¨ËÅ≤Êòé</span></a>
     </div>
   </div>
 </section>
 
-<!-- ── SAMPLE REPORT CTA ── -->
-<div class="report-section reveal">
-  <div class="report-inner">
-    <div>
-      <div class="report-title" data-en="See AHBI in Action" data-zh="">See AHBI in Action</div>
-      <div class="report-title-zh" data-zh="親眼看看AHBI的情報質量" data-en="">親眼看看AHBI的情報質量</div>
-      <p class="report-desc" data-en="Download our sample intelligence report — a real-world private market case study demonstrating +109% first-day return, +700% peak gain. Six converging public signals, identified in advance." data-zh="">Download our sample intelligence report — a real-world private market case study demonstrating +109% first-day return, +700% peak gain. Six converging public signals, identified in advance.</p>
-      <p class="report-desc-zh" data-zh="下載我們的情報樣本報告——一個真實的私募市場案例研究，展示+109%首日回報、+700%峰值收益。六個聚合公開訊號，提前識別。" data-en="">下載我們的情報樣本報告——一個真實的私募市場案例研究，展示+109%首日回報、+700%峰值收益。六個聚合公開訊號，提前識別。</p>
-    </div>
-    <button class="btn-report" onclick="document.getElementById('reportModal').classList.add('active')" data-en="Download Sample Report" data-zh="下載樣本報告">Download Sample Report</button>
-  </div>
-</div>
-
-<!-- ── ENQUIRE ── -->
-<section class="enquire-section reveal" id="enquire">
-  <div class="section-label" data-en="Request Access" data-zh="申請使用">Request Access</div>
-  <h2 class="section-title" data-en="Request <em>Early Access</em>" data-zh="">Request <em>Early Access</em></h2>
-  <div class="section-title-zh" data-zh="申請早鳥使用資格" data-en="">申請早鳥使用資格</div>
-  <div class="enquire-grid">
-    <div class="enquire-form">
-      <div id="formWrap">
-        <form id="enquireForm" action="https://formspree.io/f/xjkkvvwg" method="POST">
-          <div class="form-row">
-            <label class="form-label" data-en="Full Name" data-zh="姓名">Full Name</label>
-            <input class="form-input" type="text" name="name" required placeholder="Your name"/>
-          </div>
-          <div class="form-row">
-            <label class="form-label" data-en="Email Address" data-zh="電郵地址">Email Address</label>
-            <input class="form-input" type="email" name="email" required placeholder="your@email.com"/>
-          </div>
-          <div class="form-row">
-            <label class="form-label" data-en="Organisation" data-zh="機構名稱">Organisation</label>
-            <input class="form-input" type="text" name="organisation" placeholder="Family office / Firm name"/>
-          </div>
-          <div class="form-row">
-            <label class="form-label" data-en="Interested In" data-zh="感興趣的方案">Interested In</label>
-            <select class="form-select" name="plan">
-              <option value="">Select a plan...</option>
-              <option value="Essentials">Essentials — $688 USD/month</option>
-              <option value="Professional">Professional — $1,888 USD/month</option>
-              <option value="Enterprise">Enterprise — Custom pricing</option>
-              <option value="Intelligence Dossier">Intelligence Dossier — $15,000 USD/report</option>
-              <option value="Intelligence Mandate">Intelligence Mandate — $100,000+ USD</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label class="form-label" data-en="Primary Market Focus" data-zh="主要市場重點">Primary Market Focus</label>
-            <select class="form-select" name="market">
-              <option value="">Select markets...</option>
-              <option value="Hong Kong">Hong Kong</option>
-              <option value="Hong Kong + US">Hong Kong + United States</option>
-              <option value="Hong Kong + Mainland China">Hong Kong + Mainland China</option>
-              <option value="Hong Kong + Dubai">Hong Kong + Dubai/UAE</option>
-              <option value="Multi-Market">Multi-Market</option>
-            </select>
-          </div>
-          <button type="submit" class="form-submit" data-en="Request Access →" data-zh="申請使用 →">Request Access →</button>
-          <div class="form-note" data-en="Your information is kept strictly confidential. We will respond within 24 hours." data-zh="您的資料將受到嚴格保密。我們將在24小時內回覆。">Your information is kept strictly confidential. We will respond within 24 hours.</div>
-        </form>
-      </div>
-      <div class="form-success" id="formSuccess">
-        <div class="form-success-title" data-en="Request Received" data-zh="申請已收到">Request Received</div>
-        <div class="form-success-sub" data-en="Thank you. Our team will be in touch within 24 hours." data-zh="感謝您。我們的團隊將在24小時內與您聯繫。">Thank you. Our team will be in touch within 24 hours.</div>
-      </div>
-    </div>
-    <div class="enquire-info">
-      <div class="enquire-info-point">
-        <div class="enquire-info-title" data-en="Who is this for?" data-zh="">Who is this for?</div>
-        <div class="enquire-info-title-zh" data-zh="適合哪些人？" data-en="">適合哪些人？</div>
-        <div class="enquire-info-desc" data-en="Family office principals, CIOs, and capital allocators managing USD 50M–500M across private and public markets in Hong Kong, Singapore, and the Gulf." data-zh="">Family office principals, CIOs, and capital allocators managing USD 50M–500M across private and public markets in Hong Kong, Singapore, and the Gulf.</div>
-        <div class="enquire-info-desc-zh" data-zh="管理5,000萬至5億美元資產的家族辦公室負責人、首席投資官及資本配置者，業務覆蓋香港、新加坡及海灣地區的一級與二級市場。" data-en="">管理5,000萬至5億美元資產的家族辦公室負責人、首席投資官及資本配置者，業務覆蓋香港、新加坡及海灣地區的一級與二級市場。</div>
-      </div>
-      <div class="enquire-info-point">
-        <div class="enquire-info-title" data-en="No data sharing required" data-zh="">No data sharing required</div>
-        <div class="enquire-info-title-zh" data-zh="無需共享任何數據" data-en="">無需共享任何數據</div>
-        <div class="enquire-info-desc" data-en="AHBI is an information-aggregation service. We do not require access to your portfolio, positions, or any confidential data. You tell us your focus. We monitor." data-zh="">AHBI is an information-aggregation service. We do not require access to your portfolio, positions, or any confidential data. You tell us your focus. We monitor.</div>
-        <div class="enquire-info-desc-zh" data-zh="AHBI是資訊聚合服務。我們不需要訪問您的投資組合、持倉或任何機密數據。您告訴我們您的關注重點，我們進行監控。" data-en="">AHBI是資訊聚合服務。我們不需要訪問您的投資組合、持倉或任何機密數據。您告訴我們您的關注重點，我們進行監控。</div>
-      </div>
-      <div class="enquire-info-point">
-        <div class="enquire-info-title" data-en="Or email us directly" data-zh="">Or email us directly</div>
-        <div class="enquire-info-title-zh" data-zh="或直接發送郵件" data-en="">或直接發送郵件</div>
-        <div class="enquire-info-desc"><a href="mailto:enquiry@ahbi.ai" style="color:var(--gold);text-decoration:none;">enquiry@ahbi.ai</a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── DISCLAIMER BAR ── -->
-<div class="disclaimer-bar">
-  <div class="disclaimer-title" data-en="Information Aggregation — Not Investment Advice" data-zh="資訊整合——非投資建議">Information Aggregation — Not Investment Advice</div>
-  <p class="disclaimer-text" data-en="AHBI is a technology-driven information services company. We do not hold any financial regulatory licences and do not provide investment advice, asset management services, or securities brokerage services. All content is sourced from publicly available information and is provided for informational purposes only. Clients should independently verify all critical information and consult licensed professional advisors before making investment or compliance decisions." data-zh="">AHBI is a technology-driven information services company. We do not hold any financial regulatory licences and do not provide investment advice, asset management services, or securities brokerage services. All content is sourced from publicly available information and is provided for informational purposes only.</p>
-  <p class="disclaimer-text-zh" data-zh="AHBI是一家技術驅動的資訊服務公司。我們不持有任何金融監管牌照，不提供投資建議、資產管理服務或證券經紀服務。所有內容均來自公開可獲取的資訊，僅供參考。客戶在做出投資或合規決策前，應獨立核實所有關鍵資訊並諮詢持牌專業顧問。" data-en="">AHBI是一家技術驅動的資訊服務公司。我們不持有任何金融監管牌照，不提供投資建議、資產管理服務或證券經紀服務。所有內容均來自公開可獲取的資訊，僅供參考。客戶在做出投資或合規決策前，應獨立核實所有關鍵資訊並諮詢持牌專業顧問。</p>
-</div>
-
-<!-- ── FOOTER ── -->
+<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">AHBI | Athena Horizon Limited · <a href="mailto:enquiry@ahbi.ai" style="color:var(--gray);text-decoration:none;">enquiry@ahbi.ai</a></div>
-    <div class="footer-links">
-      <button onclick="document.getElementById('termsModal').classList.add('active')" data-en="Terms" data-zh="條款">Terms</button>
-      <button onclick="document.getElementById('privacyModal').classList.add('active')" data-en="Privacy" data-zh="隱私">Privacy</button>
-      <button onclick="document.getElementById('disclaimerModal').classList.add('active')" data-en="Disclaimer" data-zh="免責">Disclaimer</button>
-    </div>
-    <div class="footer-copy">© 2026 Athena Horizon Limited.</div>
+  <div class="footer-logo">AHBI <span>|</span> Athena Horizon</div>
+  <div class="footer-contact">
+    <p style="font-size:16px;color:var(--gold);margin-bottom:12px;font-weight:500;-webkit-font-smoothing:antialiased"><span class="inline-en">Contact: <a href="/cdn-cgi/l/email-protection#62070c13170b101b22030a000b4c030b" style="color:var(--gold);text-decoration:none;"><span class="__cf_email__" data-cfemail="23464d52564a515a63424b414a0d424a">[email&#160;protected]</span></a></span><span class="inline-zh">ËÅØÁπ´Ôºö<a href="/cdn-cgi/l/email-protection#d6b3b8a7a3bfa4af96b7beb4bff8b7bf" style="color:var(--gold);text-decoration:none;"><span class="__cf_email__" data-cfemail="7a1f140b0f1308033a1b121813541b13">[email&#160;protected]</span></a></span></p>
+    <p style="font-size:12px;color:var(--grey);margin-bottom:8px;">
+      <a href="#" style="color:var(--grey);text-decoration:none;" onclick="openModal('terms-modal');return false;"><span class="inline-en">Terms</span><span class="inline-zh">Ê¢ùÊ¨æ</span></a>
+      <a href="#" style="color:var(--grey);text-decoration:none;" onclick="openModal('privacy-modal');return false;"><span class="inline-en">Privacy</span><span class="inline-zh">Èö±ÁßÅ</span></a>
+      <a href="#" style="color:var(--grey);text-decoration:none;" onclick="openModal('disclaimer-modal');return false;"><span class="inline-en">Disclaimer</span><span class="inline-zh">ÂÖçË≤¨</span></a> ¬∑ 
+      
+    </p>
+    <p style="font-size:12px;color:var(--grey)">¬© 2026 Athena Horizon Limited.</p>
   </div>
 </footer>
 
-<!-- ── REPORT MODAL ── -->
-<div class="modal-overlay" id="reportModal">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('reportModal').classList.remove('active')">✕</button>
-    <div class="modal-title" data-en="Get Your Free Sample Report" data-zh="獲取免費樣本報告">Get Your Free Sample Report</div>
-    <div id="reportFormWrap">
-      <form id="reportForm" action="https://formspree.io/f/xjkkvvwg" method="POST">
-        <input type="hidden" name="type" value="sample_report_download"/>
-        <div class="form-row">
-          <label class="form-label" data-en="Name" data-zh="姓名">Name</label>
-          <input class="form-input" type="text" name="name" required placeholder="Your name"/>
-        </div>
-        <div class="form-row">
-          <label class="form-label" data-en="Email" data-zh="電郵">Email</label>
-          <input class="form-input" type="email" name="email" required placeholder="your@email.com"/>
-        </div>
-        <div class="form-row">
-          <label class="form-label" data-en="Organisation" data-zh="機構">Organisation</label>
-          <input class="form-input" type="text" name="organisation" placeholder="Optional"/>
-        </div>
-        <button type="submit" class="form-submit" data-en="Download Report" data-zh="下載報告">Download Report</button>
-        <div class="form-note" data-en="Your information is kept strictly confidential." data-zh="您的資料將受到嚴格保密。">Your information is kept strictly confidential.</div>
-      </form>
-    </div>
-    <div id="reportSuccessWrap" style="display:none;text-align:center;padding:20px 0;">
-      <div style="font-family:var(--font-display);font-size:22px;color:var(--white);margin-bottom:12px;" data-en="Thank you!" data-zh="謝謝！">Thank you!</div>
-      <p style="font-size:14px;color:var(--light);margin-bottom:20px;" data-en="Your report is downloading now." data-zh="您的報告正在下載。">Your report is downloading now.</p>
-      <a href="/assets/AHBI_Report_EN_v6.pdf" download style="display:inline-block;background:var(--gold);color:var(--navy);padding:12px 24px;border-radius:2px;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;" data-en="Download English Report" data-zh="下載英文報告">Download English Report</a>
-      <br/><br/>
-      <a href="/assets/AHBI_Report_ZH_v6.pdf" download style="display:inline-block;border:1px solid rgba(201,168,76,0.3);color:var(--gold);padding:12px 24px;border-radius:2px;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;" data-en="Download Chinese Report" data-zh="下載中文報告">Download Chinese Report</a>
-    </div>
-  </div>
-</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // NAV SCROLL
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
 
-<!-- ── LEGAL MODALS ── -->
-<div class="modal-overlay" id="termsModal">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('termsModal').classList.remove('active')">✕</button>
-    <div class="modal-title">Terms of Use · 使用條款</div>
-    <div class="modal-body">
-      <p><strong>Last updated: March 2026</strong></p>
-      <h3>1. Service Description</h3>
-      <p>AHBI provides AI-powered information aggregation services. All content is sourced from publicly available information and delivered as informational summaries only.</p>
-      <h3>2. No Investment Advice</h3>
-      <p>Nothing in our service constitutes financial, investment, legal, or compliance advice. AHBI is not licensed by the SFC, HKMA, DFSA, or any regulatory authority to provide investment advice.</p>
-      <h3>3. Accuracy of Information</h3>
-      <p>While we strive for accuracy, AHBI does not guarantee the completeness or timeliness of information delivered. Users should independently verify all critical information before making decisions.</p>
-      <h3>4. Subscription & Payment</h3>
-      <p>Subscriptions are billed monthly in USD. Cancellation requires 30 days written notice. No refunds for partial months.</p>
-      <h3>5. Confidentiality</h3>
-      <p>AHBI treats all client information with strict confidentiality and will not share personal data with third parties without consent.</p>
-      <h3>6. Governing Law</h3>
-      <p>These terms are governed by the laws of Hong Kong SAR.</p>
-      <p><strong>Contact:</strong> enquiry@ahbi.ai · Athena Horizon Limited, Hong Kong</p>
-    </div>
-  </div>
-</div>
+  // REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
 
-<div class="modal-overlay" id="privacyModal">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('privacyModal').classList.remove('active')">✕</button>
-    <div class="modal-title">Privacy Policy · 隱私政策</div>
-    <div class="modal-body">
-      <p><strong>Last updated: March 2026</strong></p>
-      <h3>1. Information We Collect</h3>
-      <p>We collect information you provide when submitting enquiry forms, including name, email, company name, and market preferences.</p>
-      <h3>2. How We Use Your Information</h3>
-      <p>Your information is used solely to respond to your enquiry and deliver our services. We do not sell or share your data with third parties.</p>
-      <h3>3. Data Storage</h3>
-      <p>Your data is stored securely. Form submissions are processed via Formspree and stored in accordance with their privacy policy.</p>
-      <h3>4. Cookies</h3>
-      <p>Our website uses minimal cookies for basic functionality only. No tracking or advertising cookies are used.</p>
-      <h3>5. Your Rights</h3>
-      <p>You may request access to, correction of, or deletion of your personal data at any time by contacting us at enquiry@ahbi.ai.</p>
-      <h3>6. Governing Law</h3>
-      <p>This policy is governed by the laws of Hong Kong SAR and complies with the Personal Data (Privacy) Ordinance (Cap. 486).</p>
-      <p><strong>Contact:</strong> enquiry@ahbi.ai · Athena Horizon Limited, Hong Kong</p>
-    </div>
-  </div>
-</div>
+  // LANGUAGE SWITCH
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+  }
 
-<div class="modal-overlay" id="disclaimerModal">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('disclaimerModal').classList.remove('active')">✕</button>
-    <div class="modal-title">Full Disclaimer · 完整免責聲明</div>
-    <div class="modal-body">
-      <p><strong>Last updated: March 2026</strong></p>
-      <h3>1. Information Only</h3>
-      <p>All content provided by AHBI is for informational purposes only. It does not constitute and should not be construed as financial, investment, legal, compliance, or professional advice of any kind.</p>
-      <h3>2. No Regulatory Licence</h3>
-      <p>Athena Horizon Limited and AHBI are not licensed by the SFC, HKMA, DFSA, or any other regulatory authority to provide investment advice or regulated financial services.</p>
-      <h3>3. Public Sources Only</h3>
-      <p>All information delivered by AHBI is aggregated from publicly available sources including official regulatory websites, stock exchange announcements, and government publications. AHBI does not access, store, or process any private or confidential data.</p>
-      <h3>4. No Liability</h3>
-      <p>AHBI, Athena Horizon Limited, and their representatives shall not be liable for any loss or damage arising from reliance on information provided through our service.</p>
-      <h3>5. Independent Verification</h3>
-      <p>Users are strongly advised to independently verify all information and consult licensed professional advisors before making any investment, legal, or compliance decisions.</p>
-      <p><strong>Contact:</strong> enquiry@ahbi.ai · Athena Horizon Limited, Hong Kong</p>
-    </div>
-  </div>
-</div>
-
-<script>
-// ── LANGUAGE TOGGLE ──
-let currentLang = 'en';
-function setLang(lang) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase().includes(lang === 'zh' ? '繁' : 'en')));
-  document.querySelectorAll('[data-en],[data-zh]').forEach(el => {
-    const val = el.getAttribute('data-' + lang);
-    if (val !== null && val !== '') {
-      if (el.tagName === 'INPUT' || el.tagName === 'BUTTON' || el.tagName === 'A') {
-        el.textContent = val;
+  // Form submission handled by Formspree
+  function submitForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('enquiry-form-el');
+    const data = new FormData(form);
+    fetch('https://formspree.io/f/meergyjw', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        document.getElementById('enquiry-form').style.display = 'none';
+        document.getElementById('success').classList.add('show');
       } else {
-        el.innerHTML = val;
+        alert('Something went wrong. Please try again.');
       }
-      el.style.display = '';
-    } else if (el.getAttribute('data-' + lang) === '') {
-      el.style.display = lang === 'en' ? 'none' : '';
+    }).catch(() => {
+      alert('Something went wrong. Please try again.');
+    });
+  }
+
+  let _sampleLang = 'en';
+
+  function openSampleModal(lang) {
+    _sampleLang = lang;
+    document.getElementById('sample-modal').style.display = 'flex';
+  }
+
+  function submitSampleRequest() {
+    const name = document.getElementById('sample-name').value;
+    const company = document.getElementById('sample-company').value;
+    const email = document.getElementById('sample-email').value;
+    
+    if (!name || !company || !email) {
+      alert('Please fill in all fields. / Ë´ãÂ°´ÂØ´ÊâÄÊúâÊ¨Ñ‰Ωç„ÄÇ');
+      return;
+    }
+    
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('company', company);
+    formData.append('email', email);
+    formData.append('report_language', _sampleLang === 'en' ? 'English' : 'Traditional Chinese');
+    formData.append('_subject', 'New Sample Report Download - AHBI');
+    
+    fetch('https://formspree.io/f/meergyjw', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        document.getElementById('sample-modal').style.display = 'none';
+        // Trigger download
+        const pdfPath = _sampleLang === 'en'
+          ? 'AHBI_Report_EN_final.pdf'
+          : 'AHBI_Report_ZH_final.pdf';
+        const a = document.createElement('a');
+        a.href = pdfPath;
+        a.download = _sampleLang === 'en'
+          ? 'AHBI_Sample_Report_EN.pdf'
+          : 'AHBI_Sample_Report_ZH.pdf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        // Reset
+        document.getElementById('sample-name').value = '';
+        document.getElementById('sample-company').value = '';
+        document.getElementById('sample-email').value = '';
+      } else {
+        alert('Something went wrong. Please try again. / ÁôºÈÄÅÂ§±ÊïóÔºåË´ãÈáçË©¶„ÄÇ');
+      }
+    }).catch(() => {
+      alert('Something went wrong. Please try again. / ÁôºÈÄÅÂ§±ÊïóÔºåË´ãÈáçË©¶„ÄÇ');
+    });
+  }
+
+  // Modal functions
+  function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+  function closeModalOnBackground(event, modalId) {
+    if (event.target.id === modalId) {
+      closeModal(modalId);
+    }
+  }
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(function(modal) {
+        if (modal.style.display === 'block') {
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
     }
   });
-  // Toggle visibility of zh-only and en-only elements
-  document.querySelectorAll('[data-en=""][data-zh]').forEach(el => {
-    el.style.display = lang === 'zh' ? '' : 'none';
-  });
-  document.querySelectorAll('[data-zh=""][data-en]').forEach(el => {
-    el.style.display = lang === 'en' ? '' : 'none';
-  });
-}
-
-// ── SCROLL REVEAL ──
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// ── FORM HANDLERS ──
-document.getElementById('enquireForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const data = new FormData(this);
-  try {
-    const res = await fetch(this.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
-    if (res.ok) {
-      document.getElementById('formWrap').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    }
-  } catch(err) { this.submit(); }
-});
-
-document.getElementById('reportForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const data = new FormData(this);
-  try {
-    const res = await fetch(this.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
-    if (res.ok) {
-      document.getElementById('reportFormWrap').style.display = 'none';
-      document.getElementById('reportSuccessWrap').style.display = 'block';
-    }
-  } catch(err) { this.submit(); }
-});
-
-// ── MODAL CLOSE ON OVERLAY CLICK ──
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', function(e) {
-    if (e.target === this) this.classList.remove('active');
-  });
-});
-
-// ── INIT ──
-setLang('en');
 </script>
-</body>
-</html>
+
+<!-- TERMS OF USE MODAL -->
+<div id="terms-modal" class="modal" onclick="closeModalOnBackground(event, 'terms-modal')">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('terms-modal')">&times;</span>
+    <h2><span class="inline-en">Terms of Use</span><span class="inline-zh">‰ΩøÁî®Ê¢ùÊ¨æ</span></h2>
+    <div class="modal-body">
+      <p data-lang="en"><strong>Last updated: March 2026</strong></p>
+      <p data-lang="zh"><strong>ÊúÄÂæåÊõ¥Êñ∞Ôºö2026Âπ¥3Êúà</strong></p>
+      
+      <h3 data-lang="en">1. Service Description</h3>
+      <h3 data-lang="zh">1. ÊúçÂãôË™™Êòé</h3>
+      <p data-lang="en">AHBI (Athena Horizon Business Intelligence) provides AI-powered information aggregation services. All content is sourced from publicly available information and delivered as informational summaries only.</p>
+      <p data-lang="zh">AHBIÔºàAthena Horizon Business IntelligenceÔºâÊèê‰æõAIÈ©ÖÂãïÁöÑË≥áË®äÊï¥ÂêàÊúçÂãô„ÄÇÊâÄÊúâÂÖßÂÆπÂùá‰æÜËá™ÂÖ¨ÈñãÂèØÁç≤ÂèñÁöÑË≥áË®äÔºåÂÉÖ‰ª•Ë≥áË®äÊëòË¶ÅÂΩ¢ÂºèÊèê‰æõ„ÄÇ</p>
+      
+      <h3 data-lang="en">2. No Investment Advice</h3>
+      <h3 data-lang="zh">2. ÈùûÊäïË≥áÂª∫Ë≠∞</h3>
+      <p data-lang="en">Nothing in our service constitutes financial, investment, legal, or compliance advice. AHBI is not licensed by the SFC, HKMA, DFSA, or any regulatory authority to provide investment advice.</p>
+      <p data-lang="zh">ÊàëÂÄëÁöÑÊúçÂãô‰∏çÊßãÊàê‰ªª‰ΩïË≤°Âãô„ÄÅÊäïË≥á„ÄÅÊ≥ïÂæãÊàñÂêàË¶èÂª∫Ë≠∞„ÄÇAHBIÊú™Áç≤Ë≠âÁõ£ÊúÉ„ÄÅÈáëÁÆ°Â±Ä„ÄÅËø™ÊãúÈáëËûçÊúçÂãôÂ±ÄÊàñ‰ªª‰ΩïÁõ£ÁÆ°Ê©üÊßãÁôºÁâåÊèê‰æõÊäïË≥áÂª∫Ë≠∞„ÄÇ</p>
+      
+      <h3 data-lang="en">3. Accuracy of Information</h3>
+      <h3 data-lang="zh">3. Ë≥áË®äÊ∫ñÁ¢∫ÊÄß</h3>
+      <p data-lang="en">While we strive for accuracy, AHBI does not guarantee the completeness or timeliness of information delivered. Users should independently verify all critical information before making decisions.</p>
+      <p data-lang="zh">ÈõñÁÑ∂ÊàëÂÄëÂäõÊ±ÇÊ∫ñÁ¢∫Ôºå‰ΩÜAHBI‰∏ç‰øùË≠âÊâÄÊèê‰æõË≥áË®äÁöÑÂÆåÊï¥ÊÄßÊàñÊôÇÊïàÊÄß„ÄÇÁî®Êà∂Âú®ÂÅöÂá∫Ê±∫Á≠ñÂâçÊáâÁç®Á´ãÊ†∏ÂØ¶ÊâÄÊúâÈóúÈçµË≥áË®ä„ÄÇ</p>
+      
+      <h3 data-lang="en">4. Subscription & Payment</h3>
+      <h3 data-lang="zh">4. Ë®ÇÈñ±Ëàá‰ªòÊ¨æ</h3>
+      <p data-lang="en">Subscriptions are billed monthly in USD. Cancellation requires 30 days written notice. No refunds for partial months.</p>
+      <p data-lang="zh">Ë®ÇÈñ±ÊåâÊúà‰ª•ÁæéÂÖÉË®àË≤ª„ÄÇÂèñÊ∂àË®ÇÈñ±È†àÊèêÂâç30Â§©Êõ∏Èù¢ÈÄöÁü•„ÄÇ‰∏çÈÄÄÈÇÑÊú™‰ΩøÁî®Êúà‰ªΩË≤ªÁî®„ÄÇ</p>
+      
+      <h3 data-lang="en">5. Confidentiality</h3>
+      <h3 data-lang="zh">5. ‰øùÂØÜÊÄß</h3>
+      <p data-lang="en">AHBI treats all client information with strict confidentiality and will not share personal data with third parties without consent.</p>
+      <p data-lang="zh">AHBIÂ∞çÊâÄÊúâÂÆ¢Êà∂Ë≥áÊñôÂö¥Ê†º‰øùÂØÜÔºåÊú™Á∂ìÂêåÊÑè‰∏çÊúÉËàáÁ¨¨‰∏âÊñπÂÖ±‰∫´ÂÄã‰∫∫Êï∏Êìö„ÄÇ</p>
+      
+      <h3 data-lang="en">6. Governing Law</h3>
+      <h3 data-lang="zh">6. ÈÅ©Áî®Ê≥ïÂæã</h3>
+      <p data-lang="en">These terms are governed by the laws of Hong Kong SAR.</p>
+      <p data-lang="zh">Êú¨Ê¢ùÊ¨æÂèóÈ¶ôÊ∏ØÁâπÂà•Ë°åÊîøÂçÄÊ≥ïÂæãÁÆ°ËΩÑ„ÄÇ</p>
+      
+      <p data-lang="en" style="margin-top: 24px;"><strong>Contact:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dcb5b2bab39cbdb4beb5f2bdb5">[email&#160;protected]</a><br>Athena Horizon Limited, Hong Kong</p>
+      <p data-lang="zh" style="margin-top: 24px;"><strong>ËÅØÁµ°Ôºö</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2a43444c456a4b424843044b43">[email&#160;protected]</a><br>Athena Horizon LimitedÔºåÈ¶ôÊ∏Ø</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVACY POLICY MODAL -->
+<div id="privacy-modal" class="modal" onclick="closeModalOnBackground(event, 'privacy-modal')">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('privacy-modal')">&times;</span>
+    <h2><span class="inline-en">Privacy Policy</span><span class="inline-zh">Èö±ÁßÅÊîøÁ≠ñ</span></h2>
+    <div class="modal-body">
+      <p data-lang="en"><strong>Last updated: March 2026</strong></p>
+      <p data-lang="zh"><strong>ÊúÄÂæåÊõ¥Êñ∞Ôºö2026Âπ¥3Êúà</strong></p>
+      
+      <h3 data-lang="en">1. Information We Collect</h3>
+      <h3 data-lang="zh">1. ÊàëÂÄëÊî∂ÈõÜÁöÑË≥áË®ä</h3>
+      <p data-lang="en">We collect information you provide when submitting enquiry forms, including name, email, company name, and market preferences.</p>
+      <p data-lang="zh">ÊàëÂÄëÊî∂ÈõÜÊÇ®Âú®Êèê‰∫§Êü•Ë©¢Ë°®Ê†ºÊôÇÊèê‰æõÁöÑË≥áË®äÔºåÂåÖÊã¨ÂßìÂêç„ÄÅÈõªÈÉµ„ÄÅÂÖ¨Âè∏ÂêçÁ®±ÂèäÂ∏ÇÂ†¥ÂÅèÂ•Ω„ÄÇ</p>
+      
+      <h3 data-lang="en">2. How We Use Your Information</h3>
+      <h3 data-lang="zh">2. Ë≥áË®ä‰ΩøÁî®ÊñπÂºè</h3>
+      <p data-lang="en">Your information is used solely to respond to your enquiry and deliver our services. We do not sell or share your data with third parties.</p>
+      <p data-lang="zh">ÊÇ®ÁöÑË≥áË®äÂÉÖÁî®ÊñºÂõûÊáâÊÇ®ÁöÑÊü•Ë©¢ÂèäÊèê‰æõÊàëÂÄëÁöÑÊúçÂãô„ÄÇÊàëÂÄë‰∏çÊúÉÂá∫ÂîÆÊàñËàáÁ¨¨‰∏âÊñπÂÖ±‰∫´ÊÇ®ÁöÑÊï∏Êìö„ÄÇ</p>
+      
+      <h3 data-lang="en">3. Data Storage</h3>
+      <h3 data-lang="zh">3. Êï∏ÊìöÂ≠òÂÑ≤</h3>
+      <p data-lang="en">Your data is stored securely. Form submissions are processed via Formspree and stored in accordance with their privacy policy.</p>
+      <p data-lang="zh">ÊÇ®ÁöÑÊï∏ÊìöÂÆâÂÖ®Â≠òÂÑ≤„ÄÇË°®Ê†ºÊèê‰∫§ÈÄöÈÅéFormspreeËôïÁêÜÔºå‰∏¶ÊåâÁÖßÂÖ∂Èö±ÁßÅÊîøÁ≠ñÂ≠òÂÑ≤„ÄÇ</p>
+
+      <h3 data-lang="en">4. Cookies</h3>
+      <h3 data-lang="zh">4. Cookies</h3>
+      <p data-lang="en">Our website uses minimal cookies for basic functionality only. No tracking or advertising cookies are used.</p>
+      <p data-lang="zh">ÊàëÂÄëÁöÑÁ∂≤Á´ôÂÉÖ‰ΩøÁî®ÊúÄÂ∞ëÈáèÁöÑcookies‰ª•Á∂≠ÊåÅÂü∫Êú¨ÂäüËÉΩ„ÄÇ‰∏ç‰ΩøÁî®ËøΩËπ§ÊàñÂª£Âëäcookies„ÄÇ</p>
+
+      <h3 data-lang="en">5. Your Rights</h3>
+      <h3 data-lang="zh">5. ÊÇ®ÁöÑÊ¨äÂà©</h3>
+      <p data-lang="en">You may request access to, correction of, or deletion of your personal data at any time by contacting us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb82858d84ab8a838982c58a82">[email&#160;protected]</a>.</p>
+      <p data-lang="zh">ÊÇ®ÂèØÈö®ÊôÇÈÄöÈÅé<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="abc2c5cdc4ebcac3c9c285cac2">[email&#160;protected]</a>ËÅØÁπ´ÊàëÂÄëÔºåË¶ÅÊ±ÇÊü•Èñ±„ÄÅÊõ¥Ê≠£ÊàñÂà™Èô§ÊÇ®ÁöÑÂÄã‰∫∫Êï∏Êìö„ÄÇ</p>
+
+      <h3 data-lang="en">6. Governing Law</h3>
+      <h3 data-lang="zh">6. ÈÅ©Áî®Ê≥ïÂæã</h3>
+      <p data-lang="en">This policy is governed by the laws of Hong Kong SAR and complies with the Personal Data (Privacy) Ordinance (Cap. 486).</p>
+      <p data-lang="zh">Êú¨ÊîøÁ≠ñÂèóÈ¶ôÊ∏ØÁâπÂà•Ë°åÊîøÂçÄÊ≥ïÂæãÁÆ°ËΩÑÔºå‰∏¶Á¨¶Âêà„ÄäÂÄã‰∫∫Ë≥áÊñôÔºàÁßÅÈö±ÔºâÊ¢ù‰æã„ÄãÔºàÁ¨¨486Á´†ÔºâÁöÑË¶èÂÆö„ÄÇ</p>
+
+      <p data-lang="en" style="margin-top: 24px;"><strong>Contact:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a2cbccc4cde2c3cac0cb8cc3cb">[email&#160;protected]</a><br>Athena Horizon Limited, Hong Kong</p>
+      <p data-lang="zh" style="margin-top: 24px;"><strong>ËÅØÁµ°Ôºö</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bed7d0d8d1fedfd6dcd790dfd7">[email&#160;protected]</a><br>Athena Horizon LimitedÔºåÈ¶ôÊ∏Ø</p>
+    </div>
+  </div>
+</div>
+
+<!-- FULL DISCLAIMER MODAL -->
+<div id="disclaimer-modal" class="modal" onclick="closeModalOnBackground(event, 'disclaimer-modal')">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('disclaimer-modal')">&times;</span>
+    <h2><span class="inline-en">Full Disclaimer</span><span class="inline-zh">ÂÆåÊï¥ÂÖçË≤¨ËÅ≤Êòé</span></h2>
+    <div class="modal-body">
+      <p data-lang="en"><strong>Last updated: March 2026</strong></p>
+      <p data-lang="zh"><strong>ÊúÄÂæåÊõ¥Êñ∞Ôºö2026Âπ¥3Êúà</strong></p>
+
+      <h3 data-lang="en">1. Information Only</h3>
+      <h3 data-lang="zh">1. ÂÉÖ‰æõÂèÉËÄÉ</h3>
+      <p data-lang="en">All content provided by AHBI is for informational purposes only. It does not constitute and should not be construed as financial, investment, legal, compliance, or professional advice of any kind.</p>
+      <p data-lang="zh">AHBIÊèê‰æõÁöÑÊâÄÊúâÂÖßÂÆπÂÉÖ‰æõÂèÉËÄÉ„ÄÇ‰∏çÊßãÊàê‰∫¶‰∏çÊáâË¢´Ë¶ñÁÇ∫‰ªª‰ΩïÂΩ¢ÂºèÁöÑË≤°Âãô„ÄÅÊäïË≥á„ÄÅÊ≥ïÂæã„ÄÅÂêàË¶èÊàñÂ∞àÊ•≠Âª∫Ë≠∞„ÄÇ</p>
+
+      <h3 data-lang="en">2. No Regulatory License</h3>
+      <h3 data-lang="zh">2. ÁÑ°Áõ£ÁÆ°ÁâåÁÖß</h3>
+      <p data-lang="en">Athena Horizon Limited and AHBI are not licensed by the Securities and Futures Commission (SFC), Hong Kong Monetary Authority (HKMA), Dubai Financial Services Authority (DFSA), or any other regulatory authority to provide investment advice or regulated financial services.</p>
+      <p data-lang="zh">Athena Horizon LimitedÂèäAHBIÊú™Áç≤Ë≠âÂà∏ÂèäÊúüË≤®‰∫ãÂãôÁõ£ÂØüÂßîÂì°ÊúÉÔºàË≠âÁõ£ÊúÉÔºâ„ÄÅÈ¶ôÊ∏ØÈáëËûçÁÆ°ÁêÜÂ±ÄÔºàÈáëÁÆ°Â±ÄÔºâ„ÄÅËø™ÊãúÈáëËûçÊúçÂãôÂ±ÄÔºàDFSAÔºâÊàñ‰ªª‰ΩïÂÖ∂‰ªñÁõ£ÁÆ°Ê©üÊßãÁôºÁâåÊèê‰æõÊäïË≥áÂª∫Ë≠∞ÊàñÂèóÁõ£ÁÆ°ÁöÑÈáëËûçÊúçÂãô„ÄÇ</p>
+
+      <h3 data-lang="en">3. Public Sources Only</h3>
+      <h3 data-lang="zh">3. ÂÉÖÈôêÂÖ¨Èñã‰æÜÊ∫ê</h3>
+      <p data-lang="en">All information delivered by AHBI is aggregated from publicly available sources including but not limited to official regulatory websites, stock exchange announcements, and government publications. AHBI does not access, store, or process any private or confidential data.</p>
+      <p data-lang="zh">AHBIÊèê‰æõÁöÑÊâÄÊúâË≥áË®äÂùá‰æÜËá™ÂÖ¨ÈñãÂèØÁç≤ÂèñÁöÑ‰æÜÊ∫êÔºåÂåÖÊã¨ÂÆòÊñπÁõ£ÁÆ°Á∂≤Á´ô„ÄÅ‰∫§ÊòìÊâÄÂÖ¨ÂëäÂèäÊîøÂ∫úÂá∫ÁâàÁâ©„ÄÇAHBI‰∏çË®™Âïè„ÄÅÂ≠òÂÑ≤ÊàñËôïÁêÜ‰ªª‰ΩïÁßÅ‰∫∫ÊàñÊ©üÂØÜÊï∏Êìö„ÄÇ</p>
+
+      <h3 data-lang="en">4. No Liability</h3>
+      <h3 data-lang="zh">4. ÂÖçË≤¨</h3>
+      <p data-lang="en">AHBI, Athena Horizon Limited, and their representatives shall not be liable for any loss or damage arising from reliance on information provided through our service. Users assume full responsibility for their own investment and compliance decisions.</p>
+      <p data-lang="zh">AHBI„ÄÅAthena Horizon LimitedÂèäÂÖ∂‰ª£Ë°®Â∞çÂõ†‰æùË≥¥ÊàëÂÄëÊúçÂãôÊâÄÊèê‰æõË≥áË®äËÄåÁî¢ÁîüÁöÑ‰ªª‰ΩïÊêçÂ§±ÊàñÊêçÂÆ≥Ê¶Ç‰∏çË≤†Ë≤¨„ÄÇÁî®Êà∂È†àÂ∞çËá™Â∑±ÁöÑÊäïË≥áÂèäÂêàË¶èÊ±∫Á≠ñÊâøÊìîÂÖ®ÈÉ®Ë≤¨‰ªª„ÄÇ</p>
+
+      <h3 data-lang="en">5. Forward-Looking Information</h3>
+      <h3 data-lang="zh">5. ÂâçÁûªÊÄßË≥áË®ä</h3>
+      <p data-lang="en">Any references to future events, deadlines, or market conditions are based on publicly available information at the time of publication and may not reflect subsequent developments.</p>
+      <p data-lang="zh">‰ªª‰ΩïÂ∞çÊú™‰æÜ‰∫ã‰ª∂„ÄÅÊà™Ê≠¢Êó•ÊúüÊàñÂ∏ÇÂ†¥ÁãÄÊ≥ÅÁöÑÊèêÂèäÂùáÂü∫ÊñºÁôºÂ∏ÉÊôÇÂÖ¨ÈñãÂèØÁç≤ÂèñÁöÑË≥áË®äÔºåÂèØËÉΩÁÑ°Ê≥ïÂèçÊò†ÂæåÁ∫åÁôºÂ±ï„Ä
