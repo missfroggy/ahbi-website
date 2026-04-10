@@ -223,6 +223,26 @@
     .founder-stat-label { font-size: 12px; color: var(--grey); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 8px; }
     .founder-quote { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; color: var(--gold-light); line-height: 1.6; max-width: 600px; margin: 0 auto; }
 
+
+    /* TEAM SECTION */
+    .team-section { padding: 120px 48px; background: var(--navy); border-top: 1px solid var(--border); }
+    .team-wrap { max-width: 1100px; margin: 0 auto; }
+    .team-header { text-align: center; margin-bottom: 72px; }
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    @media (max-width: 768px) { .team-grid { grid-template-columns: 1fr; } }
+    .team-card { background: var(--navy); padding: 56px 48px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .team-card:first-child { border-right: 1px solid var(--border); }
+    .team-avatar { width: 120px; height: 120px; border-radius: 50%; border: 2px solid var(--border); overflow: hidden; margin-bottom: 28px; background: var(--navy-soft); display: flex; align-items: center; justify-content: center; }
+    .team-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .team-avatar-initials { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--gold-light); }
+    .team-name { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--white); margin-bottom: 8px; }
+    .team-title { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+    .team-bio { font-size: 14px; color: var(--grey); line-height: 1.8; max-width: 380px; margin-bottom: 32px; }
+    .team-stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 32px; flex-wrap: wrap; }
+    .team-stat-number { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--gold-light); line-height: 1; }
+    .team-stat-label { font-size: 10px; color: var(--grey); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 6px; }
+    .team-quote { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: var(--gold-light); line-height: 1.7; max-width: 360px; }
+
     /* FORM */
     .form-section { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 140px 48px; text-align: center; -webkit-font-smoothing: antialiased; }
     .form-section form { max-width: 560px; margin: 0 auto; }
@@ -808,37 +828,75 @@
 </section>
 
 <!-- FOUNDER SECTION (NEW) -->
-<section class="founder-section reveal">
-  <div class="founder-wrap">
-    <div class="founder-header">
-      <p class="section-label"><span class="inline-en">BUILT BY A DOMAIN EXPERT</span><span class="inline-zh">由領域專家打造</span></p>
-      <h2 data-lang="en">Designed by someone who<br><em>lived the problem.</em></h2>
-      <h2 data-lang="zh">由親歷問題之人<br><em>親手設計。</em></h2>
+<section class="team-section reveal">
+  <div class="team-wrap">
+    <div class="team-header">
+      <p class="section-label"><span class="inline-en">THE TEAM</span><span class="inline-zh">我們的團隊</span></p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,56px);font-weight:300;line-height:1.2;margin-bottom:12px" data-lang="en">Domain expertise meets<br><em>world-class engineering.</em></h2>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,56px);font-weight:300;line-height:1.2;margin-bottom:12px" data-lang="zh">領域深度與<br><em>卓越工程的結合。</em></h2>
     </div>
-    
-    <p class="founder-name">Ling Wu</p>
-    <p class="founder-title"><span class="inline-en">Founder & CEO, Athena Horizon Limited</span><span class="inline-zh">Athena Horizon Limited 創始人兼首席執行官</span></p>
-    
-    <p class="founder-bio" data-lang="en">AHBI was founded by Ling Wu, who spent years navigating the complexities of private market intelligence and regulatory monitoring for family offices. Having experienced firsthand the challenges of information overload and fragmented data sources, Ling set out to build a solution that combines domain expertise with cutting-edge AI technology.</p>
-    <p class="founder-bio" data-lang="zh">AHBI由Ling Wu創立，她多年來為家族辦公室處理私募市場情報和監管監控的複雜事務。親身經歷了資訊過載和數據來源分散的挑戰後，Ling決心打造一個結合領域專業知識與尖端AI技術的解決方案。</p>
-    
-    <div class="founder-stats">
-      <div class="founder-stat">
-        <div class="founder-stat-number">9+</div>
-        <div class="founder-stat-label"><span class="inline-en">Years Experience</span><span class="inline-zh">年經驗</span></div>
+
+    <div class="team-grid">
+
+      <!-- Ling Wu -->
+      <div class="team-card">
+        <div class="team-avatar">
+          <!-- Replace src with actual photo path when ready -->
+          <img src="/assets/avatar-ling.jpg" alt="Ling Wu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="team-avatar-initials" style="display:none">LW</div>
+        </div>
+        <div class="team-name">Ling Wu</div>
+        <div class="team-title"><span class="inline-en">Founder & CEO</span><span class="inline-zh">創始人兼首席執行官</span></div>
+        <p class="team-bio" data-lang="en">With over nine years navigating private market intelligence and regulatory monitoring for family offices across Asia, Ling brings the domain expertise that AHBI is built around. Having experienced firsthand the daily burden of fragmented information, she set out to build the tool she always wished existed.</p>
+        <p class="team-bio" data-lang="zh">Ling在亞洲家族辦公室擁有逾九年私募市場情報及監管監控的直接從業經驗，為AHBI奠定了深厚的領域基礎。親身體驗了碎片化資訊帶來的日常負擔，她決心打造一個她一直希望存在的工具。</p>
+        <div class="team-stats">
+          <div class="founder-stat">
+            <div class="team-stat-number">9+</div>
+            <div class="team-stat-label"><span class="inline-en">Years Experience</span><span class="inline-zh">年經驗</span></div>
+          </div>
+          <div class="founder-stat">
+            <div class="team-stat-number">$100M+</div>
+            <div class="team-stat-label"><span class="inline-en">Transactions</span><span class="inline-zh">交易規模</span></div>
+          </div>
+          <div class="founder-stat">
+            <div class="team-stat-number">MBA</div>
+            <div class="team-stat-label"><span class="inline-en">Sheffield</span><span class="inline-zh">謝菲爾德大學</span></div>
+          </div>
+        </div>
+        <p class="team-quote" data-lang="en">"I built AHBI because family offices deserve better intelligence — delivered faster, with greater precision, and without the noise."</p>
+        <p class="team-quote" data-lang="zh">「我創立AHBI，是因為家族辦公室值得擁有更優質的情報——更快、更精準、沒有雜訊。」</p>
       </div>
-      <div class="founder-stat">
-        <div class="founder-stat-number">$100M+</div>
-        <div class="founder-stat-label"><span class="inline-en">Transaction Volume</span><span class="inline-zh">交易規模</span></div>
+
+      <!-- Julien Vee -->
+      <div class="team-card">
+        <div class="team-avatar">
+          <!-- Replace src with actual photo path when ready -->
+          <img src="/assets/avatar-julien.jpg" alt="Julien Vee" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="team-avatar-initials" style="display:none">JV</div>
+        </div>
+        <div class="team-name">Julien Vee</div>
+        <div class="team-title"><span class="inline-en">Technical Partner</span><span class="inline-zh">技術合夥人</span></div>
+        <p class="team-bio" data-lang="en">An alumnus of École Polytechnique, France's leading institution for science and engineering, Julien is a full-stack software architect specialising in high-performance systems, AI infrastructure, and Web3. With mastery across Rust, Python, and NodeJS, he leads the engineering of AHBI's intelligence architecture — transforming fragmented public data signals into an institutional-grade, real-time monitoring system.</p>
+        <p class="team-bio" data-lang="zh">法國頂尖理工院校巴黎綜合理工學院校友，Julien是一位全棧軟件架構師，專注於高性能系統、AI基礎設施及Web3。精通Rust、Python及NodeJS，他主導AHBI情報架構的工程建設，將分散的公開數據訊號轉化為機構級實時監控系統。</p>
+        <div class="team-stats">
+          <div class="founder-stat">
+            <div class="team-stat-number">Full</div>
+            <div class="team-stat-label"><span class="inline-en">Stack</span><span class="inline-zh">全棧</span></div>
+          </div>
+          <div class="founder-stat">
+            <div class="team-stat-number">AI</div>
+            <div class="team-stat-label"><span class="inline-en">& Systems</span><span class="inline-zh">系統架構</span></div>
+          </div>
+          <div class="founder-stat">
+            <div class="team-stat-number">X</div>
+            <div class="team-stat-label"><span class="inline-en">Polytechnique</span><span class="inline-zh">巴黎綜合理工</span></div>
+          </div>
+        </div>
+        <p class="team-quote" data-lang="en">"I joined AHBI to bridge the gap between complex financial data and actionable intelligence — through engineering built to institutional standards."</p>
+        <p class="team-quote" data-lang="zh">「我加入AHBI，是為了通過達到機構標準的工程，搭建複雜金融數據與可行情報之間的橋樑。」</p>
       </div>
-      <div class="founder-stat">
-        <div class="founder-stat-number">MBA</div>
-        <div class="founder-stat-label"><span class="inline-en">University of Sheffield</span><span class="inline-zh">謝菲爾德大學</span></div>
-      </div>
+
     </div>
-    
-    <p class="founder-quote" data-lang="en">"I built AHBI because I believed family offices deserved better intelligence—delivered faster, with greater precision, and without the noise."</p>
-    <p class="founder-quote" data-lang="zh">「我創立AHBI，是因為我相信家族辦公室值得擁有更優質的情報——交付更快、更精準、沒有雜訊。」</p>
   </div>
 </section>
 
@@ -961,9 +1019,6 @@
       <a href="#" style="color:var(--grey);text-decoration:none;" onclick="openModal('privacy-modal');return false;"><span class="inline-en">Privacy</span><span class="inline-zh">隱私</span></a>
       <a href="#" style="color:var(--grey);text-decoration:none;" onclick="openModal('disclaimer-modal');return false;"><span class="inline-en">Disclaimer</span><span class="inline-zh">免責</span></a> · 
       
-    </p>
-    <p style="font-size:12px;color:var(--grey);margin-bottom:8px;">
-      <a href="https://www.linkedin.com/company/ahbi-intelligence" target="_blank" style="color:var(--grey);text-decoration:none;">LinkedIn</a>
     </p>
     <p style="font-size:12px;color:var(--grey)">© 2026 Athena Horizon Limited.</p>
   </div>
@@ -1218,11 +1273,5 @@
       <p data-lang="en">Users are strongly advised to independently verify all information and consult licensed professional advisors before making any investment, legal, or compliance decisions.</p>
       <p data-lang="zh">強烈建議用戶在做出任何投資、法律或合規決策前獨立核實所有資訊，並諮詢持牌專業顧問。</p>
 
-      <p data-lang="en" style="margin-top: 24px;"><strong>Contact:</strong> enquiry@ahbi.ai<br>Athena Horizon Limited, Hong Kong</p>
-      <p data-lang="zh" style="margin-top: 24px;"><strong>聯絡：</strong>enquiry@ahbi.ai<br>Athena Horizon Limited，香港</p>
-    </div>
-  </div>
-</div>
-
-</body>
-</html>
+      <p data-lang="en" style="margin-top: 24px;"><strong>Contact:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bedbd0cfcbd7ccc7fedfd6dcd790dfd7">[email&#160;protected]</a><br>Athena Horizon Limited, Hong Kong</p>
+      <p data-lang="zh" style="margin-top: 24px;"><stron
