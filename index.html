@@ -25,8 +25,8 @@
       --border: rgba(184,149,42,0.2);
     }
     html { scroll-behavior: smooth; }
-    body { background: var(--navy); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    p { font-size: 16px; line-height: 1.75; }
+    body { background: var(--navy); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.8; overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    p { font-size: 17px; line-height: 1.8; }
     body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.4; }
 
     /* NAV */
@@ -95,7 +95,7 @@
     .section-label { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
     .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 300; line-height: 1.2; margin-bottom: 24px; }
     .section h2 em { font-style: italic; color: var(--gold-light); }
-    .section p { color: var(--grey); font-size: 16px; max-width: 600px; margin-bottom: 16px; }
+    .section p { color: var(--grey); font-size: 17px; max-width: 600px; margin-bottom: 16px; }
     .gold-divider { width: 48px; height: 1px; background: var(--gold); margin: 32px 0; }
 
     /* PAIN GRID */
@@ -104,7 +104,7 @@
     .pain-item:hover { background: var(--navy-soft); }
     .pain-icon { font-size: 28px; margin-bottom: 16px; }
     .pain-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px; }
-    .pain-item p { font-size: 14px; color: var(--grey); line-height: 1.6; margin: 0; max-width: 100%; }
+    .pain-item p { font-size: 15px; color: var(--grey); line-height: 1.7; margin: 0; max-width: 100%; }
 
     /* SOLUTION */
     .solution-wrap { background: var(--navy-mid); border: 1px solid var(--border); padding: 80px; margin-top: 64px; position: relative; overflow: hidden; }
@@ -121,7 +121,7 @@
     .email-section:last-child { border-bottom: none; margin-bottom: 0; }
     .email-tag { display: inline-block; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
     .email-section h4 { font-size: 14px; font-weight: 400; margin-bottom: 6px; color: var(--white); }
-    .email-section p { font-size: 13px; color: var(--grey); line-height: 1.6; margin: 0; max-width: 100%; }
+    .email-section p { font-size: 14px; color: var(--grey); line-height: 1.7; margin: 0; max-width: 100%; }
 
     /* SERVICES */
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 64px; }
@@ -130,7 +130,7 @@
     .service-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
     .service-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
     .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; margin-bottom: 16px; }
-    .service-card p { font-size: 14px; color: var(--grey); line-height: 1.6; margin-bottom: 24px; }
+    .service-card p { font-size: 15px; color: var(--grey); line-height: 1.7; margin-bottom: 24px; }
     .service-features { list-style: none; margin: 20px 0 28px; padding: 0; }
     .service-features li { font-size: 14px; color: var(--grey); padding: 7px 0; border-bottom: 1px solid rgba(184,149,42,0.08); display: flex; gap: 10px; line-height: 1.5; }
     .service-features li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
@@ -143,7 +143,7 @@
     @media (max-width: 600px) { .steps { grid-template-columns: 1fr; } }
     .step-number { font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; color: rgba(184,149,42,0.15); line-height: 1; margin-bottom: 16px; }
     .step h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px; }
-    .step p { font-size: 14px; color: var(--grey); line-height: 1.6; margin: 0; max-width: 100%; }
+    .step p { font-size: 15px; color: var(--grey); line-height: 1.7; margin: 0; max-width: 100%; }
 
     /* PRICING */
     .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr) !important; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 64px; }
@@ -190,7 +190,7 @@
     .bespoke-card .bespoke-price { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; color: var(--gold-light); margin-bottom: 32px; }
     .bespoke-card .bespoke-price span { font-size: 14px; color: var(--grey); font-family: 'DM Sans', sans-serif; }
     .bespoke-features { list-style: none; margin: 0 0 32px; padding: 0; flex: 1; }
-    .bespoke-features li { font-size: 14px; color: var(--grey); padding: 10px 0; border-bottom: 1px solid rgba(184,149,42,0.08); display: flex; gap: 10px; line-height: 1.6; }
+    .bespoke-features li { font-size: 15px; color: var(--grey); padding: 10px 0; border-bottom: 1px solid rgba(184,149,42,0.08); display: flex; gap: 10px; line-height: 1.7; }
     .bespoke-features li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
     .bespoke-features li:last-child { border-bottom: none; }
     .btn-enquire { background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 16px 32px; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; cursor: pointer; transition: all 0.3s ease; display: inline-block; font-family: 'DM Sans', sans-serif; text-align: center; text-decoration: none; }
@@ -204,7 +204,7 @@
     @media (max-width: 768px) { .testimonials-grid { grid-template-columns: 1fr; } }
     .testimonial-card { background: var(--navy); border: 1px solid var(--border); padding: 48px 40px; position: relative; }
     .testimonial-card::before { content: '"'; position: absolute; top: 24px; left: 32px; font-family: 'Cormorant Garamond', serif; font-size: 72px; color: rgba(184,149,42,0.15); line-height: 1; }
-    .testimonial-quote { font-size: 15px; line-height: 1.8; color: var(--white); margin-bottom: 16px; font-style: italic; }
+    .testimonial-quote { font-size: 16px; line-height: 1.85; color: var(--white); margin-bottom: 16px; font-style: italic; }
     .testimonial-quote-zh { font-size: 14px; line-height: 1.8; color: var(--grey); margin-bottom: 24px; }
     .testimonial-author { font-size: 13px; color: var(--gold); letter-spacing: 0.05em; }
     .testimonials-footer { text-align: center; margin-top: 48px; font-size: 12px; color: var(--grey); letter-spacing: 0.05em; }
@@ -215,7 +215,7 @@
     .founder-header { margin-bottom: 48px; }
     .founder-name { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 400; color: var(--white); margin-bottom: 8px; }
     .founder-title { font-size: 14px; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 32px; }
-    .founder-bio { font-size: 16px; line-height: 1.8; color: var(--grey); max-width: 700px; margin: 0 auto 48px; }
+    .founder-bio { font-size: 17px; line-height: 1.85; color: var(--grey); max-width: 700px; margin: 0 auto 48px; }
     .founder-stats { display: flex; justify-content: center; gap: 64px; margin-bottom: 48px; flex-wrap: wrap; }
     @media (max-width: 600px) { .founder-stats { gap: 32px; } }
     .founder-stat { text-align: center; }
@@ -237,7 +237,7 @@
     .team-avatar-initials { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--gold-light); }
     .team-name { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--white); margin-bottom: 8px; }
     .team-title { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
-    .team-bio { font-size: 14px; color: var(--grey); line-height: 1.8; max-width: 380px; margin-bottom: 32px; }
+    .team-bio { font-size: 15px; color: var(--grey); line-height: 1.85; max-width: 380px; margin-bottom: 32px; }
     .team-stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 32px; flex-wrap: wrap; }
     .team-stat-number { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--gold-light); line-height: 1; }
     .team-stat-label { font-size: 10px; color: var(--grey); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 6px; }
@@ -254,7 +254,7 @@
     .form-wrap, #enquiry-form, .success-msg { max-width: 560px; margin: 0 auto; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
     .form-field { margin-bottom: 16px; }
-    input, select, textarea { width: 100%; background: var(--navy); border: 1px solid var(--border); color: var(--white); padding: 16px 20px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; outline: none; transition: border-color 0.3s ease; appearance: none; }
+    input, select, textarea { width: 100%; background: var(--navy); border: 1px solid var(--border); color: var(--white); padding: 16px 20px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 300; outline: none; transition: border-color 0.3s ease; appearance: none; }
     input::placeholder, textarea::placeholder { color: var(--grey); }
     input:focus, select:focus, textarea:focus { border-color: var(--gold); }
     select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A95A8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 20px center; padding-right: 44px; }
@@ -387,7 +387,7 @@
 
     /* SERVICE FEATURES NEW */
     .service-features-new { list-style: none; margin: 16px 0 28px; padding: 0; }
-    .service-features-new li { font-size: 13.5px; color: var(--grey); padding: 7px 0; border-bottom: 1px solid rgba(184,149,42,0.08); display: flex; gap: 10px; line-height: 1.5; }
+    .service-features-new li { font-size: 15px; color: var(--grey); padding: 8px 0; border-bottom: 1px solid rgba(184,149,42,0.08); display: flex; gap: 10px; line-height: 1.6; }
     .service-features-new li::before { content: "—"; color: var(--gold); flex-shrink: 0; }
     .service-features-new li:last-child { border-bottom: none; }
   </style>
@@ -588,8 +588,8 @@
     <p class="section-label"><span class="inline-en">The Solution</span><span class="inline-zh">解決方案</span></p>
     <h2 data-lang="en">One email. Every morning.<br><em>Everything you need to know.</em></h2>
     <h2 data-lang="zh">一封郵件。每個交易日早晨。<br><em>您需要知道的一切。</em></h2>
-    <p data-lang="en" style="color:var(--grey);font-size:16px;max-width:560px;margin-bottom:0">AHBI monitors hundreds of sources overnight, synthesizes the signal from the noise, and delivers a clean, personalized briefing — before markets open.</p>
-    <p data-lang="zh" style="color:var(--grey);font-size:16px;max-width:560px;margin-bottom:0">AHBI在您睡眠期間監控數百個資訊來源，從雜訊中提煉出關鍵訊號，在市場開盤前送達一份簡潔、個人化的情報簡報。</p>
+    <p data-lang="en" style="color:var(--grey);font-size:17px;max-width:560px;margin-bottom:0">AHBI monitors hundreds of sources overnight, synthesizes the signal from the noise, and delivers a clean, personalized briefing — before markets open.</p>
+    <p data-lang="zh" style="color:var(--grey);font-size:17px;max-width:560px;margin-bottom:0">AHBI在您睡眠期間監控數百個資訊來源，從雜訊中提煉出關鍵訊號，在市場開盤前送達一份簡潔、個人化的情報簡報。</p>
 
     <div class="email-preview">
       <div class="email-header">
@@ -762,8 +762,8 @@
   <div class="bespoke-wrap">
     <div class="bespoke-header">
       <p class="section-label"><span class="inline-en">PART B — AHBI BESPOKE INTELLIGENCE</span><span class="inline-zh">B部分 — AHBI定制情報專案</span></p>
-      <h2 data-lang="en">Custom Intelligence<br><em>For Complex Decisions</em></h2>
-      <h2 data-lang="zh">定制情報服務<br><em>應對複雜決策</em></h2>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,56px);font-weight:300;line-height:1.2;margin-bottom:12px" data-lang="en">Custom Intelligence<br><em>For Complex Decisions</em></h2>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,56px);font-weight:300;line-height:1.2;margin-bottom:12px" data-lang="zh">定制情報服務<br><em>應對複雜決策</em></h2>
     </div>
     
     <div class="bespoke-grid">
@@ -803,8 +803,8 @@
   <div class="testimonials-wrap">
     <div class="testimonials-header">
       <p class="section-label"><span class="inline-en">What Early Subscribers Are Saying</span><span class="inline-zh">早期訂閱者的評價</span></p>
-      <h2 data-lang="en">Trusted by Those<br><em>Who Know the Value of Time</em></h2>
-      <h2 data-lang="zh">深受信賴<br><em>深知時間價值之人</em></h2>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,56px);font-weight:300;line-height:1.2;margin-bottom:12px" data-lang="en">Trusted by Those<br><em>Who Know the Value of Time</em></h2>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,56px);font-weight:300;line-height:1.2;margin-bottom:12px" data-lang="zh">深受信賴<br><em>深知時間價值之人</em></h2>
     </div>
     
     <div class="testimonials-grid">
